@@ -9,10 +9,11 @@ if (status != CL_SUCCESS) {
 	return 1;
 }
 
+
 status = clBuildProgram (program,
 		1,			// number of devices
 		&device,		// pointer to device list
-		"-I ./ ",		// optional (build options)
+		buildOptions,		// optional (build options)
 		NULL, NULL); 		// optional (callback function, argument)
 
 if(status != CL_SUCCESS) { 

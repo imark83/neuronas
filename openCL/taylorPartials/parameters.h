@@ -2,7 +2,7 @@
 #define MAX(a,b) ((a)>(b))? (a) : (b)
 
 
-#define SINGLECPU
+#define CPU
 #define DOUBLE
 
 #ifdef FLOAT

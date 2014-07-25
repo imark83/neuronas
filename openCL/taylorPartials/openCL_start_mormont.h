@@ -1,4 +1,4 @@
-char buildOptions[100] = "-I /Users/marcos/Desktop/neuronas/openCL/taylorPartials";
+char buildOptions[100] = "-I ./";
 int status;
 	
 size_t devInfo, devInfos[3];
@@ -6,15 +6,15 @@ char dname[500];
 
 // Get the first available platform
 // Example: AMD Accelerated Parallel Processing
-cl_platform_id platform[1];
-clGetPlatformIDs(1,			// number of platforms to add to list
+cl_platform_id platform[2];
+clGetPlatformIDs(2,			// number of platforms to add to list
 		platform, 		// list of platforms found
 		NULL);			// number of platforms available
 
 // Get the first GPU device the platform provides
-cl_device_id device, devices[2];
+cl_device_id device, devices[1];
 clGetDeviceIDs(platform[1], CL_DEVICE_TYPE_ALL, 
-		2, 			// number of devices to add
+		1, 			// number of devices to add
 		&devices[0], 		// list of devices
 		NULL);			// number of devices available
 
@@ -36,16 +36,10 @@ clGetDeviceInfo (devices[0], CL_DEVICE_MAX_WORK_ITEM_SIZES,
 printf ("\tMax work group sizes = %i, %i, %i\n\n", 
 	(int) devInfos[0], (int) devInfos[1], (int) devInfos[2]);
 
-#ifdef CPU
-	device = devices[1];
-#endif
-#ifdef GPU
-	device = devices[2];
-#endif
+
+	device = devices[0];
 
 clGetDeviceInfo (device, CL_DEVICE_NAME, 500, dname,NULL);
-
-printf ("\nChosen device = %s\n", dname);
 
 
 cl_context context = clCreateContext (
