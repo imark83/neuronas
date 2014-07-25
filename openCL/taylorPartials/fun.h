@@ -1,12 +1,12 @@
-__constant int RANGE_SET[] = {0, 1, 3};
-__constant int VI_SET[]    = {0, 0, 1};
-__constant int IV_SET[]    = {0, 1, 0};
-__constant int COMB_SET[]  = {1, 1, 1};
+__constant int RANGE_SET[] = {0, 1, 3, 5, 7, 9};
+__constant int VI_SET[]    = {0, 0, 1, 0, 2, 0, 3, 0, 4};
+__constant int IV_SET[]    = {0, 1, 0, 2, 0, 3, 0, 4, 0};
+__constant int COMB_SET[]  = {1, 1, 1, 1, 1, 1, 1, 1, 1};
 
-__constant int RANGE_STAR[] = {0, 1, 2};
-__constant int VI_STAR[]    = {0, 0};
-__constant int IV_STAR[]    = {0, 0};
-__constant int COMB_STAR[]  = {1, 1};
+__constant int RANGE_STAR[] = {0, 1, 2, 3, 4, 5};
+__constant int VI_STAR[]    = {0, 0, 0, 0, 0};
+__constant int IV_STAR[]    = {0, 1, 2, 3, 4};
+__constant int COMB_STAR[]  = {1, 1, 1, 1, 1};
 
 void fun (real_t t, real_t *x, real_t series[NCOL][ORDER+1]) {
 

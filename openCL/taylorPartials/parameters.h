@@ -16,14 +16,14 @@
 
 
 
-#define M		(64)		// HORIZONTAL GRIDSIZE
-#define N		(64)		// VERTICAL GRIDSIZE
+#define M		(256)		// HORIZONTAL GRIDSIZE
+#define N		(256)		// VERTICAL GRIDSIZE
 #define yMIN		(-0.5)		// MINIMUM VALUE FOR y
 #define yMAX		(0.7)		// MAXIMUM VALUE FOR y
 #define YMIN		(-0.5)		// MINIMUM VALUE FOR Y
 #define YMAX		(0.5)		// MAXIMUM VALUE FOR Y
 #define H		(0.125)		// ENERGY
-#define TF		(60.0)		// FINAL INTEGRATION TIME
+#define TF		(600.0)		// FINAL INTEGRATION TIME
 
 
 

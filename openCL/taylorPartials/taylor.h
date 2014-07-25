@@ -29,7 +29,6 @@ void taylor (real_t x[NCOL]) {
 		
 		horner (NCOL, step, series, x); // HORNER EVALUATION
 		t = t + step;			// UPDATE TIME
-		
 	}
 }
 
@@ -78,7 +77,7 @@ void horner (short n,	 			// NVAR OR NCOL
 	
 	for (k=0; k<n; k++) x[k] = series[k][ORDER]; 
 	for (j=ORDER-1; j>=0; j--)
-		for (k=0; k<NVAR; k++) 
+		for (k=0; k<n; k++) 
 			x[k] = x[k]*h + series[k][j];
 }
 
