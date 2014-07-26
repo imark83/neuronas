@@ -29,6 +29,7 @@ void taylor (real_t x[NCOL]) {
 		
 		horner (NCOL, step, series, x); // HORNER EVALUATION
 		t = t + step;			// UPDATE TIME
+		//return;
 	}
 }
 

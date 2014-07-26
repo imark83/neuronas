@@ -16,8 +16,8 @@
 
 
 
-#define M		(256)		// HORIZONTAL GRIDSIZE
-#define N		(256)		// VERTICAL GRIDSIZE
+#define M		(128)		// HORIZONTAL GRIDSIZE
+#define N		(128)		// VERTICAL GRIDSIZE
 #define yMIN		(-0.5)		// MINIMUM VALUE FOR y
 #define yMAX		(0.7)		// MAXIMUM VALUE FOR y
 #define YMIN		(-0.5)		// MINIMUM VALUE FOR Y

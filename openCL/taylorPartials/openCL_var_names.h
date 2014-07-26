@@ -13,7 +13,7 @@ void fun (real_t t, real_t *x, real_t series[NCOL][ORDER+1]);
 real_t htilde (real_t h[NDER+1][ORDER+1], int j, int n, int v, int i);
 
 void dp_sumAD (int order, real_t rop[NDER+1][ORDER+1], 
-		real_t op1[NDER+1][ORDER+1], double op2[NDER+1][ORDER+1]);
+		real_t op1[NDER+1][ORDER+1], real_t op2[NDER+1][ORDER+1]);
 void dp_smCAD (int order, real_t rop[NDER+1][ORDER+1],  
 		real_t op1[NDER+1][ORDER+1], real_t op2);
 void dp_mulAD (int order, real_t rop[NDER+1][ORDER+1],  

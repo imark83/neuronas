@@ -12,11 +12,11 @@ void fun (real_t t, real_t *x, real_t series[NCOL][ORDER+1]) {
 
 	int k, i, j;
 	
-	double v[NVAR][NDER+1][ORDER+1];		//para las variables
+	real_t v[NVAR][NDER+1][ORDER+1];		//para las variables
 		for (k=0; k<NVAR; k++) for (i=0; i<=NDER; i++) 
 			v[k][i][0] = x[k+NVAR*i];
 
-	double l[10][NDER+1][ORDER+1];
+	real_t l[10][NDER+1][ORDER+1];
 	for (j=0; j<ORDER; j++) {
 		dp_mulAD (j, l[0], v[1], v[0]);
 		dp_mlCAD (j, l[1], l[0], -2.00000000000000);

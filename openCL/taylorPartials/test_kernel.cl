@@ -1,9 +1,7 @@
-    
- 
 // PARAMETERS
 #include "parameters.h"
-  
  
+
 // HEADERS AND MACROS FOR VARIABLES
 #include "openCL_var_names.h"
 
@@ -39,7 +37,6 @@ __kernel void test (__global real_t *fli) {
 	x[14] = 1.0;
 	x[19] = 1.0;*/
 
-
 	taylor (x);
 
 	/*real_t r, v;
@@ -60,10 +57,10 @@ __kernel void test (__global real_t *fli) {
 
 	real_t r = sqrt (x[0]*x[0] + x[1]*x[1]);
 	real_t v = sqrt (x[2]*x[2] + x[3]*x[3]);
-	
+
 	FLI = log ((x[4]*x[4] + x[5]*x[5])/r + (x[6]*x[6] + x[7]*x[7])/v);
 
- 
+
 }
 
 #include "fun.h"

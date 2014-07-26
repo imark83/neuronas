@@ -95,7 +95,7 @@ int main () {
 	clGetEventProfilingInfo(prof_event, CL_PROFILING_COMMAND_END, sizeof(c1), &c1, NULL);
 	//printf("\nExecution time in milliseconds = %0.3f ms\n", ((real_t) (c1 - c0) / 1.e6));
 
-	printf ("%0.3f\t\t\t%.7le\n", ((real_t) (c1 - c0) / 1.e6), 1.0); //x[0]);
+	printf ("Computation time -> %0.3f\n", ((real_t) (c1 - c0) / 1.e6)); //x[0]);
 
 	
 
