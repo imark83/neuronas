@@ -13,12 +13,12 @@ clGetPlatformIDs(1,			// number of platforms to add to list
 
 // Get the first GPU device the platform provides
 cl_device_id device, devices[2];
-clGetDeviceIDs(platform[1], CL_DEVICE_TYPE_ALL, 
+clGetDeviceIDs(platform[0], CL_DEVICE_TYPE_ALL, 
 		2, 			// number of devices to add
 		&devices[0], 		// list of devices
 		NULL);			// number of devices available
 
-clGetPlatformInfo (platform[1], CL_PLATFORM_NAME,500,dname,NULL);
+clGetPlatformInfo (platform[0], CL_PLATFORM_NAME,500,dname,NULL);
 printf ("CL_PLATFORM_NAME = %s\n", dname);
 clGetDeviceInfo (devices[0], CL_DEVICE_NAME, 500, dname,NULL);
 printf ("\tDevice name = %s\n", dname);
