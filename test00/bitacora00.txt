@@ -1,0 +1,3 @@
+Experimento para intentar calcular el FLI para el toro en la red de 3 neuronas.
+
+Utilizamos el integrador taylorPartials.
