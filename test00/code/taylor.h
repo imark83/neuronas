@@ -34,6 +34,104 @@ void taylor (real_t x[NCOL]) {
 }
 
 
+// TAYLOR INTEGRATOR FOR SINGLE NEURON
+real_t taylor_SN (real_t x[3],			// INTEGRATION VARIABLES
+		real_t tf,			// FINAL TIME
+		char poincare) {		// POINCARE FLAG
+
+	real_t series[3][ORDER+1];		// STORAGE TAYLOR SERIES
+	real_t t;				// INTEGRATION TIME
+	real_t step;				// STEPSIZE
+	
+
+	t = 0.0;				// INTEGRATION TIME	
+	char endOfIntegration = 0;		// END OF INTEGRATION FLAG
+
+	
+	// POINCARE VARIABLES
+	real_t criterion;			// POINCARE CRITERION
+	real_t p_x[3];				// POINCARE VARIABLES
+	real_t p_t[2];				// POINCARE TIME
+	real_t p_d;				// POINCARE DELTA
+	char count = 0;				// 2 CUTS FOR COMPUTING PERIOD
+
+	while (t < TF && !endOfIntegration) {
+		fun_SN (t, x, series);		// EVALUATE TAYLOR SERIES
+
+	
+		step = getStep (series); 	// GET STEPSIZE
+		if (t + step > tf) {		// CHECK WHETHER IT IS FINAL STEP
+			step = tf - t;
+			endOfIntegration = 1;
+		} 
+
+
+		// POINCARE CHECK
+		if (event >= 0)	x_old = x[0];
+		// END POINCARE CHECK		
+
+		horner (3, step, series, x); // HORNER EVALUATION
+
+		// POINCARE CKECK
+		if (poincare)	{
+			criterion = x_old * x[0];
+			if (criterion < 0) {
+				poincare (3, step, series, 0, p_x, &p_d);
+				p_t[count] = t + p_d;
+				if (count == 2) return p_t[1] - p_t[0];
+				count++;
+			}
+
+		}
+		// END POINCARE CHECK	
+
+		t = t + step;			// UPDATE TIME
+	}
+}
+
+
+
+
+void poincare (int nvar, 			// DIMENSION OF THE PROBLEM
+		real_t step,			// STEPSIZE
+		real_t series[nvar][ORDER+1],	// TAYLOR SERIES
+		int event, 			// VARIABLE TO CHECK EVENT
+		real_t rop[nvar],		// VARIABLE VALUE AT POINCARE EVENT
+		real_t *dt) {			// DELTA TIME FOR POINCARE EVENT (t + dt)
+
+	real_t h_L = 0.0			// LEFT VALUE FOR DELTA
+	real_t h_R = step;			// RIGHT VALUE FOR DELTA
+	real_t h_M;				// MID POINT FOR DELTA
+
+	real_t p_L;				// VALUE OF EVENT VARIABLE AT LEFT DELTA
+	real_t p_R;				// VALUE OF EVENT VARIABLE AT RIGHT DELTA
+	real_t p_M;				// VALUE OF EVENT VARIABLE AT MID POINT DELTA
+	real_t x[nvar];				// VARIABLES TO EVALUATE HORNER
+
+
+	do {
+		h_M = (h_L + h_R)/2.;			// DEFINE MID POINT
+
+		// HORNER EVALUATIONS
+		horner (3, h_L, series, x);
+		p_L = x[event];
+		horner (3, h_R, series, x);		// HORNER EVALUATION
+		p_R = x[event];
+		horner (3, h_M, series, x);		// HORNER EVALUATION
+		p_M = x[event];
+
+		if (p_M * p_L < 0.) 
+			h_R = h_M;
+		else 
+			h_L = h_M;
+
+	} while (fabs (p_M) > 1e-10);
+	horner (3, h_M, series, rop);
+	*dt = h_M;
+}
+
+
+
 
 // COMPUTES STEP-SIZE FROM VARIABLES (NOT VARIATIONALS)
 real_t getStep (real_t series[NCOL][ORDER+1]) {
@@ -70,7 +168,7 @@ real_t getStep (real_t series[NCOL][ORDER+1]) {
 // HORNER EVALUATION (nvar 
 void horner (short n,	 			// NVAR OR NCOL
 		real_t h, 			// STEPSIZE
-		real_t series[NCOL][ORDER+1],	// TAYLOR SERIES
+		real_t series[n][ORDER+1],	// TAYLOR SERIES
 		real_t *x) {			// OUTPUT 
 
 	short k;				// COUNTER FOR VARIABLES

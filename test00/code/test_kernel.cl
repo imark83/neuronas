@@ -11,49 +11,35 @@
 __kernel void test (__global real_t *fli) {
 
 	short k;
-	real_t x[NCOL];
+	real_t z[3], y[3], x[18];
 
-	x[0] = 0.0;
-	x[1] = yMIN + ((yMAX-yMIN)*get_global_id(0))/(M-1);
-	x[3] = YMIN + ((YMAX-YMIN)*get_global_id(1))/(N-1);
-	x[2] = 2.0*H - x[3]*x[3] - x[1]*x[1] + 2.0/3.0*x[1]*x[1]*x[1];
+	z[0] = -3.984730341527971e-02;
+	z[1] = 5.750624937966343e-01;
+	z[2] = 3.173568608828366e-01;
 
-	if (x[2] < 0.0) {
-		FLI = -5.0;
-		return;
-	}
+	for (k=9; k<18; k++) x[k] = 1.0;
+
+
+	real_t P;
+	P = taylor_SN (z, 5000.0, 1);
+
+
+	real_t phi21 =  OX + (0.5/M + get_global_id(0)/((real_t) M)) * RADIUS;
+	real_t phi31 =  OY + (0.5/N + get_global_id(1)/((real_t) N)) * RADIUS;
+
+	for (k=0; k<3; k++) x[k] = y[k] = z[k];
+	rk2 (y, (1.0-phi21)*P, 0);
+	for (k=0; k<3; k++) x[k+3] = y[k];
 	
-	/*x[0] = 0.0;
-	x[1] = 0.548463957942453;
-	x[2] = sqrt (2.0*(0.12) - x[1]*x[1] + 2.0/3.0*x[1]*x[1]*x[1]);
-	x[3] = 0.0;*/
+	for (k=0; k<3; k++) y[k] = z[k];
+	rk2 (y, (1.0-phi31)*P, 0);
+	for (k=0; k<3; k++) x[k+6] = y[k];
 
-	x[2] = sqrt (x[2]);
-	x[4] = x[5] = x[6] = x[7] = 1.0;
 
-	/*for (k=4; k<20; k++) x[k] = 0.0;
-	x[4] = 1.0;
-	x[9] = 1.0;
-	x[14] = 1.0;
-	x[19] = 1.0;*/
+
 
 	taylor (x);
 
-	/*real_t r, v;
-	r = v;
-	r = sqrt (x[0]*x[0] + x[1]*x[1]);
-	v = sqrt (x[2]*x[2] + x[3]*x[3]);
-	
-	real_t vx, vy, vX, vY;
-	vx = log ((x[4]*x[4] + x[5]*x[5])/r + (x[6]*x[6] + x[7]*x[7])/v)/2.0;
-	vy = log ((x[8]*x[8] + x[9]*x[9])/r + (x[10]*x[10] + x[11]*x[11])/v)/2.0;
-	vX = log ((x[12]*x[12] + x[13]*x[13])/r + (x[14]*x[14] + x[15]*x[15])/v)/2.0;
-	vY = log ((x[16]*x[16] + x[17]*x[17])/r + (x[18]*x[18] + x[19]*x[19])/v)/2.0;
-
-	FLI = vx;
-	FLI = MAX (FLI,vy);
-	FLI = MAX (FLI,vX);
-	FLI = MAX (FLI,vY);*/
 
 	real_t r = sqrt (x[0]*x[0] + x[1]*x[1]);
 	real_t v = sqrt (x[2]*x[2] + x[3]*x[3]);
