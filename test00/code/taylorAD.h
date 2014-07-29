@@ -125,7 +125,7 @@ void dp_divAD (int order, real_t rop[NDER+1][ORDER+1], real_t op1[NDER+1][ORDER+
 // rop = exp (op)
 void dp_expAD (int order, real_t rop[NDER+1][ORDER+1], real_t op[NDER+1][ORDER+1]) {
 	int i, j, vi;
-	real_t ht, aux;
+	real_t aux;
 	if (order == 0) {
 		rop[0][0] = exp (op[0][0]);
 		for (i=1; i<=NDER; i++) {

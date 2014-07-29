@@ -1,4 +1,4 @@
-char buildOptions[100] = "-I .";
+char buildOptions[100] = "-I ./";
 int status;
 	
 size_t devInfo, devInfos[3];
@@ -6,19 +6,19 @@ char dname[500];
 
 // Get the first available platform
 // Example: AMD Accelerated Parallel Processing
-cl_platform_id platform[1];
-clGetPlatformIDs(1,			// number of platforms to add to list
+cl_platform_id platform[2];
+clGetPlatformIDs(2,			// number of platforms to add to list
 		platform, 		// list of platforms found
 		NULL);			// number of platforms available
 
 // Get the first GPU device the platform provides
 cl_device_id device, devices[1];
-clGetDeviceIDs(platform[0], CL_DEVICE_TYPE_ALL, 
+clGetDeviceIDs(platform[1], CL_DEVICE_TYPE_ALL, 
 		1, 			// number of devices to add
 		&devices[0], 		// list of devices
 		NULL);			// number of devices available
 
-clGetPlatformInfo (platform[0], CL_PLATFORM_NAME,500,dname,NULL);
+clGetPlatformInfo (platform[1], CL_PLATFORM_NAME,500,dname,NULL);
 printf ("CL_PLATFORM_NAME = %s\n", dname);
 clGetDeviceInfo (devices[0], CL_DEVICE_NAME, 500, dname,NULL);
 printf ("\tDevice name = %s\n", dname);
@@ -37,11 +37,9 @@ printf ("\tMax work group sizes = %i, %i, %i\n\n",
 	(int) devInfos[0], (int) devInfos[1], (int) devInfos[2]);
 
 
-device = devices[0];
+	device = devices[0];
 
 clGetDeviceInfo (device, CL_DEVICE_NAME, 500, dname,NULL);
-
-printf ("\nChosen device = %s\n", dname);
 
 
 cl_context context = clCreateContext (

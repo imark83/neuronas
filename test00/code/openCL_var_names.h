@@ -1,17 +1,14 @@
 
 // HEADERS
 
-void taylor (real_t x[NCOL]);
+real_t taylor (real_t x[NCOL], real_t tf, char poincareFlag);
 real_t getStep (real_t series[NCOL][ORDER+1]);
 void horner (short n, real_t h, real_t series[NCOL][ORDER+1], real_t *x);
 real_t normInf (short n, real_t *x);
-void poincare (int nvar, real_t step, real_t series[nvar][ORDER+1], int event, real_t rop[nvar], real_t *dt);
+void poincare (real_t step, real_t series[NCOL][ORDER+1], 
+		short event, real_t rop[NCOL], real_t *dt);
 
 void fun (real_t t, real_t *x, real_t series[NCOL][ORDER+1]);
-
-
-
-real_t taylor_SN (real_t x[3], real_t tf, char poincare);
 
 
 
