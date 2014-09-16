@@ -36,9 +36,9 @@ I_L_0 = GL * (x0 - EL);
 I_L_1 = GL * (x3 - EL);
 I_L_2 = GL * (x6 - EL);
 
-f0 = [(-I_Na_0 - I_K2_0 - I_L_0 - IAPP - I_syn_0) / C, (h_NaInf_0 - x1) / TNA, (m_K2Inf_0 - x2) / TK2]
-f1 = [(-I_Na_1 - I_K2_1 - I_L_1 - IAPP - I_syn_1) / C, (h_NaInf_1 - x4) / TNA, (m_K2Inf_1 - x5) / TK2]
-f2 = [(-I_Na_2 - I_K2_2 - I_L_2 - IAPP - I_syn_2) / C, (h_NaInf_2 - x7) / TNA, (m_K2Inf_2 - x8) / TK2]
+f0 = [(-I_Na_0 - I_K2_0 - I_L_0 - IAPP + I_syn_0) / C, (h_NaInf_0 - x1) / TNA, (m_K2Inf_0 - x2) / TK2]
+f1 = [(-I_Na_1 - I_K2_1 - I_L_1 - IAPP + I_syn_1) / C, (h_NaInf_1 - x4) / TNA, (m_K2Inf_1 - x5) / TK2]
+f2 = [(-I_Na_2 - I_K2_2 - I_L_2 - IAPP + I_syn_2) / C, (h_NaInf_2 - x7) / TNA, (m_K2Inf_2 - x8) / TK2]
 
 f(t,x0,x1,x2,x3,x4,x5,x6,x7,x8) = f0 + f1 + f2
 
