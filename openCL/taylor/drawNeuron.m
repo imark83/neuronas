@@ -29,7 +29,7 @@ for i=1:n
 	
 	point0(i,:) = [phi2(1), phi3(1)];
 	point(i,:) = [phi2(end), phi3(end)];
-	plot (phi2(1), phi3(1), 'or');
+	%plot (phi2(1), phi3(1), 'or');
 	plot (phi2, phi3, '-b');
 	%axis ([0,1,0,1]);
 end
