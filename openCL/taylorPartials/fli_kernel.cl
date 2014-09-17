@@ -1,5 +1,7 @@
-                  
- 
+
+// GLOBAL VARIABLES
+#define FLI	fli[N*get_global_id(1) + get_global_id(0)]                  
+
    
 // PARAMETERS OF THE PROBLEM
 #include "parameters.h"
