@@ -1,4 +1,4 @@
-void fun (real_t *x, real_t series[NVAR][ORDER+1], real_t VSHIFT) {
+void fun (real_t x[NVAR], real_t series[NVAR][ORDER+1], real_t VSHIFT) {
 
 	int i, j;
 	
@@ -176,7 +176,7 @@ void fun (real_t *x, real_t series[NVAR][ORDER+1], real_t VSHIFT) {
 
 }
 
-void fun2 (real_t *x, real_t series[NVAR2][ORDER+1], real_t VSHIFT) {
+void fun2 (real_t x[NVAR2], real_t series[NVAR2][ORDER+1], real_t VSHIFT) {
 
 	int i, j;
 	
@@ -186,7 +186,7 @@ void fun2 (real_t *x, real_t series[NVAR2][ORDER+1], real_t VSHIFT) {
 
 
 
-	double l[37][ORDER];
+	double l[37][ORDER+1];
 	double c[5];
 	c[0] = (-1.00000000000000) * par[13];
 	c[1] = (1.00000000000000) / par[9];

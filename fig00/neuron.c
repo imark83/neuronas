@@ -13,12 +13,15 @@ void fileToSource (char *filename, char **source);
 int main () {
 	int i, j, k;
 	size_t global_work_size [] = {M, N};
+	size_t local_work_size [] = {2, 1};
 
 
 	// READ KERNEL FILE
 	char *source;
 	fileToSource ("neuron_kernel.cl", &source);
 	
+	printf ("read kernel:\n%s\n", source);
+
 	#include "openCL_start.h"
 	#include "openCL_kernel_build.h"
 
@@ -49,15 +52,15 @@ int main () {
 		2, 			// WORK DIMENSIONS
 		NULL,			// GLOBAL WORK OFFSET (NULL)
 		global_work_size,	// GLOBAL WORK SIZE
-		NULL,			// LOCAL WORK SIZE
+		local_work_size,	// LOCAL WORK SIZE
 		0,			// NUM EVENTS IN WAIT LIST
 		NULL,			// WAIT LIST
-		&prof_event		// EVENT FOR MEASURING TIME
+		NULL			// EVENT FOR MEASURING TIME
 	);
 
 	// WAIT UNTIL FINISH
 	clFinish (queue);
-	clWaitForEvents (1, &prof_event);
+	//clWaitForEvents (1, &prof_event);
 		// READ AUX VARIABLE
 	real_t delay[3*CUTNUMBER*M*N];
 	clEnqueueReadBuffer (queue, d_delay, CL_TRUE, 0, 3*M*N*CUTNUMBER * sizeof (real_t), delay, 0, NULL, NULL);

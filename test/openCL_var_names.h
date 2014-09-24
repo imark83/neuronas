@@ -2,30 +2,39 @@
 #define DELAY(k)	delay[M*N*(k) + M*get_global_id(1) + get_global_id(0)]
 
 
-// HEADERS
-
+// HEADERS FOR 1 NEURON TAYLOR
 void taylor (real_t *x, real_t tf, real_t *delay, real_t VSHIFT, int cutNumber);
+
 void fun (real_t *x, real_t series[NVAR][ORDER+1], real_t VSHIFT);
-void horner (real_t h, real_t series[NVAR][ORDER+1], real_t rop[NVAR]);
+
 real_t getStep (real_t series[NVAR][ORDER+1]);
-real_t normInf (real_t x[NVAR]);
+
+void horner (real_t h, real_t series[NVAR][ORDER+1], real_t *rop);
+
+real_t normInf (real_t *x);
+
 void poincare (real_t step, real_t series[NVAR][ORDER+1], int event, 
-		real_t rop[NVAR], real_t *dt);
+			real_t rop[NVAR], real_t *dt);
 
 
+// HEADERS FOR NETWORK NEURON TAYLOR
 real_t taylor2 (real_t x[NVAR2], real_t tf, int event, real_t VSHIFT);
+
 void fun2 (real_t x[NVAR2], real_t series[NVAR2][ORDER+1], real_t VSHIFT);
-void horner2 (real_t h, real_t series[NVAR2][ORDER+1], real_t rop[NVAR2]);
+
 real_t getStep2 (real_t series[NVAR2][ORDER+1]);
+
+void horner2 (real_t h, real_t series[NVAR2][ORDER+1], real_t *rop);
+
 real_t normInf2 (real_t x[NVAR2]);
+
 void poincare2 (real_t step, real_t series[NVAR2][ORDER+1], int event, 
 		real_t rop[NVAR2], real_t *dt);
 
 
 
 
-
-
+// HEADERS FOR AUTOMATIC DIFFERENTIATION RULES
 void dp_sumAD (int order, real_t rop[ORDER+1], real_t op1[ORDER+1], 
 		real_t op2[ORDER+1]);
 void dp_smCAD (int order, real_t rop[ORDER+1], real_t op1[ORDER+1], 

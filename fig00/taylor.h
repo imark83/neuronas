@@ -56,7 +56,7 @@ void taylor (real_t *x, real_t tf, real_t *delay, real_t VSHIFT, int cutNumber) 
 
 }
 
-real_t taylor2 (real_t *x, real_t tf, int event, real_t VSHIFT) {
+inline real_t taylor2 (real_t x[NVAR2], real_t tf, int event, real_t VSHIFT) {
 
 	real_t series[NVAR2][ORDER+1];	// STORAGE TAYLOR SERIES
 
@@ -81,8 +81,9 @@ real_t taylor2 (real_t *x, real_t tf, int event, real_t VSHIFT) {
 	while (t < tf && !endOfIntegrate) {
 		fun2 (x, series, VSHIFT);
 
-
 		step = getStep2 (series);
+		//printf ("step = %f\n", step);
+		//step = 0.001;//getStep2 (series);
 		if (t + step > tf) {
 			step = tf - t;
 			endOfIntegrate = 1;
@@ -119,8 +120,9 @@ real_t taylor2 (real_t *x, real_t tf, int event, real_t VSHIFT) {
 		}
 	/******** 
 	*******************************************/
-		
+		printf ("t = %f\n", t);
 		t = t + step;
+		printf ("x = %f %f %f\n", x[0], x[1], x[2]);
 	}
 	return 0.0;
 }
@@ -177,7 +179,7 @@ void poincare2 (real_t step, real_t series[NVAR2][ORDER+1], int event,
 real_t getStep (real_t series[NVAR][ORDER+1]) {
 	real_t n1, n2;
 	real_t x1[NVAR], x2[NVAR];
-	__private unsigned short i;
+	unsigned short i;
 	for (i=0; i<NVAR; i++) {
 		x1[i] = series[i][ORDER];
 		x2[i] = series[i][ORDER-1];
@@ -194,9 +196,10 @@ real_t getStep (real_t series[NVAR][ORDER+1]) {
 
 
 real_t getStep2 (real_t series[NVAR2][ORDER+1]) {
+
 	real_t n1, n2;
 	real_t x1[NVAR2], x2[NVAR2];
-	__private unsigned short i;
+	unsigned short i;
 	for (i=0; i<NVAR2; i++) {
 		x1[i] = series[i][ORDER];
 		x2[i] = series[i][ORDER-1];
@@ -204,9 +207,9 @@ real_t getStep2 (real_t series[NVAR2][ORDER+1]) {
 	n1 = normInf2 (x1); n2 = normInf2 (x2);
 	real_t h1, h2;
 
-	h1 = pow ((TOL/n1), (1./ORDER));
-	h2 = pow ((TOL/n2), (1./ORDER-1));
-	
+	h1 = powr ((TOL/n1), (1.0/ORDER));
+	h2 = powr ((TOL/n2), (1.0/(ORDER-1.0)));
+
 	if (h1 < h2) return h1;
 	return h2;
 }
@@ -225,7 +228,7 @@ void horner (real_t h, real_t series[NVAR][ORDER+1],
 
 
 void horner2 (real_t h, real_t series[NVAR2][ORDER+1],
-		real_t *x) {
+		real_t x[NVAR2]) {
 	short i, j;
 	
 	for (i=0; i<NVAR2; i++) x[i] = series[i][ORDER]; 
@@ -235,7 +238,7 @@ void horner2 (real_t h, real_t series[NVAR2][ORDER+1],
 }
 
 real_t normInf (real_t x[NVAR]) {
-	real_t rop = 0.;
+	real_t rop = 0.0;
 	unsigned short i;
 	for (i=0; i<NVAR; i++) 
 		if (fabs (x[i]) > rop) rop = fabs (x[i]);
@@ -243,10 +246,10 @@ real_t normInf (real_t x[NVAR]) {
 
 }
 
-real_t normInf2 (real_t x[NVAR/3]) {
-	real_t rop = 0.;
+real_t normInf2 (real_t x[NVAR2]) {
+	real_t rop = 0.0;
 	unsigned short i;
-	for (i=0; i<NVAR/3; i++) 
+	for (i=0; i<NVAR2; i++) 
 		if (fabs (x[i]) > rop) rop = fabs (x[i]);
 	return rop;
 
