@@ -87,43 +87,41 @@ int main () {
 			f31[j] = d31 / P;
 		}
 
-
-
+	
 		switch (getColor (f21, f31, N)) {
 			case BLUE:
 				for (j=0; j<N-2; j++) 
-					fprintf (fb, "%.15le  %.15le\n", f21[j], f31[j]);
+					fprintf (fb, "%.15le %.15le  %.15le\n", T[j], f21[j], f31[j]);
 				fprintf (fb, "\n");
 				nb++;
 					break;
 			case RED:
 				for (j=0; j<N-2; j++) 
-					fprintf (fr, "%.15le  %.15le\n", f21[j], f31[j]);
+					fprintf (fr, "%.15le %.15le  %.15le\n", T[j], f21[j], f31[j]);
 				fprintf (fr, "\n");
 				nr++;
 				break;
 			case GREEN:
 				for (j=0; j<N-2; j++) 
-						fprintf (fg, "%.15le  %.15le\n", f21[j], f31[j]);
+					fprintf (fg, "%.15le %.15le  %.15le\n", T[j], f21[j], f31[j]);
 				fprintf (fg, "\n");
 				ng++;
 				break;
 			case BLACK:
 				for (j=0; j<N-2; j++) 
-					fprintf (fk, "%.15le  %.15le\n", f21[j], f31[j]);
+					fprintf (fk, "%.15le %.15le  %.15le\n", T[j], f21[j], f31[j]);
 				fprintf (fk, "\n");
 				nk++;
 				break;
 			case CYAN:
 				for (j=0; j<N-2; j++) 
-					fprintf (fc, "%.15le  %.15le\n", f21[j], f31[j]);
+					fprintf (fc, "%.15le %.15le  %.15le\n", T[j], f21[j], f31[j]);
 				fprintf (fc, "\n");
 				nc++;
 				break;
 		}
 			
 	}		
-		
 		
 	fclose (fb); fclose (fg); fclose (fr); fclose (fk); fclose (fm); fclose (fc);
 	int ncolors = 0; 
