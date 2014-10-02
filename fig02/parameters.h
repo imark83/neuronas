@@ -15,11 +15,11 @@
 #define real_t double
 #endif
 
-#define M		10		// HORIZONTAL GRIDSIZE
-#define N		10		// VERTICAL GRIDSIZE
+#define M		5		// HORIZONTAL GRIDSIZE
+#define N		5		// VERTICAL GRIDSIZE
 #define NVAR2		3		// NUMBER OF VARIABLES FOR SINGLE NEURON
 #define NVAR		9		// NUMBER OF VARIABLES
-#define CUTNUMBER	50		// NUMBER OF CUTS FOR POINC. OF EACH NEURON!
+#define CUTNUMBER	20		// NUMBER OF CUTS FOR POINC. OF EACH NEURON!
 #define TOL 		(1.0e-8)	// TOLERANCE FOR INTEGRATION
 #define ORDER		17		// ORDER     OF TAYLOR SERIES
 
@@ -40,9 +40,9 @@
 #define TK2		(0.9)
 
 
-#define CENTERX		(0.5)
-#define CENTERY		(0.5)
-#define RADIUS		(0.45)
+#define CENTERX		(0.33333)
+#define CENTERY		(0.66666)
+#define RADIUS		(0.18333)
 
 #define XMIN		(CENTERX-RADIUS)	// MINIMUM VALUE FOR y
 #define XMAX		(CENTERX+RADIUS)	// MAXIMUM VALUE FOR y

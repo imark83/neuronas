@@ -1,0 +1,15 @@
+Zoom del dibujo global del plano de fases centrado en 0.333, 0.6666.
+Parametros
+
+#define GSYN		(-0.0005*0.8)
+
+#define CENTERX		(0.5)
+#define CENTERY		(0.5)
+#define RADIUS		(0.45)
+
+
+#define M		5		// HORIZONTAL GRIDSIZE
+#define N		5		// VERTICAL GRIDSIZE
+
+
+#define CUTNUMBER	20		// NUMBER OF CUTS FOR POINC. OF EACH NEURON!

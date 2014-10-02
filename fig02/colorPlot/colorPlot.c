@@ -28,7 +28,7 @@ int getColor (double* _f21, double* _f31, int N) {
 
 	if (fabs (f21 - 0.3333) + fabs (f31 - 0.6666) < 0.1) return BLACK;
 
-	//if (fabs (f21 - 0.6666) + fabs (f31 - 0.3333) < 0.1) return BLACK;
+	if (fabs (f21 - 0.6666) + fabs (f31 - 0.3333) < 0.1) return BLACK;
 
 	return CYAN; 
 
@@ -53,10 +53,9 @@ int main () {
 
 	FILE *gnuplot = popen ("/usr/bin/gnuplot", "w");
 	//fprintf (gnuplot, "set size square\nunset key\nset xrange [0.193:0.473]\nset yrange [0.526:0.806]\n");
-	fprintf (gnuplot, "set size ratio 2\nset yrange [0:1]\n");
-	fprintf (gnuplot, "set xlabel \"t\"\n");
-	fprintf (gnuplot, "set ylabel \"delay\"\n");
+	fprintf (gnuplot, "set size square\nunset key\nset xrange [0.118:0.542]\nset yrange [0.456:0.882]\n");
 	fprintf (gnuplot, "set term svg size 400, 400\n");
+	fprintf (gnuplot, "set output \"fig02.svg\"\n");
 
 	int i, j;
 	int nb = 0;		// number of blue orbits
@@ -88,41 +87,43 @@ int main () {
 			f31[j] = d31 / P;
 		}
 
-	
+
+
 		switch (getColor (f21, f31, N)) {
 			case BLUE:
 				for (j=0; j<N-2; j++) 
-					fprintf (fb, "%.15le %.15le  %.15le\n", T[j], f21[j], f31[j]);
+					fprintf (fb, "%.15le  %.15le\n", f21[j], f31[j]);
 				fprintf (fb, "\n");
 				nb++;
 					break;
 			case RED:
 				for (j=0; j<N-2; j++) 
-					fprintf (fr, "%.15le %.15le  %.15le\n", T[j], f21[j], f31[j]);
+					fprintf (fr, "%.15le  %.15le\n", f21[j], f31[j]);
 				fprintf (fr, "\n");
 				nr++;
 				break;
 			case GREEN:
 				for (j=0; j<N-2; j++) 
-					fprintf (fg, "%.15le %.15le  %.15le\n", T[j], f21[j], f31[j]);
+						fprintf (fg, "%.15le  %.15le\n", f21[j], f31[j]);
 				fprintf (fg, "\n");
 				ng++;
 				break;
 			case BLACK:
 				for (j=0; j<N-2; j++) 
-					fprintf (fk, "%.15le %.15le  %.15le\n", T[j], f21[j], f31[j]);
+					fprintf (fk, "%.15le  %.15le\n", f21[j], f31[j]);
 				fprintf (fk, "\n");
 				nk++;
 				break;
 			case CYAN:
 				for (j=0; j<N-2; j++) 
-					fprintf (fc, "%.15le %.15le  %.15le\n", T[j], f21[j], f31[j]);
+					fprintf (fc, "%.15le  %.15le\n", f21[j], f31[j]);
 				fprintf (fc, "\n");
 				nc++;
 				break;
 		}
 			
 	}		
+		
 		
 	fclose (fb); fclose (fg); fclose (fr); fclose (fk); fclose (fm); fclose (fc);
 	int ncolors = 0; 
@@ -133,23 +134,45 @@ int main () {
 		if (nm) ncolors++;
 		if (nc) ncolors++;
 	char firstColor = 1;
-
-	/*fprintf (gnuplot, "set output \"fig01_b.svg\"\n");
-	fprintf (gnuplot, "plot \"./_b.txt\" u 1:2 w l lc rgb \"light-blue\" lw 2 title \"phi_21\"");
-	fprintf (gnuplot, ", \\\n \"./_b.txt\" u 1:3 w l lc rgb \"dark-blue\" lw 0.4 title \"phi_31\"");*/
-
-	/*fprintf (gnuplot, "set output \"fig01_r.svg\"\n");
-	fprintf (gnuplot, "plot \"./_r.txt\" u 1:2 w l lc rgb \"light-red\" lw 2 title \"phi_21\"");
-	fprintf (gnuplot, ", \\\n \"./_r.txt\" u 1:3 w l lc rgb \"dark-red\" lw 0.4 title \"phi_31\"");*/
-
-	/*fprintf (gnuplot, "set output \"fig01_g.svg\"\n");
-	fprintf (gnuplot, "plot \"./_g.txt\" u 1:2 w l lc rgb \"light-green\" lw 2 title \"phi_21\"");
-	fprintf (gnuplot, ", \\\n \"./_g.txt\" u 1:3 w l lc rgb \"dark-green\" lw 0.4 title \"phi_31\"");*/
-
-	fprintf (gnuplot, "set output \"fig01_k.svg\"\n");
-	fprintf (gnuplot, "plot \"./_k.txt\" u 1:2 w l lc rgb \"grey20\" lw 2 title \"phi_21\"");
-	fprintf (gnuplot, ", \\\n \"./_k.txt\" u 1:3 w l lc rgb \"black\" lw 0.4 title \"phi_31\"");
-
+	if (nb) {
+		fprintf (gnuplot, "plot \"./_b.txt\"  w l lc rgb \"blue\"");
+		firstColor = 0;
+	}
+	if (nr)
+		if (firstColor) {
+			fprintf (gnuplot, "plot \"./_r.txt\"  w l lc rgb \"red\"");
+			firstColor = 0;
+		}
+		else
+			fprintf (gnuplot, ", \\\n \"./_r.txt\"  w l lc rgb \"red\"");
+	if (ng)
+		if (firstColor) {
+			fprintf (gnuplot, "plot \"./_g.txt\"  w l lc rgb \"green\"");
+			firstColor = 0;
+		}
+		else
+			fprintf (gnuplot, ", \\\n \"./_g.txt\"  w l lc rgb \"green\"");
+	if (nk)
+		if (firstColor) {
+			fprintf (gnuplot, "plot \"./_k.txt\"  w l lc rgb \"black\"");
+			firstColor = 0;
+		}
+		else
+			fprintf (gnuplot, ", \\\n \"./_k.txt\"  w l lc rgb \"black\"");
+	if (nm)
+		if (firstColor) {
+			fprintf (gnuplot, "plot \"./_m.txt\"  w l lc rgb \"magenta\"");
+			firstColor = 0;
+		}
+	else
+			fprintf (gnuplot, ", \\\n \"./_m.txt\"  w l lc rgb \"magenta\"");
+	/*if (nc)
+		if (firstColor) {
+			fprintf (gnuplot, "plot \"./_c.txt\"  w l lc rgb \"cyan\"");
+			firstColor = 0;
+		}
+		else
+			fprintf (gnuplot, ", \\\n \"./_c.txt\"  w l lc rgb \"cyan\"");*/
 	fprintf (gnuplot, "\n");
 
 	fflush (gnuplot);
