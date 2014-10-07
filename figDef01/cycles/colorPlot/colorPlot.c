@@ -43,7 +43,7 @@ int getNCut (const char *fname);
 
 int main () {
 int k;
-for (k=5; k<10; k++) {
+for (k=5; k<=10; k++) {
 	char FNAME[40];
 	sprintf (FNAME, "T%02i.txt", k);
 	printf ("file to read = %s\n", FNAME);
