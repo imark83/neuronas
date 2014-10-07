@@ -52,9 +52,6 @@ void taylor (real_t *x, real_t tf, real_t *delay, real_t VSHIFT, int cutNumber) 
 	*******************************************/
 		
 		t = t + step;
-		printf ("%.15le", t);
-		for (j=0; j<9; j++) printf ("\t%.15le", x[j]);
-		printf ("\n");
 	}
 
 }

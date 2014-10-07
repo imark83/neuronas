@@ -28,8 +28,8 @@ __kernel void neuron (	__global real_t* delay,
 	// COMPUTE PERIOD FROM POINCARÉ SECTIONS
 	real_t P = taylor2 (z, 500, 0, *VSHIFT);
 			
-	real_t phi21 =  0.0033;	
-	real_t phi31 =  0.614; 
+	real_t phi21 =  0.334; //XMIN + ((XMAX-XMIN)*get_global_id(0))/(M-1);	// DESIRED PHI21
+	real_t phi31 =  0.666; //YMIN + ((YMAX-YMIN)*get_global_id(1))/(N-1);	// DESIRED PHI31
 
 	real_t _phi21, _phi31, err21, err31;
 	_phi21 = phi21; _phi31 = phi31;
@@ -51,7 +51,7 @@ __kernel void neuron (	__global real_t* delay,
 		err21 = phi21 - (T[CUTNUMBER] - T[0]) / (T[1] - T[0]);
 		err31 = phi31 - (T[2*CUTNUMBER] - T[0]) / (T[1] - T[0]);
 
-		if (get_global_id(0) + get_global_id(1) == 0) {
+		/*if (get_global_id(0) + get_global_id(1) == 0) {
 			printf ("desired phi21 = %.15lf\ndesired phi31 = %.15lf\n", phi21, phi31);
 			printf ("x = [ %f, %f, %f, %f, %f, %f, %f, %f, %f]\n", 
 					x[0], x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8]);
@@ -61,7 +61,7 @@ __kernel void neuron (	__global real_t* delay,
 			printf ("err21 = %.15le\n", err21);
 			printf ("err31 = %.15le\n", err31);
 			printf ("-------------------------------\n");
-		}
+		}*/
 		_phi21 += err21; _phi31 += err31;
 	}	
 
@@ -72,8 +72,6 @@ __kernel void neuron (	__global real_t* delay,
 	for (k=0; k<3; k++) y[k] = x[k];
 	taylor2 (y, (1.0-_phi31)*P, -1, *VSHIFT);
 	for (k=0; k<3; k++) x[k+6] = y[k];
-
-	printf ("begin\n");
 
 	taylor (x, 10000000, T, *VSHIFT, CUTNUMBER);	
 

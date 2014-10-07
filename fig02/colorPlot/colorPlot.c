@@ -52,9 +52,9 @@ int main () {
 
 
 	FILE *gnuplot = popen ("/usr/bin/gnuplot", "w");
+	fprintf (gnuplot, "set term svg size 320,320 fsize 14\n");
 	//fprintf (gnuplot, "set size square\nunset key\nset xrange [0.193:0.473]\nset yrange [0.526:0.806]\n");
 	fprintf (gnuplot, "set size square\nunset key\nset xrange [0.118:0.542]\nset yrange [0.456:0.882]\n");
-	fprintf (gnuplot, "set term svg size 400, 400\n");
 	fprintf (gnuplot, "set output \"fig02.svg\"\n");
 
 	int i, j;

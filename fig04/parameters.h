@@ -3,7 +3,7 @@
 
 
 #define CPU
-#define FILENAME	"T.txt"
+//#define FILENAME	"T.txt"
 #define DOUBLE
 
 #ifdef FLOAT
@@ -19,9 +19,9 @@
 #define N		1		// VERTICAL GRIDSIZE
 #define NVAR2		3		// NUMBER OF VARIABLES FOR SINGLE NEURON
 #define NVAR		9		// NUMBER OF VARIABLES
-#define CUTNUMBER	20		// NUMBER OF CUTS FOR POINC. OF EACH NEURON!
-#define TOL 		(1.0e-8)	// TOLERANCE FOR INTEGRATION
-#define ORDER		17		// ORDER     OF TAYLOR SERIES
+#define CUTNUMBER	1000		// NUMBER OF CUTS FOR POINC. OF EACH NEURON!
+#define TOL 		(1.0e-12)	// TOLERANCE FOR INTEGRATION
+#define ORDER		20		// ORDER     OF TAYLOR SERIES
 
 #define EVENTVALUE	(-0.04)		// POINCARE SECTION
 
@@ -40,9 +40,9 @@
 #define TK2		(0.9)
 
 
-#define CENTERX		(0.5)
-#define CENTERY		(0.5)
-#define RADIUS		(0.45)
+#define CENTERX		(0.3343)
+#define CENTERY		(0.6666)
+#define RADIUS		(0.0)
 
 #define XMIN		(CENTERX-RADIUS)	// MINIMUM VALUE FOR y
 #define XMAX		(CENTERX+RADIUS)	// MAXIMUM VALUE FOR y

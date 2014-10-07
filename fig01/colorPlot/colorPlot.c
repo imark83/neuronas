@@ -53,10 +53,10 @@ int main () {
 
 	FILE *gnuplot = popen ("/usr/bin/gnuplot", "w");
 	//fprintf (gnuplot, "set size square\nunset key\nset xrange [0.193:0.473]\nset yrange [0.526:0.806]\n");
-	fprintf (gnuplot, "set size ratio 2\nset yrange [0:1]\n");
+	fprintf (gnuplot, "set size square\nset yrange [0:1]\n");
 	fprintf (gnuplot, "set xlabel \"t\"\n");
 	fprintf (gnuplot, "set ylabel \"delay\"\n");
-	fprintf (gnuplot, "set term svg size 400, 400\n");
+	fprintf (gnuplot, "set term svg size 250, 250\n");
 
 	int i, j;
 	int nb = 0;		// number of blue orbits
@@ -134,9 +134,9 @@ int main () {
 		if (nc) ncolors++;
 	char firstColor = 1;
 
-	/*fprintf (gnuplot, "set output \"fig01_b.svg\"\n");
+	fprintf (gnuplot, "set output \"fig01_b.svg\"\n");
 	fprintf (gnuplot, "plot \"./_b.txt\" u 1:2 w l lc rgb \"light-blue\" lw 2 title \"phi_21\"");
-	fprintf (gnuplot, ", \\\n \"./_b.txt\" u 1:3 w l lc rgb \"dark-blue\" lw 0.4 title \"phi_31\"");*/
+	fprintf (gnuplot, ", \\\n \"./_b.txt\" u 1:3 w l lc rgb \"dark-blue\" lw 0.4 title \"phi_31\"");
 
 	/*fprintf (gnuplot, "set output \"fig01_r.svg\"\n");
 	fprintf (gnuplot, "plot \"./_r.txt\" u 1:2 w l lc rgb \"light-red\" lw 2 title \"phi_21\"");
@@ -146,9 +146,9 @@ int main () {
 	fprintf (gnuplot, "plot \"./_g.txt\" u 1:2 w l lc rgb \"light-green\" lw 2 title \"phi_21\"");
 	fprintf (gnuplot, ", \\\n \"./_g.txt\" u 1:3 w l lc rgb \"dark-green\" lw 0.4 title \"phi_31\"");*/
 
-	fprintf (gnuplot, "set output \"fig01_k.svg\"\n");
+	/*fprintf (gnuplot, "set output \"fig01_k.svg\"\n");
 	fprintf (gnuplot, "plot \"./_k.txt\" u 1:2 w l lc rgb \"grey20\" lw 2 title \"phi_21\"");
-	fprintf (gnuplot, ", \\\n \"./_k.txt\" u 1:3 w l lc rgb \"black\" lw 0.4 title \"phi_31\"");
+	fprintf (gnuplot, ", \\\n \"./_k.txt\" u 1:3 w l lc rgb \"black\" lw 0.4 title \"phi_31\"");*/
 
 	fprintf (gnuplot, "\n");
 
