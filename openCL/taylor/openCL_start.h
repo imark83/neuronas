@@ -1,77 +1,153 @@
 
-int status;
 	
-size_t devInfo, devInfos[3];
-char dname[500];
+	cl_platform_id platform;		// OpenCL Platform
+	cl_device_id device;			// compute device 
+	cl_context context;			// compute context
+	cl_command_queue queue;			// compute command queue
 
-// Get the first available platform
-// Example: AMD Accelerated Parallel Processing
-cl_platform_id platform[1];
-clGetPlatformIDs(1,			// number of platforms to add to list
-		platform, 		// list of platforms found
-		NULL);			// number of platforms available
-
-// Get the first GPU device the platform provides
-cl_device_id device, devices[3], subdevices[4];
-clGetDeviceIDs(platform[0], CL_DEVICE_TYPE_ALL, 
-		1, 			// number of devices to add
-		&devices[0], 		// list of devices
-		NULL);			// number of devices available
+	cl_program program;			// compute program
+	cl_kernel kernel;			// compute kernel
 
 
+	cl_int errorCode;
+	char infoString[500];
 
-clGetPlatformInfo (platform[0], CL_PLATFORM_NAME,500,dname,NULL);
-printf ("CL_PLATFORM_NAME = %s\n", dname);
-clGetDeviceInfo (devices[0], CL_DEVICE_NAME, 500, dname,NULL);
-printf ("\tDevice name = %s\n", dname);
-clGetDeviceInfo (devices[0], CL_DEVICE_MAX_COMPUTE_UNITS, 
-		sizeof (size_t), &devInfo, NULL);
-printf ("\tMax compute Units = %i\n", (int) devInfo);
-clGetDeviceInfo (devices[0], CL_DEVICE_MAX_WORK_GROUP_SIZE, 
-		sizeof (size_t), &devInfo, NULL);
-printf ("\tMax work group size = %i\n", (int) devInfo);
-clGetDeviceInfo (devices[0], CL_DEVICE_MAX_WORK_ITEM_DIMENSIONS,
-		sizeof (size_t), &devInfo, NULL);
-printf ("\tMax number of dimensions = %i\n", (int) devInfo);
-clGetDeviceInfo (devices[0], CL_DEVICE_MAX_WORK_ITEM_SIZES,
-		3*sizeof (size_t), devInfos, NULL);
-printf ("\tMax work group sizes = %i, %i, %i\n\n", 
-	(int) devInfos[0], (int) devInfos[1], (int) devInfos[2]);
+	/* PLATFORM INITIALIZE AND PLATFORM INFO */
+	if ((errorCode = clGetPlatformIDs(1, &platform, NULL)) != CL_SUCCESS) {
+		printf ("Error getting Platform ID. Error code = %i\n", errorCode);
+		return 0;
+	}
+	printf ("PLATFORM INFO:\n");
+
+	clGetPlatformInfo (platform, CL_PLATFORM_PROFILE, 500, infoString, NULL);
+	printf ("\tPlatform profile    = %s\n", infoString);
+
+	clGetPlatformInfo (platform, CL_PLATFORM_VERSION, 500, infoString, NULL);
+	printf ("\tPlatform version    = %s\n", infoString);
+
+	clGetPlatformInfo (platform, CL_PLATFORM_NAME, 500, infoString, NULL);
+	printf ("\tPlatform name       = %s\n", infoString);
+
+	clGetPlatformInfo (platform, CL_PLATFORM_VENDOR, 500, infoString, NULL);
+	printf ("\tPlatform vendor     = %s\n", infoString);
+
+	if (argc > 1) if (strcmp ("show_extensions", argv[1]) == 0) {
+		clGetPlatformInfo (platform, CL_PLATFORM_EXTENSIONS, 500, infoString, NULL);
+		printf ("\tPlatform extensions = %s\n", infoString);
+		return 0;
+	}
+
+	
 
 
-#ifdef SINGLECPU
-	cl_device_partition_property properties[] = {CL_DEVICE_PARTITION_EQUALLY, 1, 0};
-	clCreateSubDevices (devices[2], properties, 4, subdevices, NULL);
-	device = subdevices[0];
-#endif
-#ifdef GPU
-	device = devices[0];
-#endif
-#ifdef CPU
-	device = devices[0];
-#endif
 
-clGetDeviceInfo (device, CL_DEVICE_NAME, 500, dname,NULL);
-printf ("\nChosen device = %s\n\n", dname);
+	/* DEVICE INITIALIZE AND DEVICE INFO */
 
-cl_context context = clCreateContext (
-		0,			// optional (context properties)
-		1,			// number of devices
-		&device,		// pointer to device list
-		NULL, NULL, 		// optional (callback func for reporting errors)
-		&status);		// no error code returned
-if (status != CL_SUCCESS) {
-	printf ("create context error = %d\n", status);
-	return 1;
-}
-cl_command_queue queue = clCreateCommandQueue (
-		context,		// valid context
-		device,			// device associated with context
-		CL_QUEUE_PROFILING_ENABLE,	// optional (command queue properties)
-		&status);		// no error code returned
-if (status != CL_SUCCESS) {
-	printf ("create queue error = %d\n", status);
-	return 1;
-}
+	if ((errorCode = clGetDeviceIDs(platform, CL_DEVICE_TYPE_CPU, 1, &device, NULL)) != CL_SUCCESS) {
+		printf ("Error getting Device ID. Error code = %i\n", errorCode);
+		return 0;
+	}
+
+
+	printf ("DEVICE INFO:\n");
+
+	clGetDeviceInfo (device, CL_DEVICE_NAME, 500, infoString, NULL);
+	printf ("\tDevice name:        %s\n", infoString);
+
+	clGetDeviceInfo (device, CL_DEVICE_ADDRESS_BITS, 500, infoString, NULL);
+	printf ("\tDevice default address bits = %u\n", *((cl_uint *) infoString));
+
+	clGetDeviceInfo (device, CL_DEVICE_AVAILABLE, 500, infoString, NULL);
+	printf ("\tDevice available            = ");
+		if (infoString[0]) printf ("TRUE\n");
+		else printf ("FALSE\n");
+
+	clGetDeviceInfo (device, CL_DEVICE_GLOBAL_MEM_SIZE, 500, infoString, NULL);
+	printf ("\tDevice global mem size (MB) = %lu\n", (*((cl_ulong *) infoString) / 1024 / 1024));
+
+	clGetDeviceInfo (device, CL_DEVICE_LOCAL_MEM_SIZE, 500, infoString, NULL);
+	printf ("\tDevice local mem size (KB)  = %lu\n", (*((cl_ulong *) infoString) / 1024));
+
+	clGetDeviceInfo (device, CL_DEVICE_LOCAL_MEM_TYPE, 500, infoString, NULL);
+	printf ("\tDevice local mem type       = ");
+		if (*((unsigned int *) infoString) == CL_LOCAL) printf ("LOCAL\n");
+		if (*((unsigned int *) infoString) == CL_GLOBAL) printf ("GLOBAL\n");
+
+	clGetDeviceInfo (device, CL_DEVICE_MAX_CLOCK_FREQUENCY, 500, infoString, NULL);
+	printf ("\tDevice clock freq (MHz)     = %lu\n", *((cl_ulong *) infoString));
+
+	clGetDeviceInfo (device, CL_DEVICE_MAX_COMPUTE_UNITS, 500, infoString, NULL);
+	printf ("\tDevice compute units        = %lu\n", *((cl_ulong *) infoString));
+
+	clGetDeviceInfo (device, CL_DEVICE_MAX_WORK_ITEM_SIZES, 500, infoString, NULL);
+	printf ("\tDevice compute max sizes    = %zi, %zi, %zi\n", *((size_t *) infoString), 
+				*((size_t *) infoString+1), *((size_t *) infoString)+2);
+
+	clGetDeviceInfo (device, CL_DEVICE_MAX_WORK_GROUP_SIZE, 500, infoString, NULL);
+	printf ("\tDevice compute max sizes    = %zi\n", *((size_t *) infoString));
+
+
+
+
+
+
+	/* CONTEXT CREATION */
+
+	context = clCreateContext (NULL, 1, &device, NULL, NULL, &errorCode);
+	if (errorCode != CL_SUCCESS) {
+		printf ("Error creating Context. Error code = %i\n", errorCode);
+		return 0;
+	}
+
+
+
+
+
+	/* QUEUE CREATION */
+
+	queue = clCreateCommandQueue (context, device, CL_QUEUE_PROFILING_ENABLE, &errorCode);
+	if (errorCode != CL_SUCCESS) {
+		printf ("Error creating queue. Error code = %i\n", errorCode);
+		return 0;
+	}
+
+
+
+
+
+	// PROGRAM CREATION
+	program = clCreateProgramWithSource (context, 1, (const char **) &source, NULL, &errorCode);
+	if (errorCode != CL_SUCCESS) {
+		printf ("Error creating Program. Error code = %i\n", errorCode);
+		return 0;
+	}
+
+
+	// PROGRAM BUILD AND BUILD LOG FILE
+	if ((errorCode = clBuildProgram (program, 1, &device, "-I .", NULL, NULL)) != CL_SUCCESS) {
+		printf ("Error building Program. Error code = %i\n", errorCode);
+		
+		size_t logSize;
+		clGetProgramBuildInfo (program, device, CL_PROGRAM_BUILD_LOG, 0, NULL, &logSize);
+		char *buildLog = (char*) malloc (logSize * sizeof (char));
+		clGetProgramBuildInfo (program, device, CL_PROGRAM_BUILD_LOG, logSize, buildLog, NULL);
+		printf ("BUILD LOG:\n%s\n", buildLog);
+
+		return 0;
+	}
+
+
+
+
+	// KERNEL BUILD AND KERNEL INFO
+	kernel = clCreateKernel (program, kernelName, &errorCode);
+	if (errorCode != CL_SUCCESS) {
+		printf ("Error creating Kernel. Error code = %i\n", errorCode);
+		return 0;
+	}
+
+	clGetKernelWorkGroupInfo ( kernel, device, CL_KERNEL_PREFERRED_WORK_GROUP_SIZE_MULTIPLE, sizeof (size_t), infoString, NULL);
+	printf ("\nWarp size = %zi\n", *((size_t*) infoString));
+
 
 

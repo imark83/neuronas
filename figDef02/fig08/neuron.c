@@ -11,7 +11,7 @@ int main (int argc, char *argv[]) {
 	int i, j;
 
 	const size_t global_work_size[] = {M, N};
-	const size_t local_work_size[] = {1, 1};
+	const size_t local_work_size[] = {2, 1};
 	const char *source = "#include \"neuron_kernel.cl\"\n";
 	const char *kernelName = "neuron";
 
@@ -19,7 +19,7 @@ int main (int argc, char *argv[]) {
 
 	cl_event event;
 
-	real_t vshift = -0.01895;
+	real_t vshift = -0.01885;
 	cl_mem d_delay = clCreateBuffer (context, CL_MEM_WRITE_ONLY, 3*M*N*CUTNUMBER * sizeof (real_t), NULL, NULL);
 	cl_mem d_VSHIFT = clCreateBuffer (context, CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR, sizeof (real_t), &vshift, NULL);
 
