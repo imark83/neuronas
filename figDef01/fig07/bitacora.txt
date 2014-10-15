@@ -1,0 +1,15 @@
+dibujo de la señal
+Parametros
+
+#define GSYN		(-0.0005*0.8)
+
+#define CENTERX		(0.5)
+#define CENTERY		(0.5)
+#define RADIUS		(0.45)
+
+
+#define M		20		// HORIZONTAL GRIDSIZE
+#define N		20		// VERTICAL GRIDSIZE
+
+
+#define CUTNUMBER	20		// NUMBER OF CUTS FOR POINC. OF EACH NEURON!
