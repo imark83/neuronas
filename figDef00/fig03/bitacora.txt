@@ -1,4 +1,4 @@
-dibujo global del plano de fases [0,1]x[0,1].
+dibujo de la señal
 Parametros
 
 #define GSYN		(-0.0005*0.8)

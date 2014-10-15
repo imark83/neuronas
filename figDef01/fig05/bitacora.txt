@@ -1,4 +1,4 @@
-dibujo global del plano de fases [0,1]x[0,1].
+dibujo global de las fases (neuroscience style)
 Parametros
 
 #define GSYN		(-0.0005*0.8)
@@ -8,8 +8,8 @@ Parametros
 #define RADIUS		(0.45)
 
 
-#define M		20		// HORIZONTAL GRIDSIZE
-#define N		20		// VERTICAL GRIDSIZE
+#define M		10		// HORIZONTAL GRIDSIZE
+#define N		10		// VERTICAL GRIDSIZE
 
 
-#define CUTNUMBER	20		// NUMBER OF CUTS FOR POINC. OF EACH NEURON!
+#define CUTNUMBER	50		// NUMBER OF CUTS FOR POINC. OF EACH NEURON!
