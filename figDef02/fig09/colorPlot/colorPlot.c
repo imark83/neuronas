@@ -54,8 +54,9 @@ int main () {
 
 	FILE *gnuplot = popen ("/usr/bin/gnuplot", "w");
 	fprintf (gnuplot, "set term svg size 400, 400 fsize 14\n");
-	fprintf (gnuplot, "set size square\nunset key\nset xrange [0:1]\nset yrange [0:1]\n");
-	fprintf (gnuplot, "set output \"fig08.svg\"\n");
+	//fprintf (gnuplot, "set size square\nunset key\nset xrange [0:1]\nset yrange [0:1]\n");
+	fprintf (gnuplot, "set size square\nunset key\nset xrange [0.118:0.542]\nset yrange [0.456:0.882]\n");
+	fprintf (gnuplot, "set output \"fig09.svg\"\n");
 
 	int i, j;
 	int nb = 0;		// number of blue orbits
