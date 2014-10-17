@@ -72,7 +72,7 @@ for (k=5; k<=10; k++) {
 	int nc = 0;		// number of cyan orbits
 
 	char FOUT[40];
-	sprintf (FOUT, "_c%02i.txt", k);
+	sprintf (FOUT, "_cycle%02i.txt", k);
 	FILE *fc = fopen (FOUT, "w");
 	for (i=0; i<M; i++) {
 		double T[3*N];
