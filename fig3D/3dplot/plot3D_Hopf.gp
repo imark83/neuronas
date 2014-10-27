@@ -1,6 +1,10 @@
+set term svg size 400, 400 fsize 14
+set output "fig3D_Hopf00.svg"
+
 set xrange [0.118:0.542]
 set zrange [0.456:0.882]
-set yrange [-0.01886:-0.01871]
+set yrange [-0.01876:-0.01871]
+set view 70,104
 
 unset key
 
@@ -13,10 +17,6 @@ splot	"./_r0.txt" u 2:1:3 w l lc rgb "red", \
 	"./_g1.txt" u 2:1:3 w l lc rgb "green", \
 	"./_b1.txt" u 2:1:3 w l lc rgb "blue", \
 	"./_c1.txt" u 2:1:3 w l lc rgb "cyan", \
-\
-	"./_r2.txt" u 2:1:3 w l lc rgb "red", \
-	"./_g2.txt" u 2:1:3 w l lc rgb "green", \
-	"./_b2.txt" u 2:1:3 w l lc rgb "blue", \
 \
 	"./_cycle05.txt" u 2:1:3 w l lc rgb "magenta", \
 	"./_cycle06.txt" u 2:1:3 w l lc rgb "magenta", \
