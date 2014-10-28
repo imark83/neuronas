@@ -32,8 +32,8 @@ int main (int argc, char *argv[]) {
 	//VSHIFT=-0.01927000;		// INESTABLE
 
 
-	for (k = 0; k<=10; k++) {
-		VSHIFT=-0.01871 - k * 5.0e-6;
+	for (k = 0; k<=20; k++) {
+		VSHIFT=-0.01871 - k * 2.5e-6;
 		cl_mem d_delay = clCreateBuffer (context, CL_MEM_WRITE_ONLY, 3*CUTNUMBER * N * M * sizeof (real_t), NULL, NULL);
 		cl_mem d_VSHIFT = clCreateBuffer (context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, sizeof (real_t), &VSHIFT, NULL);
 
