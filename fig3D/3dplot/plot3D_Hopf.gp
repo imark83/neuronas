@@ -1,10 +1,10 @@
-set term svg size 400, 400 fsize 14
+set term svg size 1000, 400 fsize 14
 set output "fig3D_Hopf00.svg"
 
 set xrange [0.118:0.542]
 set zrange [0.456:0.882]
 set yrange [-0.01876:-0.01871]
-set view 70,104
+set view 56,118
 
 unset key
 
