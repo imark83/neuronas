@@ -43,7 +43,7 @@ int getNCut (const char *fname);
 
 int main () {
 int k;
-for (k=5; k<=10; k++) {
+for (k=10; k<=20; k++) {
 	char FNAME[40];
 	sprintf (FNAME, "T%02i.txt", k);
 	printf ("file to read = %s\n", FNAME);
@@ -92,7 +92,7 @@ for (k=5; k<=10; k++) {
 
 
 		for (j=N-30; j<N-2; j++) 
-			fprintf (fc, "%.16le %.15le  %.15le\n", -0.01871 - k * 5.0e-6, f21[j], f31[j]);
+			fprintf (fc, "%.16le %.15le  %.15le\n", -0.01871 - k * 2.5e-6, f21[j], f31[j]);
 		
 			
 	}		
@@ -108,7 +108,7 @@ for (k=5; k<=10; k++) {
 		if (nc) ncolors++;
 	char firstColor = 1;
 
-	fprintf (gnuplot, "plot \"./_c%02i.txt\"  w l lc rgb \"cyan\"\n", k);
+	fprintf (gnuplot, "plot \"./_cycle%02i.txt\" u 2:3 w l lc rgb \"cyan\"\n", k);
 
 	fflush (gnuplot);
 	//fprintf (gnuplot, "pause mouse\n");
