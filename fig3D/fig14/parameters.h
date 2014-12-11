@@ -27,13 +27,13 @@
 
 
 // GEOMETRY PARAMETERS
-#define M		10
-#define N		10
-#define CUTNUMBER	40
+#define M		1
+#define N		1
+#define CUTNUMBER	1000
 
-#define CENTERX		(0.33333)
-#define CENTERY		(0.66666)
-#define RADIUS		(0.18333)
+#define CENTERX		(0.5)
+#define CENTERY		(0.5)
+#define RADIUS		(0.45)
 
 #define XMIN		(CENTERX-RADIUS)	// MINIMUM VALUE FOR y
 #define XMAX		(CENTERX+RADIUS)	// MAXIMUM VALUE FOR y
