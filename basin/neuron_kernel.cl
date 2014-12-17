@@ -22,7 +22,7 @@ __kernel void neuron (  __global const real_t *VSHIFT,
 	real_t T[3*CUTNUMBER];	
 
 	// FALL INTO DUTY CYCLE
-	taylor1 (z, 500.0, 0, *VSHIFT);
+	taylor1 (z, 100.0, 0, *VSHIFT);
 	// COMPUTE PERIOD FOR SINGLE NEURON
 	P = taylor1 (z, 1000.0, 1, *VSHIFT);
 
@@ -71,7 +71,10 @@ __kernel void neuron (  __global const real_t *VSHIFT,
 	for (i=0; i<3; i++) x[i+6] = y[i];
 
 
+
+
 	// INTEGRATE CPG
+	taylor (x, 5000, (real_t *) 0, *VSHIFT, CUTNUMBER);
 	taylor (x, 10000.0, T, *VSHIFT, CUTNUMBER);
 
 	for (i=0; i<3*CUTNUMBER; i++) DELAY(i) = T[i];
