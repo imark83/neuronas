@@ -20,11 +20,11 @@ int main (int argc, char *argv[]) {
 	cl_event event;
 
 	real_t vshift = -0.01895;
-	cl_mem d_delay = clCreateBuffer (context, CL_MEM_WRITE_ONLY, 3*M*N*CUTNUMBER * sizeof (real_t), NULL, NULL);
+	cl_mem d_color = clCreateBuffer (context, CL_MEM_WRITE_ONLY, M*N * sizeof (real_t), NULL, NULL);
 	cl_mem d_VSHIFT = clCreateBuffer (context, CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR, sizeof (real_t), &vshift, NULL);
 
 	clSetKernelArg (kernel, 0, sizeof (cl_mem), (void*) (&d_VSHIFT));
-	clSetKernelArg (kernel, 1, sizeof (cl_mem), (void*) (&d_delay));
+	clSetKernelArg (kernel, 1, sizeof (cl_mem), (void*) (&d_color));
 
 	clEnqueueNDRangeKernel (queue, kernel, 
 			2,			// WORKING DIMENSIONS
@@ -38,15 +38,15 @@ int main (int argc, char *argv[]) {
 	clFinish(queue);
 
 
-	real_t *delay = (real_t*) malloc (3*M*N*CUTNUMBER * sizeof (real_t));
-	clEnqueueReadBuffer (queue, d_delay, CL_TRUE, 0, 3*M*N*CUTNUMBER * sizeof (real_t), delay, 0, NULL, NULL);
+	real_t *color = (real_t*) malloc (M*N * sizeof (real_t));
+	clEnqueueReadBuffer (queue, d_color, CL_TRUE, 0, M*N * sizeof (real_t), color, 0, NULL, NULL);
 	clFinish(queue);
 
 	FILE *fout = fopen (FNAME, "w");
 
-	for (i=0; i<M*N; i++) {
-		for (j=0; j<3*CUTNUMBER; j++) 
-			fprintf (fout, "  %.15le", delay[j*M*N+i]);
+	for (i=0; i<M; i++) {
+		for (j=0; j<N; j++) 
+			fprintf (fout, "  %.15le", color[j*M+i]);
 		fprintf (fout, "\n");
 	}
 	fclose (fout);
@@ -57,8 +57,8 @@ int main (int argc, char *argv[]) {
 	printf ("CPU time = %.2f miliseconds\n", (c1-c0) / 1.0e6);
 
 	//clReleaseMemObject (d_VSHIFT);
-	clReleaseMemObject (d_delay);
-	free (delay);
+	clReleaseMemObject (d_color);
+	free (color);
 
 	// CLEAN UP OPENCL OBJECTS
 	clReleaseKernel (kernel);

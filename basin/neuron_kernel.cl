@@ -6,8 +6,39 @@
 
 
 
+#define	BLUE		1
+#define RED		2
+#define GREEN		3
+#define BLACK		4
+#define MAGENTA		5
+#define CYAN		6
+
+
+
+int getColor (real_t f21, real_t f31) {
+	
+	//if (fabs (_f21[N-3] - _f21[N-4]) + fabs (_f31[N-3] - _f31[N-4]) > 2.0e-2) return CYAN;
+
+	if (fabs (f21 - f31) < 0.02) return BLUE;
+
+	if (fabs (f31) < 0.02) return RED;
+	if (fabs (f31 - 1.0) < 0.02) return RED;
+
+	if (fabs (f21) < 0.04) return GREEN;
+	if (fabs (f21 - 1.0) < 0.04) return GREEN;
+
+	if (fabs (f21 - 0.3333) + fabs (f31 - 0.6666) < 0.001) return BLACK;
+
+	if (fabs (f21 - 0.6666) + fabs (f31 - 0.3333) < 0.001) return BLACK;
+
+	return CYAN; 
+
+}
+
+
+
 __kernel void neuron (  __global const real_t *VSHIFT,
-			__global       real_t *delay) {
+			__global       real_t *color) {
 	int i, j;
 
 	// DESIRED DELAYS FOR FIRST POINT
@@ -22,7 +53,7 @@ __kernel void neuron (  __global const real_t *VSHIFT,
 	real_t T[3*CUTNUMBER];	
 
 	// FALL INTO DUTY CYCLE
-	taylor1 (z, 100.0, 0, *VSHIFT);
+	taylor1 (z, 30.0, 0, *VSHIFT);
 	// COMPUTE PERIOD FOR SINGLE NEURON
 	P = taylor1 (z, 1000.0, 1, *VSHIFT);
 
@@ -74,10 +105,13 @@ __kernel void neuron (  __global const real_t *VSHIFT,
 
 
 	// INTEGRATE CPG
-	taylor (x, 5000, (real_t *) 0, *VSHIFT, CUTNUMBER);
+	taylor (x, 500, (real_t *) 0, *VSHIFT, CUTNUMBER);
 	taylor (x, 10000.0, T, *VSHIFT, CUTNUMBER);
 
-	for (i=0; i<3*CUTNUMBER; i++) DELAY(i) = T[i];
+	phi21 = (T[CUTNUMBER] - T[0]) / (T[1] - T[0]);
+	phi31 = (T[2*CUTNUMBER] - T[0]) / (T[1] - T[0]);
+
+	color[M*get_global_id(0) + get_global_id(1)] = getColor (phi21, phi31);
 	
 
 

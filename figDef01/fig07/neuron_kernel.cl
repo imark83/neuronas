@@ -1,5 +1,3 @@
-
- 
 // PARAMETERS OF THE PROBLEM
 #include "parameters.h"
 
