@@ -1,5 +1,6 @@
 
 	
+	cl_platform_id platforms[2];		// OpenCL Platform
 	cl_platform_id platform;		// OpenCL Platform
 	cl_device_id device;			// compute device 
 	cl_context context;			// compute context
@@ -13,10 +14,11 @@
 	char infoString[500];
 
 	/* PLATFORM INITIALIZE AND PLATFORM INFO */
-	if ((errorCode = clGetPlatformIDs(1, &platform, NULL)) != CL_SUCCESS) {
+	if ((errorCode = clGetPlatformIDs(2, platforms, NULL)) != CL_SUCCESS) {
 		printf ("Error getting Platform ID. Error code = %i\n", errorCode);
 		return 0;
 	}
+	platform = platforms[0];
 	printf ("PLATFORM INFO:\n");
 
 	clGetPlatformInfo (platform, CL_PLATFORM_PROFILE, 500, infoString, NULL);

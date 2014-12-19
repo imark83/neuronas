@@ -19,7 +19,7 @@ int main (int argc, char *argv[]) {
 
 	cl_event event;
 
-	real_t vshift = -0.01895;
+	real_t vshift = -0.01886;
 	cl_mem d_color = clCreateBuffer (context, CL_MEM_WRITE_ONLY, M*N * sizeof (real_t), NULL, NULL);
 	cl_mem d_VSHIFT = clCreateBuffer (context, CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR, sizeof (real_t), &vshift, NULL);
 

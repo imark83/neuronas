@@ -105,7 +105,7 @@ __kernel void neuron (  __global const real_t *VSHIFT,
 
 
 	// INTEGRATE CPG
-	taylor (x, 500, (real_t *) 0, *VSHIFT, CUTNUMBER);
+	taylor (x, 2000, (real_t *) 0, *VSHIFT, CUTNUMBER);
 	taylor (x, 10000.0, T, *VSHIFT, CUTNUMBER);
 
 	phi21 = (T[CUTNUMBER] - T[0]) / (T[1] - T[0]);
