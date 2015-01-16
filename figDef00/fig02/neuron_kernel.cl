@@ -1,5 +1,3 @@
-
- 
 // PARAMETERS OF THE PROBLEM
 #include "parameters.h"
 
@@ -30,6 +28,8 @@ __kernel void neuron (	__global real_t* delay,
 			
 	real_t phi21 =  XMIN + ((XMAX-XMIN)*get_global_id(0))/(M-1);	// DESIRED PHI21
 	real_t phi31 =  YMIN + ((YMAX-YMIN)*get_global_id(1))/(N-1);	// DESIRED PHI31
+
+	if (fabs(phi21-0.33333) < 0.03 && fabs (phi31-0.66666) < 0.03) return;
 
 	real_t _phi21, _phi31, err21, err31;
 	_phi21 = phi21; _phi31 = phi31;

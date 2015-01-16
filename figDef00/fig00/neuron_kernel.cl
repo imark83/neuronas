@@ -1,5 +1,3 @@
-
- 
 // PARAMETERS OF THE PROBLEM
 #include "parameters.h"
 
@@ -24,9 +22,10 @@ __kernel void neuron (	__global real_t* delay,
 	//printf ("NVAR2 = %i\n", NVAR2);
 	taylor2 (z, 500, -1, *VSHIFT);
 
-
+	
 	// COMPUTE PERIOD FROM POINCARÉ SECTIONS
 	real_t P = taylor2 (z, 500, 0, *VSHIFT);
+
 			
 	real_t phi21 =  XMIN + ((XMAX-XMIN)*get_global_id(0))/(M-1);	// DESIRED PHI21
 	real_t phi31 =  YMIN + ((YMAX-YMIN)*get_global_id(1))/(N-1);	// DESIRED PHI31
@@ -46,7 +45,7 @@ __kernel void neuron (	__global real_t* delay,
 		for (k=0; k<3; k++) x[k+6] = y[k];
 	
 
-		taylor (x, 100000.0, (real_t*) 0, *VSHIFT, 4);
+		taylor (x, 100000.0, T, *VSHIFT, 4);
 
 		err21 = phi21 - (T[CUTNUMBER] - T[0]) / (T[1] - T[0]);
 		err31 = phi31 - (T[2*CUTNUMBER] - T[0]) / (T[1] - T[0]);
