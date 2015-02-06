@@ -34,9 +34,10 @@ int main () {
 
 	//printf ("P = %.15le\n", P); 
 
+	for (i=0; i<M; i++) for (j=0; j<N; j++);
 	
-		double phi21 = 0.1;
-		double phi31 = 0.21;
+		double phi21 = XMIN + ((XMAX-XMIN)*i)/(M-1);
+		double phi31 = YMIN + ((YMAX-YMIN)*j)/(N-1);
 		double x[nvar*nNeuron], y[nvar];
 
 		double _phi21, _phi31, err21, err31;
@@ -88,30 +89,6 @@ int main () {
 			printf ("%.15le  ", T[k]);
 		printf ("\n");
 		
-
-/*	FILE *fout = fopen ("T.txt", "w");
-
-
-	for (i=0; i<M; i++) for (j=0; j<N; j++) {
-		double phi21 = XMIN + ((XMAX-XMIN)*get_global_id(0))/(M-1);	// DESIRED PHI21
-		double phi31 = YMIN + ((YMAX-YMIN)*get_global_id(1))/(N-1);	// DESIRED PHI31
-
-
-
-		tf = 5000.0;
-		event = 0;
-		nt = 1;
-		taylor (nvar, x, t0, tf/nt, nt, tol, NULL);
-
-	
-		for (k=0; k<cutNumber; k++) 
-			fprintf (fout, "%.15le  ", T[k]);
-		fprintf (fout, "\n");
-
-
-	}
-
-	fclose (fout);*/
 	return 0;
 
 }
