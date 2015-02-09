@@ -166,13 +166,13 @@ int main () {
 		}
 	else
 			fprintf (gnuplot, ", \\\n \"./_m.txt\"  w l lc rgb \"magenta\"");
-	/*if (nc)
+	if (nc)
 		if (firstColor) {
 			fprintf (gnuplot, "plot \"./_c.txt\"  w l lc rgb \"cyan\"");
 			firstColor = 0;
 		}
 		else
-			fprintf (gnuplot, ", \\\n \"./_c.txt\"  w l lc rgb \"cyan\"");*/
+			fprintf (gnuplot, ", \\\n \"./_c.txt\"  w l lc rgb \"cyan\"");
 	fprintf (gnuplot, "\n");
 
 	fflush (gnuplot);

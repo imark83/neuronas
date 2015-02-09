@@ -9,7 +9,7 @@ double taylorS (int nvar, double x[nvar], double t0, double tf, double tol, int 
 
 
 
-void taylorN (int nvar, double x[nvar], double t0, double tf, double tol, int event, double vshift, int cutNumber);
+void taylorN (int nvar, double x[nvar], double t0, double tf, double tol, int event, double vshift, int cutNumber, double *T);
 void poincare (int nvar, int order, double step, double series[nvar][order+1], 
 		int eventVar, double *dt);
 int getOrder (double tol);

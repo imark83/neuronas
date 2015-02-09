@@ -51,7 +51,7 @@ void funS (int nvar, int order, double t, double x[nvar],
 		dp_invAD (i, l[18], l[17]);			// l[18] = m_K2^infinity
 
 		// I_Na
-		dp_smCAD (i, l[19], series[3*j], -ENA);
+		dp_smCAD (i, l[19], series[0], -ENA);
 		dp_mulAD (i, l[20], l[19], series[1]);
 		dp_mulAD (i, l[21], l[20], l[8]);
 		dp_mulAD (i, l[22], l[21], l[8]);

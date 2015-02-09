@@ -1,8 +1,7 @@
 #include "taylor.h"
+#include "parameters.h"
 
 //extern int kahan;
-extern double eventValue;
-extern double T[];
 
 
 
@@ -51,8 +50,8 @@ double taylorS (int nvar, double x[nvar], double t0, double tf, double tol, int 
 	/*******************************************
 	******* POINCARE*/
 		if (event)	{
-			criterion = (x_old[0] - eventValue) * (x[0] - eventValue);
-			if ((criterion < 0) && x_old[0] < eventValue) {
+			criterion = (x_old[0] - EVENTVALUE) * (x[0] - EVENTVALUE);
+			if ((criterion < 0) && x_old[0] < EVENTVALUE) {
 				poincare (nvar, order, step, series, 0, &dt);
 				P[count] = t+dt;
 				count++;
@@ -75,7 +74,7 @@ double taylorS (int nvar, double x[nvar], double t0, double tf, double tol, int 
 }
 
 
-void taylorN (int nvar, double x[nvar], double t0, double tf, double tol, int event, double vshift, int cutNumber) {
+void taylorN (int nvar, double x[nvar], double t0, double tf, double tol, int event, double vshift, int cutNumber, double *T) {
 	int j;
 	int order = getOrder (tol); 
 
@@ -115,8 +114,8 @@ void taylorN (int nvar, double x[nvar], double t0, double tf, double tol, int ev
 	******* POINCARE*/
 		if (event)	{
 			for (j=0; j<3; j++) {
-				criterion = (x[3*j] - eventValue) * (x_old[3*j] - eventValue);
-				if ((criterion < 0.0) && (x_old[3*j] < eventValue)) {		// enter refinement process
+				criterion = (x[3*j] - EVENTVALUE) * (x_old[3*j] - EVENTVALUE);
+				if ((criterion < 0.0) && (x_old[3*j] < EVENTVALUE)) {		// enter refinement process
 					if (count[j] == cutNumber) return;
 					poincare (nvar, order, step, series, 3*j, &dt);
 					T[j*cutNumber + count[j]] = t + dt;			// ??????????????
@@ -145,12 +144,12 @@ void poincare (int nvar, int order, double step, double series[nvar][order+1],
 	horner (nvar, order, h_R, series, x);
 	do {
 		horner (nvar, order, h_L, series, x); 
-		p_L = x[eventVar] - eventValue;
+		p_L = x[eventVar] - EVENTVALUE;
 		horner (nvar, order, h_R, series, x); 
-		p_R = x[eventVar] - eventValue;
+		p_R = x[eventVar] - EVENTVALUE;
 		h_M = (h_L + h_R)/2.0;
 		horner (nvar, order, h_M, series, x); 
-		p_M = x[eventVar] - eventValue;
+		p_M = x[eventVar] - EVENTVALUE;
 		if (p_M * p_L < 0.0) 
 			h_R = h_M;
 		else 

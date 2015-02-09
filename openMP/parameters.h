@@ -1,12 +1,4 @@
 
-#define DOUBLE
-
-
-#ifdef DOUBLE
-#define real_t double
-#endif
-
-
 #define FNAME 		"T.txt"
 
 // NEURON PARAMETERS
@@ -42,10 +34,6 @@
 
 
 // INTEGRATION PARAMETERS
-#define ORDER		17	// ORDER OF TAYLOR SERIES METHOD
-#define TOL		1.0e-12	// TOLERANCE FOR INTEGRATION
-#define NVAR1		3	// NUMBER OF VARIABLES OF A SINGLE NEURON
-#define NVAR		9	// NUMBER OF VARIABLES OF A 3-CELL CPG
 #define EVENTVALUE	(-0.04)	// POINCARE SECTION
 
 
