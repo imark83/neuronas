@@ -5,7 +5,7 @@
 #include "taylor.h"
 #include "parameters.h"
 
-int numThreads = 4;
+int numThreads = 2;
 
 int main () {
 
@@ -41,11 +41,13 @@ int main () {
 
 
 	printf ("global P = %.15le\n", P); 
+int count = 0;
 
-#pragma omp parallel for num_threads(numThreads)
+#pragma omp parallel for num_threads(numThreads) schedule(dynamic)
 for (i=0; i<M; i++) {
 	int j, k;
 	for (j=0; j<N; j++){
+		printf ("%4i/%4i\n", (count++), M*N);
 		double phi21 = XMIN + ((XMAX-XMIN)*i)/(M-1);
 		double phi31 = YMIN + ((YMAX-YMIN)*j)/(N-1);
 		double x[nvar*nNeuron], y[nvar];
@@ -83,7 +85,7 @@ for (i=0; i<M; i++) {
 			printf ("-------------------------------\n");*/
 			_phi21 += err21; _phi31 += err31;
 		//}
-		} while (fabs (err21) + fabs (err31) > 1.0e-6);	
+		} while (fabs (err21) + fabs (err31) > 1.0e-3);	
 
 		for (k=0; k<nvar; k++) x[k] = y[k] = z[k];
 		taylorS (nvar, y, t0, (1.0-_phi21)*P, tol, 0, vshift);
