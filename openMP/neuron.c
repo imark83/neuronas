@@ -5,7 +5,7 @@
 #include "taylor.h"
 #include "parameters.h"
 
-int numThreads = 2;
+int numThreads = 4;
 
 int main () {
 

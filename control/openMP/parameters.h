@@ -19,9 +19,9 @@
 
 
 // GEOMETRY PARAMETERS
-#define M		30
-#define N		30
-#define CUTNUMBER	40
+#define M		4
+#define N		4
+#define CUTNUMBER	4
 
 #define CENTERX		(0.5)
 #define CENTERY		(0.5)
