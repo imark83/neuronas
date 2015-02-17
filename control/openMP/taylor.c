@@ -1,6 +1,6 @@
 #include "taylor.h"
 #include "parameters.h"
-
+#include "fun.h"
 //extern int kahan;
 
 
@@ -112,7 +112,7 @@ void taylorN (int nvar, double x[nvar], double t0, double tf, double tol, int ev
 
 	/*******************************************
 	******* POINCARE*/
-		if (event)	{
+		if (event) {
 			for (j=0; j<3; j++) {
 				criterion = (x[3*j] - EVENTVALUE) * (x_old[3*j] - EVENTVALUE);
 				if ((criterion < 0.0) && (x_old[3*j] < EVENTVALUE)) {		// enter refinement process

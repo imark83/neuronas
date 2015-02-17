@@ -26,10 +26,11 @@ int main () {
 	double t0 = 0.;
 	double tf = 200.0;
 	int nt = 1;
-	double tol = 1e-12;
+	double tol = 1e-7;
 
 	double vshift = -0.022;
 	double P;
+	double matrix[M][N];
 
 	/* ITERATE UNTILL FALL IN THE DUTY-CYCLE */
 	for (i=0; i<nvar; i++) z[i] = 0.0;
@@ -41,8 +42,8 @@ int main () {
 
 
 	printf ("global P = %.15le\n", P); 
-	double phi21 = 0.3333;
-	double phi31 = 0.6666;
+	double phi21 = 0.333;
+	double phi31 = 0.666;
 	double x[nvar*nNeuron], y[nvar];
 	double T[3*CUTNUMBER];
 
@@ -90,11 +91,13 @@ int main () {
 	
 
 int count = 0;
-printf ("local P = %f\n", P); 
+
+
 
 #pragma omp parallel for num_threads(numThreads) schedule(dynamic) private (j, k)
 for (i=0; i<M; i++) {
 	for (j=0; j<N; j++) {
+		printf ("%4i/%i\n", count++, M*N);
 
 		double pulse1Len = i * P/M;
 		double pulse2Len = j * P/N;
@@ -107,11 +110,11 @@ for (i=0; i<M; i++) {
 		double externPulse = 0.0;
 		taylorN (nvar*nNeuron, localX, 0, pulse1Len*P, tol, 0, vshift, CUTNUMBER, localT, externPulse);
 		externPulse = 0.02;
-		taylorN (nvar*nNeuron, localX, 0, 0.1*P, tol, 0, vshift, CUTNUMBER, localT, externPulse);
+		taylorN (nvar*nNeuron, localX, 0, 0.07*P, tol, 0, vshift, CUTNUMBER, localT, externPulse);
 		externPulse = 0.0;
 		taylorN (nvar*nNeuron, localX, 0, pulse2Len*P, tol, 0, vshift, CUTNUMBER, localT, externPulse);
-		externPulse = 0.02;		
-		taylorN (nvar*nNeuron, localX, 0, 0.1*P, tol, 0, vshift, CUTNUMBER, localT, externPulse);
+		externPulse = -0.01;		
+		taylorN (nvar*nNeuron, localX, 0, 0.07*P, tol, 0, vshift, CUTNUMBER, localT, externPulse);
 		
 
 		externPulse = 0.00;		
@@ -135,27 +138,27 @@ for (i=0; i<M; i++) {
 
 		if (fabs (d21/P - 0.63) + fabs (d31/P) < 0.2 || fabs (d21/P - 0.63) + fabs (d31/P -1.0) < 0.2) {
 			printf ("0\n");
-			//endPoint[M*get_global_id(1) + get_global_id(0)] = 0.0;
+			matrix[i][j] = 0.0;
 		}
 		else if (fabs (d21/P) + fabs (d31/P - 0.5) < 0.2 || fabs (d21/P - 1.0) + fabs (d31/P - 0.5) < 0.2) {
 			printf ("1\n");
-			//endPoint[M*get_global_id(1) + get_global_id(0)] = 1.0;
+			matrix[i][j] = 1.0;
 		}
 		else if (fabs (d21/P - 0.4) + fabs (d31/P - 0.4) < 0.2) {
 			printf ("2\n");
-			//endPoint[M*get_global_id(1) + get_global_id(0)] = 2.0;
+			matrix[i][j] = 2.0;
 		}
 		else if (fabs (d21/P - 0.33) + fabs (d31/P - 0.66) < 0.2) {
 			printf ("3\n");
-			//endPoint[M*get_global_id(1) + get_global_id(0)] = 3.0;
+			matrix[i][j] = 3.0;
 		}
 		else if (fabs (d21/P - 0.66) + fabs (d31/P - 0.33) < 0.2) {
 			printf ("4\n");
-			//endPoint[M*get_global_id(1) + get_global_id(0)] = 4.0;
+			matrix[i][j] = 4.0;
 		}
 		else  {
 			printf ("????\n");
-			//endPoint[M*get_global_id(1) + get_global_id(0)] = -2.0;
+			matrix[i][j] = -2.0;
 		}
 	}
 
@@ -167,15 +170,10 @@ for (i=0; i<M; i++) {
 	}
 
 
-	char command[50] = "cat T00.txt > T.txt";
-	system (command);
-	for (i=0; i<numThreads; i++) {
-		sprintf (command, "cat T%02i.txt >> T.txt", i);
-		printf ("%s\n", command);
-		system (command);
+	for (i=0; i<M; i++) {
+		for (j=0; j<N; j++) printf ("%1f  ", matrix[i][j]);
+		printf ("\n");
 	}
-	sprintf (command, "rm T??.txt");
-	system (command);
 	
 	return 0;
 
