@@ -4,7 +4,7 @@
 // NEURON PARAMETERS
 #define THSYN		(-0.03)
 #define ESYN		(-0.0625)
-#define GSYN		(-0.0005)
+#define GSYN		(-0.0007)			// OJO! MODIFICADO
 #define ENA		(0.045)
 #define GNA		(160.0)
 #define EK		(-0.07)
@@ -19,8 +19,8 @@
 
 
 // GEOMETRY PARAMETERS
-#define M		20
-#define N		20
+#define M		40
+#define N		3
 #define CUTNUMBER	4
 
 #define CENTERX		(0.5)

@@ -11,12 +11,12 @@ int main () {
 
 	int i;
 
-	FILE *fout[numThreads];
+	/*FILE *fout[numThreads];
 	for (i=0; i<numThreads; i++) {
 		char fname[40];
 		sprintf (fname, "T%02i.txt", i);
 		fout[i] = fopen (fname, "w");
-	}
+	}*/
 		
 
 
@@ -28,7 +28,7 @@ int main () {
 	int nt = 1;
 	double tol = 1e-7;
 
-	double vshift = -0.022;
+	double vshift = -0.0225;
 	double P;
 	double matrix[M][N];
 
@@ -97,10 +97,10 @@ int count = 0;
 #pragma omp parallel for num_threads(numThreads) schedule(dynamic) private (j, k)
 for (i=0; i<M; i++) {
 	for (j=0; j<N; j++) {
-		printf ("%4i/%i\n", count++, M*N);
+		printf ("%4i/%i\n", count++, M*N); fflush (stdout);
 
 		double pulse1Len = i * P/M;
-		double pulse2Len = j * P/N;
+		double pulse2Len = j * P/N/10;
 
 		double localX[nvar*nNeuron];
 		double localT[3*CUTNUMBER];
@@ -110,16 +110,16 @@ for (i=0; i<M; i++) {
 		double externPulse = 0.0;
 		taylorN (nvar*nNeuron, localX, 0, pulse1Len*P, tol, 0, vshift, CUTNUMBER, localT, externPulse);
 		externPulse = 0.02;
-		taylorN (nvar*nNeuron, localX, 0, 0.07*P, tol, 0, vshift, CUTNUMBER, localT, externPulse);
+		taylorN (nvar*nNeuron, localX, 0, 0.05*P, tol, 0, vshift, CUTNUMBER, localT, externPulse);
 		externPulse = 0.0;
 		taylorN (nvar*nNeuron, localX, 0, pulse2Len*P, tol, 0, vshift, CUTNUMBER, localT, externPulse);
 		externPulse = -0.01;		
-		taylorN (nvar*nNeuron, localX, 0, 0.07*P, tol, 0, vshift, CUTNUMBER, localT, externPulse);
+		taylorN (nvar*nNeuron, localX, 0, 0.05*P, tol, 0, vshift, CUTNUMBER, localT, externPulse);
 		
 
 		externPulse = 0.00;		
 		// transient till stabilize
-		taylorN (nvar*nNeuron, localX, 0, 5000, tol, 0, vshift, CUTNUMBER, localT, externPulse);
+		taylorN (nvar*nNeuron, localX, 0, 2000, tol, 0, vshift, CUTNUMBER, localT, externPulse);
 
 		// compute Poincare sections
 		taylorN (nvar*nNeuron, localX, 0, 50000, tol, 1, vshift, CUTNUMBER, localT, externPulse);
@@ -136,23 +136,23 @@ for (i=0; i<M; i++) {
 		//printf ("d21 = %f   d31 = %f\n", d21, d31);
 		printf ("Final state = (%f %f) ---- > ", d21/localP, d31/localP);
 
-		if (fabs (d21/P - 0.63) + fabs (d31/P) < 0.2 || fabs (d21/P - 0.63) + fabs (d31/P -1.0) < 0.2) {
+		if (fabs (d21/localP - 0.63) + fabs (d31/localP) < 0.2 || fabs (d21/localP - 0.63) + fabs (d31/localP -1.0) < 0.2) {
 			printf ("0\n");
 			matrix[i][j] = 0.0;
 		}
-		else if (fabs (d21/P) + fabs (d31/P - 0.5) < 0.2 || fabs (d21/P - 1.0) + fabs (d31/P - 0.5) < 0.2) {
+		else if (fabs (d21/localP) + fabs (d31/localP - 0.5) < 0.2 || fabs (d21/localP - 1.0) + fabs (d31/localP - 0.5) < 0.2) {
 			printf ("1\n");
 			matrix[i][j] = 1.0;
 		}
-		else if (fabs (d21/P - 0.4) + fabs (d31/P - 0.4) < 0.2) {
+		else if (fabs (d21/localP - 0.4) + fabs (d31/localP - 0.4) < 0.2) {
 			printf ("2\n");
 			matrix[i][j] = 2.0;
 		}
-		else if (fabs (d21/P - 0.33) + fabs (d31/P - 0.66) < 0.2) {
+		else if (fabs (d21/localP - 0.33) + fabs (d31/localP - 0.66) < 0.2) {
 			printf ("3\n");
 			matrix[i][j] = 3.0;
 		}
-		else if (fabs (d21/P - 0.66) + fabs (d31/P - 0.33) < 0.2) {
+		else if (fabs (d21/localP - 0.66) + fabs (d31/localP - 0.33) < 0.2) {
 			printf ("4\n");
 			matrix[i][j] = 4.0;
 		}
@@ -165,13 +165,13 @@ for (i=0; i<M; i++) {
 }	
 
 
-	for (i=0; i<numThreads; i++) {
+	/*for (i=0; i<numThreads; i++) {
 		fclose (fout[i]);
-	}
+	}*/
 
 
-	for (i=0; i<M; i++) {
-		for (j=0; j<N; j++) printf ("%1f  ", matrix[i][j]);
+	for (j=0; j<N; j++) {
+		for (i=0; i<M; i++) printf ("%1f  ", matrix[i][j]);
 		printf ("\n");
 	}
 	
