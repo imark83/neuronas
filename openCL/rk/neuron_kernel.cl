@@ -1,10 +1,16 @@
 #include "parameters.h"
+#include "fun.h"
 #include "rk_coef.h"
+#include "rk.h"
+
 
 
 
 __kernel void neuron () {
-	printf ("Hello from val %zi\n", M*get_global_id(1) + get_global_id(0));
+	real_t x[NVAR_S] = {0.0, 0.0, 0.0};
+
+	rkS (x, 50, 0);
+	rkS (x, 50, 1);
 
 
 }
