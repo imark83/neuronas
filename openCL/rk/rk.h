@@ -56,8 +56,13 @@ real_t rkStepS (real_t x[NVAR_S], real_t h, real_t fsal[NVAR_S],
 
 	// CHECK FOR POINCARE EVENTS
 	if (eventFlag != (char*) 0) {
-		printf ("search event!\n");
-
+		real_t criterion = (x[0] - EVENTVALUE) * (xNext[0] - EVENTVALUE);
+		if (criterion < 0 && (xNext[0] > x[0])) {
+			eventFlag[0] = 1;
+			
+		} else {
+			eventFlag[0] = 0;
+		}
 	}
 
 
@@ -100,6 +105,10 @@ real_t rkS (real_t x[NVAR_S], real_t tf, char event) {
 	
 	do {
 		fac = rkStepS (x, step, fsal, eventFlag, eventVal);
+
+		if (event) if (eventFlag[0]) {
+			printf ("poincare! -> x = %f\n", x[0]);
+		}
 
 		if (fac < 0) {				// rejected step
 			step = 0.2 * step;	
