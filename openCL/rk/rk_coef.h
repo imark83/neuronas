@@ -57,7 +57,7 @@
 #define CB6(th)	(((2.22619047619048E+00*(th) - 3.03809523809524E+00)*(th) + 9.42857142857143E-01)*(th)*(th))
 
 
-
+#define DENSE_EVAL(j,th) (x[j] + h*(CB1(th)*k1[j] + CB3(th)*k3[j] + CB4(th)*k4[j] + CB5(th)*k5[j] + CB6(th)*k6[j]))
 
 
 

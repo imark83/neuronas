@@ -9,8 +9,10 @@
 __kernel void neuron () {
 	real_t x[NVAR_S] = {0.0, 0.0, 0.0};
 
-	rkS (x, 50, 0);
-	rkS (x, 50, 1);
+	rkS (x, 50, 0); 
+	real_t P = rkS (x, 50, 1);
+
+	printf ("Period = %e\n", P);
 
 
 }

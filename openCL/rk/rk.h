@@ -1,7 +1,7 @@
-//real_t taylor1 (real_t x[NVAR1], real_t tf, int event, real_t VSHIFT) {
+
+
 // performs an RK step for a single Neuron. Returns -1 if rejected, 
 // otherwise returns FACTOR for next step size
-
 real_t rkStepS (real_t x[NVAR_S], real_t h, real_t fsal[NVAR_S], 
 		char eventFlag[1],		// IF NULL INPUT -> NO EVENT SEARCH
 						// OUTPUTS EVENT FLAG
@@ -59,6 +59,26 @@ real_t rkStepS (real_t x[NVAR_S], real_t h, real_t fsal[NVAR_S],
 		real_t criterion = (x[0] - EVENTVALUE) * (xNext[0] - EVENTVALUE);
 		if (criterion < 0 && (xNext[0] > x[0])) {
 			eventFlag[0] = 1;
+			real_t th_L = 0.0;
+			real_t th_R = 1.0;
+			real_t th_M = 0.5;
+			real_t p_L = DENSE_EVAL(0,th_L) - EVENTVALUE;
+			real_t p_R = DENSE_EVAL(0,th_R) - EVENTVALUE;
+			real_t p_M = DENSE_EVAL(0,th_M) - EVENTVALUE;
+			do {
+				if (p_M < 0.0) {
+					th_L = th_M;
+					th_M = (th_R + th_L) / 2.0;
+					p_L = p_M;
+					p_M = DENSE_EVAL(0,th_M) - EVENTVALUE;
+				} else {
+					th_R = th_M;
+					th_M = (th_R + th_L) / 2.0;
+					p_R = p_M;
+					p_M = DENSE_EVAL(0,th_M) - EVENTVALUE;
+				}
+			} while (fabs (p_M) > 1.0e-6);
+			eventVal[0] = th_M * h;
 			
 		} else {
 			eventFlag[0] = 0;
@@ -100,26 +120,28 @@ real_t rkS (real_t x[NVAR_S], real_t tf, char event) {
 		eventFlag = (char*) 0;
 		eventVal = (real_t*) 0;
 	}
-
+	real_t P[2];
+	char count = 0;
 	
-	
-	do {
+	char endOfIntegration = 0;
+	while (t<tf && !endOfIntegration) {
 		fac = rkStepS (x, step, fsal, eventFlag, eventVal);
-
-		if (event) if (eventFlag[0]) {
-			printf ("poincare! -> x = %f\n", x[0]);
-		}
 
 		if (fac < 0) {				// rejected step
 			step = 0.2 * step;	
 		} else {
+			if (event) if (eventFlag[0]) {
+				P[count] = t + eventVal[0];
+				count++;
+				if (count == 2) return P[1] - P[0];
+			}
 			t += step;
+			//printf ("%e %e\n", t, x[0]);
 			step = fac * step;
+			step = MIN (step, tf-t);
+			if (tf-t < 1e-10) endOfIntegration = 1;
 		}
-	} while (t < tf);
-	
-
-	
+	}
 	return 0.0;
 
 }
