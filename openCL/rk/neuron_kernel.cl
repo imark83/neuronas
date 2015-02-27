@@ -75,7 +75,7 @@ __kernel void neuron (__global       real_t *delay) {
 	// INTEGRATE CPG
 	rkN (x, 10000.0, T, CUTNUMBER);
 
-	//for (i=0; i<3*CUTNUMBER; i++) DELAY(i) = T[i];
+	for (i=0; i<3*CUTNUMBER; i++) DELAY(i) = T[i];
 
 
 

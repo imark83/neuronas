@@ -57,6 +57,8 @@ int main (int argc, char *argv[]) {
 	clGetEventProfilingInfo (event, CL_PROFILING_COMMAND_END, sizeof (cl_ulong), &c1, NULL);
 	printf ("CPU time = %.2f miliseconds\n", (c1-c0) / 1.0e6);
 
+	system ("beep");
+
 
 	// RELEASE MEMORY
 	clReleaseMemObject (d_delay);
