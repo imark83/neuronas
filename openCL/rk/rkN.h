@@ -130,6 +130,9 @@ void rkN (real_t x[NVAR_N], real_t tf, real_t delay[3*CUTNUMBER], int cutNumber)
 
 		if (fac < 0) {				// rejected step
 			step = 0.2 * step;	
+			if (step < 1e-8) {
+				printf ("step = %e\n", step);
+			}
 		} else {
 			if (delay != (real_t*) 0) for (j=0; j<3; j++) {
 				if (eventFlag[j]) {		// enter refinement process

@@ -124,7 +124,10 @@ real_t rkS (real_t x[NVAR_S], real_t tf, char event) {
 		fac = rkStepS (xNext, x, step, fsal, eventFlag, eventVal);
 
 		if (fac < 0) {				// rejected step
-			step = 0.2 * step;	
+			step = 0.2 * step;
+			if (step < 1e-8) {
+				printf ("step = %e\n", step);
+			}
 		} else {
 			if (event) if (eventFlag[0]) {
 				P[count] = t + eventVal[0];

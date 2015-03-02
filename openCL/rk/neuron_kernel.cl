@@ -26,13 +26,13 @@ __kernel void neuron (__global       real_t *delay) {
 	rkS (z, 500.0, 0);
 	// COMPUTE PERIOD FOR SINGLE NEURON
 	P = rkS (z, 1000.0, 1);
-	//printf ("%zu / %i\n", M*get_global_id(1)+get_global_id(0), M*N);
+	printf ("%zu / %i\n", M*get_global_id(1)+get_global_id(0), M*N);
 
 	real_t _phi21, _phi31, err21, err31;
 	_phi21 = phi21; _phi31 = phi31;
 
 	// COMPUTE LAG FOR OTHER NEURONS
-
+	int count = 0;
 	do {
 		for (i=0; i<3; i++) x[i] = y[i] = z[i];
 		rkS (y, (1.0-_phi21)*P, 0);
@@ -61,7 +61,7 @@ __kernel void neuron (__global       real_t *delay) {
 			printf ("-------------------------------\n");
 		}
 		_phi21 += err21; _phi31 += err31;
-	} while (fabs (err21) + fabs (err31) > 1.0e-2);	
+	} while (fabs (err21) + fabs (err31) > 1.0e-2 && count++ < 10);	
 
 	for (i=0; i<3; i++) x[i] = y[i] = z[i];
 	rkS (y, (1.0-_phi21)*P, 0);
