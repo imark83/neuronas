@@ -11,8 +11,8 @@
 __kernel void neuron (__global       real_t *delay) {
 	int i;
 	// DESIRED DELAYS FOR FIRST POINT
-	real_t phi21 = XMIN + ((XMAX-XMIN)*get_global_id(0))/(M-1);	// DESIRED PHI21
-	real_t phi31 = YMIN + ((YMAX-YMIN)*get_global_id(1))/(N-1);	// DESIRED PHI31
+	real_t phi21 = XMIN + ((XMAX-XMIN)*get_global_id(0))/(M-1.0);	// DESIRED PHI21
+	real_t phi31 = YMIN + ((YMAX-YMIN)*get_global_id(1))/(N-1.0);	// DESIRED PHI31
 
 
 
@@ -43,7 +43,7 @@ __kernel void neuron (__global       real_t *delay) {
 		for (i=0; i<3; i++) x[i+6] = y[i];
 	
 
-		rkN (x, 100000.0, T, 4);
+		rkN (x, 100000.0, T, 3);
 		
 		err21 = phi21 - (T[CUTNUMBER] - T[0]) / (T[1] - T[0]);
 		err31 = phi31 - (T[2*CUTNUMBER] - T[0]) / (T[1] - T[0]);
@@ -73,7 +73,8 @@ __kernel void neuron (__global       real_t *delay) {
 
 
 	// INTEGRATE CPG
-	rkN (x, 10000.0, T, CUTNUMBER);
+	rkN (x, 100000.0, T, CUTNUMBER);
+	//rkN (x, 1000.0, (real_t*) 0, 0);
 
 	for (i=0; i<3*CUTNUMBER; i++) DELAY(i) = T[i];
 

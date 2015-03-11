@@ -18,17 +18,17 @@ int getColor (double* _f21, double* _f31, int N) {
 
 	double f21 = _f21[N-3];
 	double f31 = _f31[N-3];
-	if (fabs (f21 - f31) < 0.02) return BLUE;
+	if (fabs (f21 - f31) < 0.2) return BLUE;
 
-	if (fabs (f31) < 0.02) return RED;
-	if (fabs (f31 - 1.0) < 0.02) return RED;
+	if (fabs (f31) < 0.2) return RED;
+	if (fabs (f31 - 1.0) < 0.2) return RED;
 
-	if (fabs (f21) < 0.04) return GREEN;
-	if (fabs (f21 - 1.0) < 0.04) return GREEN;
+	if (fabs (f21) < 0.2) return GREEN;
+	if (fabs (f21 - 1.0) < 0.2) return GREEN;
 
-	if (fabs (f21 - 0.3333) + fabs (f31 - 0.6666) < 0.1) return BLACK;
+	if (fabs (f21 - 0.3333) + fabs (f31 - 0.6666) < 0.2) return BLACK;
 
-	if (fabs (f21 - 0.6666) + fabs (f31 - 0.3333) < 0.1) return BLACK;
+	if (fabs (f21 - 0.6666) + fabs (f31 - 0.3333) < 0.2) return BLACK;
 
 	return CYAN; 
 
@@ -166,13 +166,13 @@ int main () {
 		}
 	else
 			fprintf (gnuplot, ", \\\n \"./_m.txt\"  w l lc rgb \"magenta\"");
-	/*if (nc)
+	if (nc)
 		if (firstColor) {
 			fprintf (gnuplot, "plot \"./_c.txt\"  w l lc rgb \"cyan\"");
 			firstColor = 0;
 		}
 		else
-			fprintf (gnuplot, ", \\\n \"./_c.txt\"  w l lc rgb \"cyan\"");*/
+			fprintf (gnuplot, ", \\\n \"./_c.txt\"  w l lc rgb \"cyan\"");
 	fprintf (gnuplot, "\n");
 
 	fflush (gnuplot);
