@@ -14,11 +14,11 @@
 	char infoString[500];
 
 	/* PLATFORM INITIALIZE AND PLATFORM INFO */
-	if ((errorCode = clGetPlatformIDs(1, pl, NULL)) != CL_SUCCESS) {
+	if ((errorCode = clGetPlatformIDs(2, pl, NULL)) != CL_SUCCESS) {
 		printf ("Error getting Platform ID. Error code = %i\n", errorCode);
 		return 0;
 	}
-	platform = pl[1]
+	platform = pl[1];
 	printf ("PLATFORM INFO:\n");
 
 	clGetPlatformInfo (platform, CL_PLATFORM_PROFILE, 500, infoString, NULL);

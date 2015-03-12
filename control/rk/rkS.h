@@ -36,18 +36,22 @@ real_t rkStepS (real_t xNext[NVAR_S], real_t x[NVAR_S], real_t h, real_t fsal[NV
 
 	// ESTIMATE ERROR (E2 = 0)
 	error = 0.0;
-	for (j=0; j<NVAR_S; j++) error = error + fabs (E1*k1[j] + E3*k3[j] + E4*k4[j] + E5*k5[j] + E6*k6[j] + E7*k7[j]);
+	for (j=0; j<NVAR_S; j++) error = error + fabs(E1*k1[j] + E3*k3[j] + E4*k4[j] + E5*k5[j] + E6*k6[j] + E7*k7[j]);
 	error = error * h;
 
+	// compute norm of x
+	real_t normX = fabs (x[0]);
+	for (j=1; j<NVAR_S; j++) normX += fabs (x[0]);
 	// CHECK TOLERANCE
 	if (error > TOL) {
+		return -1.0;
+	}
+	if (error > TOL*normX) {
 		return -1.0;
 	}
 
 	// UP TO HERE, ACCEPTED STEP
 
-	// UPDATE FSAL
-	for (j=0; j<NVAR_S; j++) fsal[j] = k7[j];
 	
 	// USE THE 5TH ORDER RK TO GO AHEAD (B2 = B7 = 0)
 	for (j=0; j<NVAR_S; j++) xNext[j] = x[j] + h * (B1*k1[j] + B3*k3[j] + B4*k4[j] + B5*k5[j] + B6*k6[j]);
@@ -86,10 +90,13 @@ real_t rkStepS (real_t xNext[NVAR_S], real_t x[NVAR_S], real_t h, real_t fsal[NV
 
 
 	// ESTIMATE FACTOR FOR NEXT STEP SIZE
-	error = 0.9 * pow((1.0/error), 0.2);			// multiplier for next step size
-	error = MAX (error, 0.1);			// no smaller than 10%
-	error = MIN (error, 1.5);			// no bigger than 150%
+	error = 0.8*pow((TOL/error), 0.2);	// multiplier for next step size
+	error = MAX (error, 0.09);			// no smaller than 10%
+	error = MIN (error, 1.1);			// no bigger than 150%
 
+
+	// UPDATE FSAL
+	for (j=0; j<NVAR_S; j++) fsal[j] = k7[j];
 
 	// RETURN NEXT STEP SIZE FACTOR
 	return error;
@@ -125,9 +132,6 @@ real_t rkS (real_t x[NVAR_S], real_t tf, char event) {
 
 		if (fac < 0) {				// rejected step
 			step = 0.2 * step;
-			if (step < 1e-8) {
-				printf ("step = %e\n", step);
-			}
 		} else {
 			if (event) if (eventFlag[0]) {
 				P[count] = t + eventVal[0];
