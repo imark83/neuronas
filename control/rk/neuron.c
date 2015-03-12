@@ -19,11 +19,11 @@ int main (int argc, char *argv[]) {
 
 	// ALLOCATE MEMORY
 	
-	cl_mem d_delay = clCreateBuffer (context, CL_MEM_WRITE_ONLY, 3*M*N*CUTNUMBER * sizeof (real_t), NULL, NULL);
+	cl_mem d_endPoint = clCreateBuffer (context, CL_MEM_WRITE_ONLY, N * M * sizeof (char), NULL, NULL);
 
 	// SET KERNEL ARGUMENTS
 
-	clSetKernelArg (kernel, 0, sizeof (cl_mem), (void*) (&d_delay));
+	clSetKernelArg (kernel, 0, sizeof (cl_mem), (void*) (&d_endPoint));
 
 	// LAUNCH KERNEL
 	clEnqueueNDRangeKernel (queue, kernel,
@@ -38,19 +38,19 @@ int main (int argc, char *argv[]) {
 	clFinish (queue);
 
 
-	real_t *delay = (real_t*) malloc (3*M*N*CUTNUMBER * sizeof (real_t));
-	clEnqueueReadBuffer (queue, d_delay, CL_TRUE, 0, 3*M*N*CUTNUMBER * sizeof (real_t), delay, 0, NULL, NULL);
+	char *endPoint = (char *) malloc (M*N * sizeof (char));
+	clEnqueueReadBuffer (queue, d_endPoint, CL_TRUE, 0, M*N * sizeof (char), endPoint, 0, NULL, NULL);
 	clFinish(queue);
 
 
 	FILE *fout = fopen (FILENAME, "w");
-
-	for (i=0; i<M*N; i++) {
-		for (j=0; j<3*CUTNUMBER; j++) 
-			fprintf (fout, "  %.15le", delay[j*M*N+i]);
+	for (j=0; j<N; j++) {
+		for (i=0; i<M; i++)
+			fprintf (fout, "%hhi  ", endPoint[M*j + i]);
 		fprintf (fout, "\n");
 	}
 	fclose (fout);
+
 
 	unsigned long int c0, c1;
 	clGetEventProfilingInfo (event, CL_PROFILING_COMMAND_START, sizeof (cl_ulong), &c0, NULL);
@@ -61,8 +61,8 @@ int main (int argc, char *argv[]) {
 
 
 	// RELEASE MEMORY
-	clReleaseMemObject (d_delay);
-	free (delay);
+	clReleaseMemObject (d_endPoint);
+	free (endPoint);
 
 	// CLEAN UP OPENCL OBJECTS
 	clReleaseKernel (kernel);

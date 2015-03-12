@@ -15,7 +15,7 @@ void fS (real_t *rop, real_t *x) {
 
 }
 
-void fN (real_t *rop, real_t *x) {
+void fN (real_t *rop, real_t *x, char pulse) {
 
 	unsigned char j;		// counter for neurons
 	real_t gamma[3];
@@ -43,5 +43,12 @@ void fN (real_t *rop, real_t *x) {
 		rop[2+3*j] = (m_K2Inf - x[2+3*j]) / TK2;
 
 	}
+	if (pulse==1) rop[0] -= 0.02 / C;
+	if (pulse==1) rop[3] -= 0.02 / C;
+	if (pulse==1) rop[6] -= 0.02 / C;
+
+	if (pulse==2) rop[0] += 0.01 / C;
+	if (pulse==2) rop[3] += 0.01 / C;
+	if (pulse==2) rop[6] += 0.01 / C;
 
 }

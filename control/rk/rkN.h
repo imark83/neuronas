@@ -5,7 +5,8 @@
 real_t rkStepN (real_t xNext[NVAR_N], real_t x[NVAR_N], real_t h, real_t fsal[NVAR_N], 
 		char eventFlag[3],		// IF NULL INPUT -> NO EVENT SEARCH
 						// OUTPUTS EVENT FLAG
-		real_t eventVal[3]) {		// OUTPUTS EVENT TIME value
+		real_t eventVal[3],		// OUTPUTS EVENT TIME value
+		char pulse) {			// EXTERN PULSE
 
 	int j;
 
@@ -17,22 +18,22 @@ real_t rkStepN (real_t xNext[NVAR_N], real_t x[NVAR_N], real_t h, real_t fsal[NV
 	// COMPUTE STAGES OF THE STEP (assume we have an autonomous system)
 	// 2
 	for (j=0; j<NVAR_N; j++) k2[j] = x[j] + h * (A21*k1[j]);
-	fN (k2, k2);
+	fN (k2, k2, pulse);
 	// 3
 	for (j=0; j<NVAR_N; j++) k3[j] = x[j] + h * (A31*k1[j] + A32*k2[j]);
-	fN (k3, k3);
+	fN (k3, k3, pulse);
 	// 4
 	for (j=0; j<NVAR_N; j++) k4[j] = x[j] + h * (A41*k1[j] + A42*k2[j] + A43*k3[j]);
-	fN (k4, k4);
+	fN (k4, k4, pulse);
 	// 5
 	for (j=0; j<NVAR_N; j++) k5[j] = x[j] + h * (A51*k1[j] + A52*k2[j] + A53*k3[j] + A54*k4[j]);
-	fN (k5, k5);
+	fN (k5, k5, pulse);
 	// 6
 	for (j=0; j<NVAR_N; j++) k6[j] = x[j] + h * (A61*k1[j] + A62*k2[j] + A63*k3[j] + A64*k4[j] + A65*k5[j]);
-	fN (k6, k6);
+	fN (k6, k6, pulse);
 	// 7  (A72 = 0)
 	for (j=0; j<NVAR_N; j++) k7[j] = x[j] + h * (A71*k1[j] + A73*k3[j] + A74*k4[j] + A75*k5[j] + A76*k6[j]);
-	fN (k7, k7);
+	fN (k7, k7, pulse);
 
 	// ESTIMATE ERROR (E2 = 0)
 	error = 0.0;
@@ -111,13 +112,13 @@ real_t rkStepN (real_t xNext[NVAR_N], real_t x[NVAR_N], real_t h, real_t fsal[NV
 }
 
 // 
-void rkN (real_t x[NVAR_N], real_t tf, real_t delay[3*CUTNUMBER], int cutNumber) {
+void rkN (real_t x[NVAR_N], real_t tf, real_t delay[3*CUTNUMBER], int cutNumber, char pulse) {
 	real_t step = INITIAL_STEP;
 	real_t fsal[NVAR_N];
 	real_t xNext[NVAR_N];
 	int j;
 	for (j=0; j<NVAR_N; j++) fsal[j] = x[j];
-	fN(fsal, fsal);
+	fN(fsal, fsal, pulse);
 	real_t t = 0.0;
 	real_t fac;					// step size correction factor
 
@@ -135,7 +136,7 @@ void rkN (real_t x[NVAR_N], real_t tf, real_t delay[3*CUTNUMBER], int cutNumber)
 	
 	char endOfIntegration = 0;
 	while (t<tf && !endOfIntegration) {
-		fac = rkStepN (xNext, x, step, fsal, eventFlag, eventVal);
+		fac = rkStepN (xNext, x, step, fsal, eventFlag, eventVal, pulse);
 
 		if (fac < 0) {				// rejected step
 			step = 0.2 * step;
