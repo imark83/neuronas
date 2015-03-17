@@ -76,7 +76,7 @@ __kernel void neuron (__global char *endPoint) {
 	rkN (x, 0.07*P, (real_t *) 0, 0, 2);
 
 	// ITERATE UNTIL REACH STABLE POINT
-	rkN (x, 2000, (real_t *) 0, 0, 0);
+	rkN (x, 2500, (real_t *) 0, 0, 0);
 
 	// COMPUTE POINCARE SECTIONS
 	real_t T[3*CUTNUMBER];
@@ -88,28 +88,32 @@ __kernel void neuron (__global char *endPoint) {
 		if (d21 < 0.0) d21 = T[CUTNUMBER+1]-T[0];
 	d31 = T[2*CUTNUMBER]-T[0];
 		if (d31 < 0.0) d31 = T[CUTNUMBER+1]-T[0];
+	real_t f21 = d21/P;
+	real_t f31 = d31/P;
+	if (f21>=1) f21 -= 1.0;
+	if (f31>=1) f31 -= 1.0;
 
 	printf ("P = %e\n", P);
 	printf ("d = (%e, %e)\n", d21, d31);
 
-	printf ("Final state = (%f %f) ---- > ", d21/P, d31/P);
-	if (fabs (d21/P - 0.541002) + fabs (d31/P) < 0.2 || fabs (d21/P - 0.541002) + fabs (d31/P -1.0) < 0.2) {
+	printf ("Final state = (%f %f) ---- > ", f21, f31);
+	if (fabs (f21 - 0.541002) + fabs (f31) < 0.2 || fabs (d21 - 0.541002) + fabs (f31 -1.0) < 0.2) {
 		printf ("0\n");
 		ENDPOINT = 0.0;
 	}
-	else if (fabs (d21/P) + fabs (d31/P - 0.541002) < 0.2 || fabs (d21/P - 1.0) + fabs (d31/P - 0.541002) < 0.2) {
+	else if (fabs (f21) + fabs (f31 - 0.541002) < 0.2 || fabs (f21 - 1.0) + fabs (f31 - 0.541002) < 0.2) {
 		printf ("1\n");
 		ENDPOINT = 1.0;
 	}
-	else if (fabs (d21/P - 0.458981) + fabs (d31/P - 0.458981) < 0.2) {
+	else if (fabs (f21 - 0.458981) + fabs (f31 - 0.458981) < 0.2) {
 		printf ("2\n");
 		ENDPOINT = 2.0;
 	}
-	else if (fabs (d21/P - 0.33) + fabs (d31/P - 0.66) < 0.2) {
+	else if (fabs (f21 - 0.33) + fabs (f31 - 0.66) < 0.2) {
 		printf ("3\n");
 		ENDPOINT = 3.0;
 	}
-	else if (fabs (d21/P - 0.66) + fabs (d31/P - 0.33) < 0.2) {
+	else if (fabs (f21 - 0.66) + fabs (f31 - 0.33) < 0.2) {
 		printf ("4\n");
 		ENDPOINT = 4.0;
 	}
