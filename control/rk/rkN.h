@@ -156,5 +156,4 @@ void rkN (real_t x[NVAR_N], real_t tf, real_t delay[3*CUTNUMBER], int cutNumber,
 			if (tf-t < 1e-10) endOfIntegration = 1;
 		}
 	}
-
 }
