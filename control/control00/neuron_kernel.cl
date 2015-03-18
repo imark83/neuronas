@@ -67,8 +67,6 @@ __kernel void neuron (__global char *endPoint) {
 
 	real_t pulse1Len = (get_global_id(0) * P) / (M-1.0);
 	real_t pulse2Len = (get_global_id(1) * P) / (N-1.0);
-	pulse1Len = 1.6466e-01;
-	pulse2Len = 2.7169e+00;
 
 	// integrate with two extra pulse
 	rkN (x, pulse1Len, (real_t *) 0, 0, 0);
@@ -79,11 +77,6 @@ __kernel void neuron (__global char *endPoint) {
 	// ITERATE UNTIL REACH STABLE POINT
 	rkN (x, 2000, (real_t *) 0, 0, 0);
 
-	/*int i;
-	printf ("x0 = {");
-	for (i=0; i<NVAR_N; i++) printf ("%e, ", x[i]);
-	printf ("}\n"); */
-	printf ("P = %e\n", rkS (x, 1000.0, 1));
 
 	// COMPUTE POINCARE SECTIONS
 	real_t T[3*CUTNUMBER];
@@ -100,10 +93,8 @@ __kernel void neuron (__global char *endPoint) {
 	if (f21>=1) f21 -= 1.0;
 	if (f31>=1) f31 -= 1.0;
 
-	printf ("P = %e\n", P);
-	printf ("f = (%e, %e)\n", f21, f31);
 
-	printf ("pulse = (%.4e, %.4e)\t Final state = (%.4f %.4f) ---- > ", pulse1Len, pulse2Len, f21, f31);
+	printf ("Final state = (%.4f %.4f) ---- > ", f21, f31);
 	if (fabs (f21 - 0.541002) + fabs (f31) < 0.2 || fabs (d21 - 0.541002) + fabs (f31 -1.0) < 0.2) {
 		printf ("0\n");
 		ENDPOINT = 0.0;
