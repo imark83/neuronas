@@ -1,5 +1,5 @@
 set term png size 800, 600
-set output "basin01.png"
+set output "basin02.png"
 
 unset xtics
 unset ytics

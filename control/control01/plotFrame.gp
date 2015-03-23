@@ -1,5 +1,5 @@
 set term svg size 800, 600
-set output 'basin00.svg'
+set output 'basin01.svg'
 
 set xtics nomirror (0, "1/3" 0.33, "2/3" 0.66, "1" 0.99)
 set ytics (0, "1/3" 0.33, "2/3" 0.66, "1" 0.99)
@@ -12,7 +12,7 @@ set xrange [0:1]
 set yrange [0:1]
 set xlabel "pulse 1 (-0.02 mA) start"
 set ylabel "pulse 2 (+0.01 mA) start"
-set title "control 00: 2 shocks (-,+) (0.09 P), different start"
+set title "control 01: 2 shocks (-,+) (0.05 P), different start"
 set palette maxcolors 6
 splot '< echo 0' matrix
 
