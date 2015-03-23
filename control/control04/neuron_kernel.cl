@@ -70,9 +70,9 @@ __kernel void neuron (__global char *endPoint) {
 
 	// integrate with two extra pulse
 	rkN (x, pulse1Len, (real_t *) 0, 0, 0);
-	rkN (x, 0.09*P, (real_t *) 0, 0, 1);
+	rkN (x, 0.05*P, (real_t *) 0, 0, 1);
 	rkN (x, pulse2Len, (real_t *) 0, 0, 0);
-	rkN (x, 0.09*P, (real_t *) 0, 0, 2);
+	rkN (x, 0.05*P, (real_t *) 0, 0, 2);
 
 	// ITERATE UNTIL REACH STABLE POINT
 	rkN (x, 2000, (real_t *) 0, 0, 0);
