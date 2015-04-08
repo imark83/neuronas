@@ -1,6 +1,3 @@
-set term png size 800, 600
-set output "basin06.png"
-
 unset xtics
 unset ytics
 unset xlabel

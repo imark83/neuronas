@@ -65,20 +65,24 @@ __kernel void neuron (__global char *endPoint) {
 	real_t P = 1.045580e+01;
 	real_t d21, d31;
 
-	real_t delayPulse = (get_global_id(0) * P) / (M-1.0);
-	real_t pulseLen = 0.5*(get_global_id(1) * P) / (N-1.0);
+	real_t pulse1Len = 0.48483;
+	real_t pulse2Len = 0.48483;
+	real_t T[3*CUTNUMBER];
 
 	// integrate with two extra pulse
-	rkN (x, delayPulse, (real_t *) 0, 0, 0);
-	rkN (x, pulseLen, (real_t *) 0, 0, 1);
+	rkN (0, x, 2*1.062973e+01, (real_t*) 0, 0, 0);
+	//printf ("P = %le\n", T[1]-T[0]); return;
+	rkN (2*1.062973e+01, x, pulse1Len, (real_t *) 0, 0, 0);
+	rkN (2*1.062973e+01+pulse1Len, x, 0.05*P, (real_t *) 0, 0, 1);
+	rkN (2*1.062973e+01+pulse1Len + 0.05*P, x, pulse2Len, (real_t *) 0, 0, 0);
+	rkN (2*1.062973e+01+pulse1Len + 0.05*P + pulse2Len, x, 0.05*P, (real_t *) 0, 0, 2);
 
 	// ITERATE UNTIL REACH STABLE POINT
-	rkN (x, 2000, (real_t *) 0, 0, 0);
+	rkN (2*1.062973e+01+pulse1Len + 0.1*P + pulse2Len, x, 2500, (real_t *) 0, 0, 0);
 
 
 	// COMPUTE POINCARE SECTIONS
-	real_t T[3*CUTNUMBER];
-	rkN (x, 100000, T, CUTNUMBER, 0);
+	rkN (2000,x, 100000, T, CUTNUMBER, 0);
 
 
 	P = T[1] - T[0];
@@ -92,29 +96,29 @@ __kernel void neuron (__global char *endPoint) {
 	if (f31>=1) f31 -= 1.0;
 
 
-	printf ("Final state = (%.4f %.4f) ---- > ", f21, f31);
+	//printf ("Final state = (%.4f %.4f) ---- > ", f21, f31);
 	if (fabs (f21 - 0.541002) + fabs (f31) < 0.2 || fabs (d21 - 0.541002) + fabs (f31 -1.0) < 0.2) {
-		printf ("0\n");
+	//	printf ("0\n");
 		ENDPOINT = 0.0;
 	}
 	else if (fabs (f21) + fabs (f31 - 0.541002) < 0.2 || fabs (f21 - 1.0) + fabs (f31 - 0.541002) < 0.2) {
-		printf ("1\n");
+	//	printf ("1\n");
 		ENDPOINT = 1.0;
 	}
 	else if (fabs (f21 - 0.458981) + fabs (f31 - 0.458981) < 0.2) {
-		printf ("2\n");
+	//	printf ("2\n");
 		ENDPOINT = 2.0;
 	}
 	else if (fabs (f21 - 0.33) + fabs (f31 - 0.66) < 0.2) {
-		printf ("3\n");
+	//	printf ("3\n");
 		ENDPOINT = 3.0;
 	}
 	else if (fabs (f21 - 0.66) + fabs (f31 - 0.33) < 0.2) {
-		printf ("4\n");
+	//	printf ("4\n");
 		ENDPOINT = 4.0;
 	}
 	else  {
-		printf ("????\n");
+	//	printf ("????\n");
 		ENDPOINT = -2.0;
 	}
 
