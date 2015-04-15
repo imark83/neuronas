@@ -45,10 +45,10 @@ void fN (real_t *rop, real_t *x, char pulse) {
 	}
 	if (pulse==1) rop[0] -= 0.025 / C;
 	if (pulse==1) rop[3] -= 0.02 / C;
-	if (pulse==1) rop[6] -= 0.01 / C;
+	if (pulse==1) rop[6] -= 0.005 / C;
 
 	if (pulse==2) rop[0] += 0.015 / C;
 	if (pulse==2) rop[3] += 0.01 / C;
-	if (pulse==2) rop[6] += 0.005 / C;
+	if (pulse==2) rop[6] += 0.002 / C;
 
 }

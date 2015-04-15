@@ -43,7 +43,7 @@
 #define TNA		(0.0405)
 #define TK2		(0.9)
 #define IAPP		(0.006)
-#define VSHIFT		(-0.021)	// FIGURE 7
+#define VSHIFT		(-0.0192)	// FIGURE 7
 //#define VSHIFT 		(-0.020650)
 
 

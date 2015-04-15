@@ -171,8 +171,8 @@ int main () {
 			fprintf (gnuplot, "plot \"./_c.txt\"  w l lc rgb \"cyan\"");
 			firstColor = 0;
 		}
-		else
-			fprintf (gnuplot, ", \\\n \"./_c.txt\"  w l lc rgb \"cyan\"");
+		//else
+		//	fprintf (gnuplot, ", \\\n \"./_c.txt\"  w l lc rgb \"cyan\"");
 	fprintf (gnuplot, "\n");
 
 	fflush (gnuplot);
