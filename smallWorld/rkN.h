@@ -150,18 +150,20 @@ void rkN (real_t x[NVAR_N], real_t tf, real_t delay[3*CUTNUMBER], int cutNumber)
 				}
 			}			
 
-			if (t+step > dense) {
+			/*if (t+step > dense) {
 				fwrite (&t, sizeof (real_t), 1, stdout);
 				for (j=0; j<20; j++) fwrite (x+3*j, sizeof (real_t), 1, stdout);
 				dense += dense_step;
-			}
+			}*/
 
 			t += step;
 			for (j=0; j<NVAR_N; j++) x[j] = xNext[j];
-			
-			/*printf ("%e", t);
-			for (j=0; j<20; j++) printf ("  %e", x[3*j]);
-			printf ("\n");*/
+			if (t+step > dense) {
+				printf ("%e", t);
+				for (j=0; j<2; j++) printf ("  %e", x[3*j]);
+				printf ("\n");
+				dense += dense_step;
+			}
 			//return;
 			
 			step = fac * step;

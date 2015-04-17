@@ -32,7 +32,7 @@
 #define EVENTVALUE	(-0.04)		// POINCARE SECTION
 #define THSYN		(-0.03)
 #define ESYN		(-0.0625)
-#define GSYN		(0.0007)
+#define GSYN		(0.0005)
 #define ENA		(0.045)
 #define GNA		(160.0)
 #define EK		(-0.07)
@@ -42,8 +42,8 @@
 #define C		(0.5)
 #define TNA		(0.0405)
 #define TK2		(0.9)
-#define IAPP		(0.006)
-#define VSHIFT		(-0.0192)	// FIGURE 7
+#define IAPP		(0.008)
+#define VSHIFT		(-0.019)	// FIGURE 7
 //#define VSHIFT 		(-0.020650)
 
 

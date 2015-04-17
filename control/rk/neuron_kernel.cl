@@ -26,7 +26,7 @@ __kernel void neuron (__global       real_t *delay) {
 	rkS (z, 500.0, 0);
 	// COMPUTE PERIOD FOR SINGLE NEURON
 	P = rkS (z, 1000.0, 1);
-	printf ("%zu / %i\n", M*get_global_id(1)+get_global_id(0), M*N);
+	//printf ("%zu / %i\n", M*get_global_id(1)+get_global_id(0), M*N);
 
 	real_t _phi21, _phi31, err21, err31;
 	_phi21 = phi21; _phi31 = phi31;
@@ -48,7 +48,7 @@ __kernel void neuron (__global       real_t *delay) {
 		err21 = phi21 - (T[CUTNUMBER] - T[0]) / (T[1] - T[0]);
 		err31 = phi31 - (T[2*CUTNUMBER] - T[0]) / (T[1] - T[0]);
 
-		if (get_global_id(0) + get_global_id(1) == 0) {
+		/*if (get_global_id(0) + get_global_id(1) == 0) {
 			printf ("T = %f %f %f %f %f %f\n", T[0], T[1], T[CUTNUMBER], T[CUTNUMBER+1], T[2*CUTNUMBER], T[2*CUTNUMBER+1]);
 			printf ("desired phi21 = %.15lf\ndesired phi31 = %.15lf\n", phi21, phi31);
 			printf ("x = [ %f, %f, %f, %f, %f, %f, %f, %f, %f]\n", 
@@ -59,7 +59,7 @@ __kernel void neuron (__global       real_t *delay) {
 			printf ("err21 = %.15le\n", err21);
 			printf ("err31 = %.15le\n", err31);
 			printf ("-------------------------------\n");
-		}
+		}*/
 		_phi21 += err21; _phi31 += err31;
 	} while (fabs (err21) + fabs (err31) > 1.0e-2 && count++ < 10);	
 
