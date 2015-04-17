@@ -45,6 +45,6 @@ int main  (int argc, char **argv) {
 	// INTEGRATE CPG
 	rkN (x, 1500.0, (real_t *) 0, 0);
 
-	system ("beep");
+	if (system ("beep"));
 
 }
