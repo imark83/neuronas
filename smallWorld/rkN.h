@@ -158,13 +158,12 @@ void rkN (real_t x[NVAR_N], real_t tf, real_t delay[3*CUTNUMBER], int cutNumber)
 
 			t += step;
 			for (j=0; j<NVAR_N; j++) x[j] = xNext[j];
-			if (t+step > dense) {
+			//if (t+step > dense) {
 				printf ("%e", t);
 				for (j=0; j<2; j++) printf ("  %e", x[3*j]);
 				printf ("\n");
-				dense += dense_step;
-			}
-			//return;
+			//	dense += dense_step;
+			//}
 			
 			step = fac * step;
 			step = MIN (step, tf-t);

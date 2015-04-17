@@ -36,7 +36,8 @@ int main  (int argc, char **argv) {
 
 	int j;
 	for (j=0; j<20; j++) {
-		rkS (z, (real_t) j + getRand(), 0);
+		real_t t = (real_t) j + getRand();
+		rkS (z, t, 0);
 		for (i=0; i<3; i++) x[3*j+i] = z[i];
 	}
 
