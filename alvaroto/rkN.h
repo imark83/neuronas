@@ -157,20 +157,11 @@ void rkN (real_t x[NVAR_N], real_t tf, real_t delay[3*CUTNUMBER], int cutNumber,
 
 
 			if (t+step > dense && t > 100) {
-				for (j=0; j<NVAR_N; ++j) fsalBack[j] = fsal[j];
-				for (j=0; j<NVAR_N; ++j) fsal[j] = x[j];
-				fN(fsal, fsal, vshift);
-				
-				rkStepN (xDense, x, dense-t, fsal, eventFlag, eventVal, vshift);
-
-				for (j=0; j<NVAR_N; ++j) fsal[j] = fsalBack[j];
-
-				real_t conditionNumber = 12.0; //get_global_id(1)*N + get_global_id(0);
-				//printf ("%f\n", 12.0);
-				printf ("sizeof real = %zi\n", sizeof (real_t));
-				printf ("%X", (unsigned*) &conditionNumber);
-				//printf ("\n"); 
-				return;
+				float conditionNumber = get_global_id(1)*N + get_global_id(0);
+				printf ("%08x", *((int*) &conditionNumber));
+				printf ("%08x", *((int*) &t));
+				for (j=0; j<3; ++j) 
+					printf ("%08x", *((int*) x+3*j)); 
 				dense += dense_step;
 			}
 

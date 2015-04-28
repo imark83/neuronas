@@ -1,6 +1,8 @@
 #define MIN(a,b) ((a)<(b))? (a) : (b)
 #define MAX(a,b) ((a)>(b))? (a) : (b)
 
+#pragma OPENCL EXTENSION cl_intel_printf : enable
+
 #define CPU
 
 #define FILENAME	"T.txt"
