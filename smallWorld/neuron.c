@@ -15,7 +15,7 @@
 
 
 real_t getRand () {
-	return ((real_t) rand()) / ((real_t) RAND_MAX);
+	return 10*((real_t) rand()) / ((real_t) RAND_MAX);
 }
 
 int main  (int argc, char **argv) {
