@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="800"
+   height="600"
+   viewBox="0 0 800 600"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="basin03.svg">
+  <metadata
+     id="metadata406">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs404">
+    <defs
+       id="defs11">
+      <circle
+         stroke-width="0.5"
+         r="0.5"
+         id="gpDot" />
+      <path
+         d="M-1,0 h2 M0,-1 v2"
+         stroke="currentColor"
+         stroke-width="0.222"
+         id="gpPt0" />
+      <path
+         d="M-1,-1 L1,1 M1,-1 L-1,1"
+         stroke="currentColor"
+         stroke-width="0.222"
+         id="gpPt1" />
+      <path
+         d="M-1,0 L1,0 M0,-1 L0,1 M-1,-1 L1,1 M-1,1 L1,-1"
+         stroke="currentColor"
+         stroke-width="0.222"
+         id="gpPt2" />
+      <rect
+         height="2"
+         width="2"
+         y="-1"
+         x="-1"
+         stroke="currentColor"
+         stroke-width="0.222"
+         id="gpPt3" />
+      <rect
+         height="2"
+         width="2"
+         y="-1"
+         x="-1"
+         fill="currentColor"
+         stroke="currentColor"
+         stroke-width="0.222"
+         id="gpPt4" />
+      <circle
+         r="1"
+         cy="0"
+         cx="0"
+         stroke="currentColor"
+         stroke-width="0.222"
+         id="gpPt5" />
+      <use
+         stroke="none"
+         fill="currentColor"
+         id="gpPt6"
+         xlink:href="#gpPt5" />
+      <path
+         d="M0,-1.33 L-1.33,0.67 L1.33,0.67 z"
+         stroke="currentColor"
+         stroke-width="0.222"
+         id="gpPt7" />
+      <use
+         stroke="none"
+         fill="currentColor"
+         id="gpPt8"
+         xlink:href="#gpPt7" />
+      <use
+         transform="rotate(180)"
+         stroke="currentColor"
+         id="gpPt9"
+         xlink:href="#gpPt7" />
+      <use
+         stroke="none"
+         fill="currentColor"
+         id="gpPt10"
+         xlink:href="#gpPt9" />
+      <use
+         transform="rotate(45)"
+         stroke="currentColor"
+         id="gpPt11"
+         xlink:href="#gpPt3" />
+      <use
+         stroke="none"
+         fill="currentColor"
+         id="gpPt12"
+         xlink:href="#gpPt11" />
+    </defs>
+  </defs>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1855"
+     inkscape:window-height="1056"
+     id="namedview402"
+     showgrid="false"
+     inkscape:zoom="8.0000002"
+     inkscape:cx="192.1506"
+     inkscape:cy="319.52198"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <title
+     id="title4">Gnuplot</title>
+  <desc
+     id="desc6">Produced by GNUPLOT 4.6 patchlevel 4 </desc>
+  <g
+     id="g27"
+     style="color:#ffffff;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" />
+  <g
+     id="gnuplot_plot_1">
+    <title
+       id="title36">gnuplot_plot_1</title>
+    <g
+       id="g38"
+       style="color:#ff0000;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" />
+  </g>
+  <g
+     id="g3059">
+    <image
+       width="379.59692"
+       height="379.59033"
+       xlink:href="data:image/png;base64,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 "
+       id="image3391"
+       x="210.19833"
+       y="110.20082" />
+    <image
+       width="19.890625"
+       height="379.60547"
+       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAGDCAIAAACk/6cVAAAAA3NCSVQICAjb4U/gAAAAm0lEQVR4 nO3PsQ3CMABE0XPklkUpMwM1JZOwDKKLlAnSE0ZAOBLByvv90+mSDZUk69okS4YtyzAMwzAMwzAM wzDcD65J5sseyzAMwzAMwzAMwzD8U1yTTPc9lmEYhmEYhmEYhmEY/lxN8nzcmuy5088wDMMwDMMw DMMw/G0lyTgsDfL6OnX6GYZhGIZhGIZhGD4kliRJkiRJ/9wbWJMNOIf8n+0AAAAASUVORK5CYII= "
+       id="image3402"
+       x="598.29858"
+       y="110.20116" />
+    <g
+       style="color:#000000;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       id="g29">
+      <g
+         transform="translate(400,88.2)"
+         style="font-size:15px;text-anchor:middle;fill:#000000;stroke:none;font-family:Arial"
+         id="g31">
+        <text
+           id="text33">control 03: 2 shocks (-,+) (0.09 P), different start</text>
+      </g>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path42"
+       d="m 210.7,110.7 0,378.6 378.6,0 0,-378.6 -378.6,0 z m 0,0 h 0.01" />
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path44"
+       d="m 210.7,489.3 0,-11.7 h 0.01" />
+    <g
+       id="g46"
+       style="font-size:15px;text-anchor:middle;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(210.7,517.2)">
+      <text
+         id="text48">0</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path50"
+       d="m 335.7,489.3 0,-11.7 h 0.01" />
+    <g
+       id="g52"
+       style="font-size:15px;text-anchor:middle;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(335.7,517.2)">
+      <text
+         id="text54">1/3</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path56"
+       d="m 460.5,489.3 0,-11.7 h 0.01" />
+    <g
+       id="g58"
+       style="font-size:15px;text-anchor:middle;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(460.5,517.2)">
+      <text
+         id="text60">2/3</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path62"
+       d="m 585.5,489.3 0,-11.7 h 0.01" />
+    <g
+       id="g64"
+       style="font-size:15px;text-anchor:middle;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(585.5,517.2)">
+      <text
+         id="text66">1</text>
+    </g>
+    <g
+       id="g68"
+       style="font-size:15px;text-anchor:middle;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(400,544.2)">
+      <text
+         id="text70">pulse 1 (-0.02 mA) start</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path72"
+       d="m 210.7,489.3 11.7,0 h 0.01" />
+    <g
+       id="g74"
+       style="font-size:15px;text-anchor:end;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(199.9,493.8)">
+      <text
+         id="text76">0</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path78"
+       d="m 589.3,489.3 -11.7,0 m -366.9,-125 11.7,0 h 0.01" />
+    <g
+       id="g80"
+       style="font-size:15px;text-anchor:end;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(199.9,368.8)">
+      <text
+         id="text82">1/3</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path84"
+       d="m 589.3,364.3 -11.7,0 m -366.9,-124.8 11.7,0 h 0.01" />
+    <g
+       id="g86"
+       style="font-size:15px;text-anchor:end;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(199.9,244)">
+      <text
+         id="text88">2/3</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path90"
+       d="m 589.3,239.5 -11.7,0 m -366.9,-125 11.7,0 h 0.01" />
+    <g
+       id="g92"
+       style="font-size:15px;text-anchor:end;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(199.9,119)">
+      <text
+         id="text94">1</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path96"
+       d="m 589.3,114.5 -11.7,0 h 0.01" />
+    <g
+       id="g98"
+       style="font-size:15px;text-anchor:middle;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="matrix(0,-1,1,0,175.4,300)">
+      <text
+         id="text100">pulse 2 (+0.01 mA) start</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path102"
+       d="m 210.7,110.7 0,378.6 378.6,0 0,-378.6 -378.6,0 z m 0,0 h 0.01" />
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path362"
+       d="m 598.8,489.3 18.9,0 0,-378.6 -18.9,0 0,378.6 z m 0,0 h 0.01" />
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path364"
+       d="m 617.7,457.8 -9,0 h 0.01" />
+    <g
+       id="g366"
+       style="font-size:15px;text-anchor:start;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(626,462.3)">
+      <text
+         id="text368">no convergence</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path370"
+       d="m 598.8,457.8 9,0 m 9.9,-63.1 -9,0 h 0.01" />
+    <g
+       id="g372"
+       style="font-size:15px;text-anchor:start;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(626,399.2)">
+      <text
+         id="text374">point 0 (0.54,0)</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path376"
+       d="m 598.8,394.7 9,0 m 9.9,-63.1 -9,0 h 0.01" />
+    <g
+       id="g378"
+       style="font-size:15px;text-anchor:start;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(626,336.1)">
+      <text
+         id="text380">point 1 (0,0.54)</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path382"
+       d="m 598.8,331.6 9,0 m 9.9,-63.1 -9,0 h 0.01" />
+    <g
+       id="g384"
+       style="font-size:15px;text-anchor:start;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(626,273)">
+      <text
+         id="text386">point 2 (0.45,0.45)</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path388"
+       d="m 598.8,268.5 9,0 m 9.9,-63.1 -9,0 h 0.01" />
+    <g
+       id="g390"
+       style="font-size:15px;text-anchor:start;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(626,209.9)">
+      <text
+         id="text392">point 3 (0.33,0.66)</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path394"
+       d="m 598.8,205.4 9,0 m 9.9,-63.1 -9,0 h 0.01" />
+    <g
+       id="g396"
+       style="font-size:15px;text-anchor:start;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(626,146.8)">
+      <text
+         id="text398">point 4 (0.66,0.33)</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path400"
+       d="m 598.8,142.3 9,0 h 0.01" />
+  </g>
+</svg>
