@@ -32,7 +32,7 @@ void fN (real_t *rop, real_t *x, char pulse) {
 
 		real_t m_NaInf = 1.0 / (1.0 + exp (-150.0*(x[3*j] + 0.0305)));
 		real_t h_NaInf = 1.0 / (1.0 + exp (500.0*(x[3*j] + 0.0325)));
-		real_t m_K2Inf = 1.0 / (1.0 + exp (-83.0*(x[3*j] + 0.018 + VSHIFT*(1.0 +0.0001*j))));
+		real_t m_K2Inf = 1.0 / (1.0 + exp (-83.0*(x[3*j] + 0.018 + VSHIFT*(1.0 +0.0001*j*0))));
 
 		real_t I_Na = GNA * (x[3*j] - ENA) * x[1+3*j] * m_NaInf * m_NaInf * m_NaInf;
 		real_t I_K2 = GK2 * (x[3*j] - EK) * x[2+3*j] * x[2+3*j];

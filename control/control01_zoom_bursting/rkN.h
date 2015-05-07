@@ -150,7 +150,7 @@ void rkN (real_t t0, real_t x[NVAR_N], real_t tf, real_t delay[3*CUTNUMBER], int
 			}			
 			t += step;
 			for (j=0; j<NVAR_N; j++) x[j] = xNext[j];
-			if(t0+t<199.0) printf ("%e %e %e %e\n", t+t0, x[0], x[3], x[6]);
+			printf ("%e %e %e %e\n", t+t0, x[0], x[3], x[6]);
 			step = fac * step;
 			step = MIN (step, tf-t);
 			if (tf-t < 1e-10) endOfIntegration = 1;

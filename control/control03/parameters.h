@@ -3,7 +3,7 @@
 
 #define CPU
 
-#define FILENAME	"T.txt"
+#define FILENAME	"T-Equal.txt"
 #define DOUBLE
 
 #ifdef FLOAT
@@ -17,8 +17,8 @@
 
 
 // GEOMETRY VALUES
-#define M		(64)		// HORIZONTAL GRIDSIZE
-#define N		(64)		// VERTICAL GRIDSIZE
+#define M		(512)		// HORIZONTAL GRIDSIZE
+#define N		(512)		// VERTICAL GRIDSIZE
 #define CUTNUMBER	(3)		// NUMBER OF CUTS FOR POINC. OF EACH NEURON!
 #define CENTERX		(0.5)
 #define CENTERY		(0.5)

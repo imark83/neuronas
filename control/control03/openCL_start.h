@@ -3,6 +3,7 @@
 	cl_platform_id platform;		// OpenCL Platform
 	cl_platform_id pl[2];		// OpenCL Platform
 	cl_device_id device;			// compute device 
+	cl_device_id d[2];
 	cl_context context;			// compute context
 	cl_command_queue queue;			// compute command queue
 
@@ -45,10 +46,13 @@
 
 	/* DEVICE INITIALIZE AND DEVICE INFO */
 
-	if ((errorCode = clGetDeviceIDs(platform, CL_DEVICE_TYPE_GPU, 1, &device, NULL)) != CL_SUCCESS) {
+
+	if ((errorCode = clGetDeviceIDs(platform, CL_DEVICE_TYPE_GPU, 2, d, NULL)) != CL_SUCCESS) {
 		printf ("Error getting Device ID. Error code = %i\n", errorCode);
 		return 0;
 	}
+
+	device = d[1];
 
 
 	printf ("DEVICE INFO:\n");
