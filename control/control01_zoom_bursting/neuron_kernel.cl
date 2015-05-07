@@ -78,11 +78,11 @@ __kernel void neuron (__global char *endPoint) {
 	rkN (2*1.062973e+01+pulse1Len + 0.05*P + pulse2Len, x, 0.05*P, (real_t *) 0, 0, 2);
 
 	// ITERATE UNTIL REACH STABLE POINT
-	rkN (2*1.062973e+01+pulse1Len + 0.1*P + pulse2Len, x, 2500, (real_t *) 0, 0, 0);
+	rkN (2*1.062973e+01+pulse1Len + 0.1*P + pulse2Len, x, 1500, (real_t *) 0, 0, 0);
 
 
 	// COMPUTE POINCARE SECTIONS
-	rkN (2000,x, 100000, T, CUTNUMBER, 0);
+	rkN (1500,x, 100000, T, CUTNUMBER, 0);
 
 
 	P = T[1] - T[0];
