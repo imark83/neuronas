@@ -14,7 +14,7 @@ __kernel void neuron (__global       real_t *delay) {
 	real_t phi21 = XMIN + ((XMAX-XMIN)*get_global_id(0))/(M-1.0);	// DESIRED PHI21
 	real_t phi31 = YMIN + ((YMAX-YMIN)*get_global_id(1))/(N-1.0);	// DESIRED PHI31
 
-	if (get_global_id(1)*M + get_global_id(0) != 31) return;
+
 
 	real_t z[3] = {0.0, 0.0, 0.0};
 	real_t y[3];
@@ -71,8 +71,6 @@ __kernel void neuron (__global       real_t *delay) {
 	rkS (y, (1.0-_phi31)*P, 0);
 	for (i=0; i<3; i++) x[i+6] = y[i];
 
-
-	printf ("start!\n");
 
 	// INTEGRATE CPG
 	rkN (x, 100000.0, T, CUTNUMBER);

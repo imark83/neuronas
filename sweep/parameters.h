@@ -3,7 +3,6 @@
 
 #define CPU
 
-#define FILENAME	"T.txt"
 #define FLOAT
 
 #ifdef FLOAT
@@ -17,9 +16,9 @@
 
 
 // GEOMETRY VALUES
-#define M		(30)		// HORIZONTAL GRIDSIZE
-#define N		(30)		// VERTICAL GRIDSIZE
-#define CUTNUMBER	(80)		// NUMBER OF CUTS FOR POINC. OF EACH NEURON!
+#define M		(5)		// HORIZONTAL GRIDSIZE
+#define N		(5)		// VERTICAL GRIDSIZE
+#define CUTNUMBER	(40)		// NUMBER OF CUTS FOR POINC. OF EACH NEURON!
 #define CENTERX		(0.5)
 #define CENTERY		(0.5)
 #define RADIUS		(0.45)
@@ -43,8 +42,6 @@
 #define TNA		(0.0405)
 #define TK2		(0.9)
 #define IAPP		(0.006)
-#define VSHIFT		(-0.021)	// FIGURE 7
-//#define VSHIFT 		(-0.020650)
 
 
 
@@ -55,4 +52,6 @@
 #define INITIAL_STEP	(1.0e-6)	// INITIAL STEPSIZE
 
 
+
+#define VSHIFT		(-0.022000)
 

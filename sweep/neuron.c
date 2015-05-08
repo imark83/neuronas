@@ -43,7 +43,7 @@ int main (int argc, char *argv[]) {
 	clFinish(queue);
 
 
-	FILE *fout = fopen (FILENAME, "w");
+	FILE *fout = fopen (argv[1], "w");
 
 	for (i=0; i<M*N; i++) {
 		for (j=0; j<3*CUTNUMBER; j++) 
