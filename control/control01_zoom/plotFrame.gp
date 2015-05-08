@@ -1,8 +1,8 @@
 set term svg size 800, 600
 set output 'basin01_zoom.svg'
 
-set xtics nomirror (0, "1/3" 0.33, "2/3" 0.66, "1" 0.99)
-set ytics (0, "1/27" 0.33, "2/27" 0.66, "3/27" 0.999)
+set xtics nomirror (0, "1/27" 0.33, "2/27" 0.66, "3/27" 0.9999)
+set ytics (0, "1/27" 0.33, "2/27" 0.66, "3/27" 0.9999)
 set cbtics ("no convergence" -1, "point 0 (0.54,0)" 0 , "point 1 (0,0.54)" 1, "point 2 (0.45,0.45)" 2, "point 3 (0.33,0.66)" 3, "point 4 (0.66,0.33)" 4)
 unset key
 set size square

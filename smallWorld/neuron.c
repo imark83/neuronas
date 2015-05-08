@@ -15,7 +15,7 @@
 
 
 real_t getRand () {
-	return ((real_t) rand()) / ((real_t) RAND_MAX);
+	return 10*((real_t) rand()) / ((real_t) RAND_MAX);
 }
 
 int main  (int argc, char **argv) {
@@ -45,6 +45,6 @@ int main  (int argc, char **argv) {
 	// INTEGRATE CPG
 	rkN (x, 1500.0, (real_t *) 0, 0);
 
-	system ("beep");
+	if (system ("beep"));
 
 }

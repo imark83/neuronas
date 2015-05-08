@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="800"
+   height="600"
+   viewBox="0 0 800 600"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="basin06.svg">
+  <metadata
+     id="metadata406">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs404">
+    <defs
+       id="defs11">
+      <circle
+         stroke-width="0.5"
+         r="0.5"
+         id="gpDot" />
+      <path
+         d="M-1,0 h2 M0,-1 v2"
+         stroke="currentColor"
+         stroke-width="0.222"
+         id="gpPt0" />
+      <path
+         d="M-1,-1 L1,1 M1,-1 L-1,1"
+         stroke="currentColor"
+         stroke-width="0.222"
+         id="gpPt1" />
+      <path
+         d="M-1,0 L1,0 M0,-1 L0,1 M-1,-1 L1,1 M-1,1 L1,-1"
+         stroke="currentColor"
+         stroke-width="0.222"
+         id="gpPt2" />
+      <rect
+         height="2"
+         width="2"
+         y="-1"
+         x="-1"
+         stroke="currentColor"
+         stroke-width="0.222"
+         id="gpPt3" />
+      <rect
+         height="2"
+         width="2"
+         y="-1"
+         x="-1"
+         fill="currentColor"
+         stroke="currentColor"
+         stroke-width="0.222"
+         id="gpPt4" />
+      <circle
+         r="1"
+         cy="0"
+         cx="0"
+         stroke="currentColor"
+         stroke-width="0.222"
+         id="gpPt5" />
+      <use
+         stroke="none"
+         fill="currentColor"
+         id="gpPt6"
+         xlink:href="#gpPt5" />
+      <path
+         d="M0,-1.33 L-1.33,0.67 L1.33,0.67 z"
+         stroke="currentColor"
+         stroke-width="0.222"
+         id="gpPt7" />
+      <use
+         stroke="none"
+         fill="currentColor"
+         id="gpPt8"
+         xlink:href="#gpPt7" />
+      <use
+         transform="rotate(180)"
+         stroke="currentColor"
+         id="gpPt9"
+         xlink:href="#gpPt7" />
+      <use
+         stroke="none"
+         fill="currentColor"
+         id="gpPt10"
+         xlink:href="#gpPt9" />
+      <use
+         transform="rotate(45)"
+         stroke="currentColor"
+         id="gpPt11"
+         xlink:href="#gpPt3" />
+      <use
+         stroke="none"
+         fill="currentColor"
+         id="gpPt12"
+         xlink:href="#gpPt11" />
+    </defs>
+  </defs>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1855"
+     inkscape:window-height="1056"
+     id="namedview402"
+     showgrid="false"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="677.61472"
+     inkscape:cy="295.87025"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <title
+     id="title4">Gnuplot</title>
+  <desc
+     id="desc6">Produced by GNUPLOT 4.6 patchlevel 4 </desc>
+  <image
+     y="110.1609"
+     x="598.27759"
+     id="image3402"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAGDCAIAAABGI7xsAAAAA3NCSVQICAjb4U/gAAAAiElEQVR4
+nO3NwQ1AUBRFwUt+xWpQg0o0I3YSFSiAHv7iJZizn5yktyHJfffIsftJkiRJkiRJkiRJ/k+2JOdc
++yRJkiRJkiRJkiTfKluSY619kiRJkiRJkiRJkmSFbEn2bSl9kiRJkiRJkiRJkv+TQ5JpvEqfJEmS
+JEmSJEmS5FulJEmSJElf7QHGFgszBf9mFwAAAABJRU5ErkJggg==
+"
+     height="379.625"
+     width="19.90625" />
+  <image
+     y="110.19798"
+     x="210.19936"
+     id="image3413"
+     xlink:href="data:image/png;base64,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
+v9v/TwWQ9D9h+qeS2LDxbgAAAABJRU5ErkJggg==
+"
+     height="379.60049"
+     width="379.59598" />
+  <g
+     style="color:#ff0000;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+     id="g38" />
+  <g
+     id="g3803">
+    <g
+       id="g31"
+       style="font-size:15px;text-anchor:middle;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(400,88.2)">
+      <text
+         id="text33">control 06: 1 shock (-0.02 mA) different start different length</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path42"
+       d="m 210.7,110.7 0,378.6 378.6,0 0,-378.6 -378.6,0 z m 0,0 h 0.01" />
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path44"
+       d="m 210.7,489.3 0,-11.7 h 0.01" />
+    <g
+       id="g46"
+       style="font-size:15px;text-anchor:middle;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(210.7,517.2)">
+      <text
+         id="text48">0</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path50"
+       d="m 335.7,489.3 0,-11.7 h 0.01" />
+    <g
+       id="g52"
+       style="font-size:15px;text-anchor:middle;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(335.7,517.2)">
+      <text
+         id="text54">1/3</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path56"
+       d="m 460.5,489.3 0,-11.7 h 0.01" />
+    <g
+       id="g58"
+       style="font-size:15px;text-anchor:middle;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(460.5,517.2)">
+      <text
+         id="text60">2/3</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path62"
+       d="m 585.5,489.3 0,-11.7 h 0.01" />
+    <g
+       id="g64"
+       style="font-size:15px;text-anchor:middle;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(585.5,517.2)">
+      <text
+         id="text66">1</text>
+    </g>
+    <g
+       id="g68"
+       style="font-size:15px;text-anchor:middle;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(400,544.2)">
+      <text
+         id="text70">pulse start (scale = 1 Period)</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path72"
+       d="m 210.7,489.3 11.7,0 h 0.01" />
+    <g
+       id="g74"
+       style="font-size:15px;text-anchor:end;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(199.9,493.8)">
+      <text
+         id="text76">0</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path78"
+       d="m 589.3,489.3 -11.7,0 m -366.9,-125 11.7,0 h 0.01" />
+    <g
+       id="g80"
+       style="font-size:15px;text-anchor:end;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(199.9,368.8)">
+      <text
+         id="text82">1/6</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path84"
+       d="m 589.3,364.3 -11.7,0 m -366.9,-124.8 11.7,0 h 0.01" />
+    <g
+       id="g86"
+       style="font-size:15px;text-anchor:end;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(199.9,244)">
+      <text
+         id="text88">1/3</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path90"
+       d="m 589.3,239.5 -11.7,0 m -366.9,-125 11.7,0 h 0.01" />
+    <g
+       id="g92"
+       style="font-size:15px;text-anchor:end;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(199.9,119)">
+      <text
+         id="text94">1/2</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path96"
+       d="m 589.3,114.5 -11.7,0 h 0.01" />
+    <g
+       id="g98"
+       style="font-size:15px;text-anchor:middle;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="matrix(0,-1,1,0,175.4,300)">
+      <text
+         id="text100">pulse length (scale = 0.5 Period)</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path102"
+       d="m 210.7,110.7 0,378.6 378.6,0 0,-378.6 -378.6,0 z m 0,0 h 0.01" />
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path362"
+       d="m 598.8,489.3 18.9,0 0,-378.6 -18.9,0 0,378.6 z m 0,0 h 0.01" />
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path364"
+       d="m 617.7,457.8 -9,0 h 0.01" />
+    <g
+       id="g366"
+       style="font-size:15px;text-anchor:start;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(626,462.3)">
+      <text
+         id="text368">no convergence</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path370"
+       d="m 598.8,457.8 9,0 m 9.9,-63.1 -9,0 h 0.01" />
+    <g
+       id="g372"
+       style="font-size:15px;text-anchor:start;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(626,399.2)">
+      <text
+         id="text374">point 0 (0.54,0)</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path376"
+       d="m 598.8,394.7 9,0 m 9.9,-63.1 -9,0 h 0.01" />
+    <g
+       id="g378"
+       style="font-size:15px;text-anchor:start;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(626,336.1)">
+      <text
+         id="text380">point 1 (0,0.54)</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path382"
+       d="m 598.8,331.6 9,0 m 9.9,-63.1 -9,0 h 0.01" />
+    <g
+       id="g384"
+       style="font-size:15px;text-anchor:start;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(626,273)">
+      <text
+         id="text386">point 2 (0.45,0.45)</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path388"
+       d="m 598.8,268.5 9,0 m 9.9,-63.1 -9,0 h 0.01" />
+    <g
+       id="g390"
+       style="font-size:15px;text-anchor:start;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(626,209.9)">
+      <text
+         id="text392">point 3 (0.33,0.66)</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path394"
+       d="m 598.8,205.4 9,0 m 9.9,-63.1 -9,0 h 0.01" />
+    <g
+       id="g396"
+       style="font-size:15px;text-anchor:start;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(626,146.8)">
+      <text
+         id="text398">point 4 (0.66,0.33)</text>
+    </g>
+    <path
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter"
+       inkscape:connector-curvature="0"
+       id="path400"
+       d="m 598.8,142.3 9,0 h 0.01" />
+  </g>
+</svg>

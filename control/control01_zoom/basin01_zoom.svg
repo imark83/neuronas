@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="800"
+   height="600"
+   viewBox="0 0 800 600"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="basin01_zoom.svg">
+  <metadata
+     id="metadata406">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs404">
+    <defs
+       id="defs11">
+      <circle
+         stroke-width="0.5"
+         r="0.5"
+         id="gpDot" />
+      <path
+         d="M-1,0 h2 M0,-1 v2"
+         stroke="currentColor"
+         stroke-width="0.222"
+         id="gpPt0" />
+      <path
+         d="M-1,-1 L1,1 M1,-1 L-1,1"
+         stroke="currentColor"
+         stroke-width="0.222"
+         id="gpPt1" />
+      <path
+         d="M-1,0 L1,0 M0,-1 L0,1 M-1,-1 L1,1 M-1,1 L1,-1"
+         stroke="currentColor"
+         stroke-width="0.222"
+         id="gpPt2" />
+      <rect
+         height="2"
+         width="2"
+         y="-1"
+         x="-1"
+         stroke="currentColor"
+         stroke-width="0.222"
+         id="gpPt3" />
+      <rect
+         height="2"
+         width="2"
+         y="-1"
+         x="-1"
+         fill="currentColor"
+         stroke="currentColor"
+         stroke-width="0.222"
+         id="gpPt4" />
+      <circle
+         r="1"
+         cy="0"
+         cx="0"
+         stroke="currentColor"
+         stroke-width="0.222"
+         id="gpPt5" />
+      <use
+         stroke="none"
+         fill="currentColor"
+         id="gpPt6"
+         xlink:href="#gpPt5" />
+      <path
+         d="M0,-1.33 L-1.33,0.67 L1.33,0.67 z"
+         stroke="currentColor"
+         stroke-width="0.222"
+         id="gpPt7" />
+      <use
+         stroke="none"
+         fill="currentColor"
+         id="gpPt8"
+         xlink:href="#gpPt7" />
+      <use
+         transform="rotate(180)"
+         stroke="currentColor"
+         id="gpPt9"
+         xlink:href="#gpPt7" />
+      <use
+         stroke="none"
+         fill="currentColor"
+         id="gpPt10"
+         xlink:href="#gpPt9" />
+      <use
+         transform="rotate(45)"
+         stroke="currentColor"
+         id="gpPt11"
+         xlink:href="#gpPt3" />
+      <use
+         stroke="none"
+         fill="currentColor"
+         id="gpPt12"
+         xlink:href="#gpPt11" />
+    </defs>
+  </defs>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1855"
+     inkscape:window-height="1056"
+     id="namedview402"
+     showgrid="false"
+     inkscape:zoom="1.0182338"
+     inkscape:cx="574.29836"
+     inkscape:cy="247.1233"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <title
+     id="title4">Gnuplot</title>
+  <desc
+     id="desc6">Produced by GNUPLOT 4.6 patchlevel 4 </desc>
+  <image
+     y="110.19909"
+     x="210.20901"
+     id="image5486"
+     xlink:href="data:image/png;base64,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
+"
+     height="379.51154"
+     width="379.51154" />
+  <image
+     y="110.1537"
+     x="598.30225"
+     id="image5497"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAGDCAIAAACk/6cVAAAAA3NCSVQICAjb4U/gAAAAm0lEQVR4
+nO3PsQ3CMABE0XPklkUpMwM1JZOwDKKLlAnSE0ZAOBLByvv90+mSDZUk69okS4YtyzAMwzAMwzAM
+wzDcD65J5sseyzAMwzAMwzAMwzD8U1yTTPc9lmEYhmEYhmEYhmEY/lxN8nzcmuy5088wDMMwDMMw
+DMMw/G0lyTgsDfL6OnX6GYZhGIZhGIZhGD4kliRJkiRJ/9wbWJMNOIf8n+0AAAAASUVORK5CYII=
+"
+     height="379.66492"
+     width="19.869791" />
+  <g
+     id="g27"
+     style="color:#ffffff;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" />
+  <g
+     id="gnuplot_plot_1">
+    <title
+       id="title36">gnuplot_plot_1</title>
+    <g
+       id="g38"
+       style="color:#ff0000;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" />
+  </g>
+  <g
+     id="g29"
+     style="color:#000000;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter">
+    <g
+       id="g31"
+       style="font-size:15px;text-anchor:middle;fill:#000000;stroke:none;font-family:Arial"
+       transform="translate(400,88.2)">
+      <text
+         id="text33">control 01: 2 shocks (-,+) (0.05 P), different start</text>
+    </g>
+  </g>
+  <path
+     d="m 210.7,110.7 0,378.6 378.6,0 0,-378.6 -378.6,0 z m 0,0 h 0.01"
+     id="path42"
+     inkscape:connector-curvature="0"
+     style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" />
+  <path
+     d="m 210.7,489.3 0,-11.7 h 0.01"
+     id="path44"
+     inkscape:connector-curvature="0"
+     style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" />
+  <g
+     transform="translate(210.7,517.2)"
+     style="font-size:15px;text-anchor:middle;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+     id="g46">
+    <text
+       id="text48">0</text>
+  </g>
+  <path
+     d="m 335.7,489.3 0,-11.7 h 0.01"
+     id="path50"
+     inkscape:connector-curvature="0"
+     style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" />
+  <g
+     transform="translate(335.7,517.2)"
+     style="font-size:15px;text-anchor:middle;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+     id="g52">
+    <text
+       id="text54">1/27</text>
+  </g>
+  <path
+     d="m 460.5,489.3 0,-11.7 h 0.01"
+     id="path56"
+     inkscape:connector-curvature="0"
+     style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" />
+  <g
+     transform="translate(460.5,517.2)"
+     style="font-size:15px;text-anchor:middle;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+     id="g58">
+    <text
+       id="text60">2/27</text>
+  </g>
+  <path
+     d="m 589.3,489.3 0,-11.7 h 0.01"
+     id="path62"
+     inkscape:connector-curvature="0"
+     style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" />
+  <g
+     transform="translate(589.3,517.2)"
+     style="font-size:15px;text-anchor:middle;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+     id="g64">
+    <text
+       id="text66">3/27</text>
+  </g>
+  <g
+     transform="translate(400,544.2)"
+     style="font-size:15px;text-anchor:middle;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+     id="g68">
+    <text
+       id="text70">pulse 1 (-0.02 mA) start</text>
+  </g>
+  <path
+     d="m 210.7,489.3 11.7,0 h 0.01"
+     id="path72"
+     inkscape:connector-curvature="0"
+     style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" />
+  <g
+     transform="translate(199.9,493.8)"
+     style="font-size:15px;text-anchor:end;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+     id="g74">
+    <text
+       id="text76">0</text>
+  </g>
+  <path
+     d="m 589.3,489.3 -11.7,0 m -366.9,-125 11.7,0 h 0.01"
+     id="path78"
+     inkscape:connector-curvature="0"
+     style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" />
+  <g
+     transform="translate(199.9,368.8)"
+     style="font-size:15px;text-anchor:end;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+     id="g80">
+    <text
+       id="text82">1/27</text>
+  </g>
+  <path
+     d="m 589.3,364.3 -11.7,0 m -366.9,-124.8 11.7,0 h 0.01"
+     id="path84"
+     inkscape:connector-curvature="0"
+     style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" />
+  <g
+     transform="translate(199.9,244)"
+     style="font-size:15px;text-anchor:end;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+     id="g86">
+    <text
+       id="text88">2/27</text>
+  </g>
+  <path
+     d="m 589.3,239.5 -11.7,0 m -366.9,-128.8 11.7,0 h 0.01"
+     id="path90"
+     inkscape:connector-curvature="0"
+     style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" />
+  <g
+     transform="translate(199.9,115.2)"
+     style="font-size:15px;text-anchor:end;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+     id="g92">
+    <text
+       id="text94">3/27</text>
+  </g>
+  <path
+     d="m 589.3,110.7 -11.7,0 h 0.01"
+     id="path96"
+     inkscape:connector-curvature="0"
+     style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" />
+  <g
+     transform="matrix(0,-1,1,0,167.1,300)"
+     style="font-size:15px;text-anchor:middle;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+     id="g98">
+    <text
+       id="text100">pulse 2 (+0.01 mA) start</text>
+  </g>
+  <path
+     d="m 210.7,110.7 0,378.6 378.6,0 0,-378.6 -378.6,0 z m 0,0 h 0.01"
+     id="path102"
+     inkscape:connector-curvature="0"
+     style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" />
+  <path
+     d="m 598.8,489.3 18.9,0 0,-378.6 -18.9,0 0,378.6 z m 0,0 h 0.01"
+     id="path362"
+     inkscape:connector-curvature="0"
+     style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" />
+  <path
+     d="m 617.7,457.8 -9,0 h 0.01"
+     id="path364"
+     inkscape:connector-curvature="0"
+     style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" />
+  <g
+     transform="translate(626,462.3)"
+     style="font-size:15px;text-anchor:start;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+     id="g366">
+    <text
+       id="text368">no convergence</text>
+  </g>
+  <path
+     d="m 598.8,457.8 9,0 m 9.9,-63.1 -9,0 h 0.01"
+     id="path370"
+     inkscape:connector-curvature="0"
+     style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" />
+  <g
+     transform="translate(626,399.2)"
+     style="font-size:15px;text-anchor:start;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+     id="g372">
+    <text
+       id="text374">point 0 (0.54,0)</text>
+  </g>
+  <path
+     d="m 598.8,394.7 9,0 m 9.9,-63.1 -9,0 h 0.01"
+     id="path376"
+     inkscape:connector-curvature="0"
+     style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" />
+  <g
+     transform="translate(626,336.1)"
+     style="font-size:15px;text-anchor:start;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+     id="g378">
+    <text
+       id="text380">point 1 (0,0.54)</text>
+  </g>
+  <path
+     d="m 598.8,331.6 9,0 m 9.9,-63.1 -9,0 h 0.01"
+     id="path382"
+     inkscape:connector-curvature="0"
+     style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" />
+  <g
+     transform="translate(626,273)"
+     style="font-size:15px;text-anchor:start;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+     id="g384">
+    <text
+       id="text386">point 2 (0.45,0.45)</text>
+  </g>
+  <path
+     d="m 598.8,268.5 9,0 m 9.9,-63.1 -9,0 h 0.01"
+     id="path388"
+     inkscape:connector-curvature="0"
+     style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" />
+  <g
+     transform="translate(626,209.9)"
+     style="font-size:15px;text-anchor:start;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+     id="g390">
+    <text
+       id="text392">point 3 (0.33,0.66)</text>
+  </g>
+  <path
+     d="m 598.8,205.4 9,0 m 9.9,-63.1 -9,0 h 0.01"
+     id="path394"
+     inkscape:connector-curvature="0"
+     style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" />
+  <g
+     transform="translate(626,146.8)"
+     style="font-size:15px;text-anchor:start;color:#000000;fill:#000000;stroke:none;font-family:Arial"
+     id="g396">
+    <text
+       id="text398">point 4 (0.66,0.33)</text>
+  </g>
+  <path
+     d="m 598.8,142.3 9,0 h 0.01"
+     id="path400"
+     inkscape:connector-curvature="0"
+     style="color:#000000;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" />
+</svg>
