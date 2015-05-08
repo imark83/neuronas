@@ -7,7 +7,8 @@ int main () {
 	char command[500];
 	int i=0;
 
-	for (i=0; i<36; ++i) {
+	for (i=0; i<33; ++i) {
+
 		sprintf (command, "cat commonParameters.h > parameters.h");
 		system (command);
 		sprintf (command, "echo \"#define VSHIFT\t\t(%f)\n\" >> parameters.h", -0.022+0.0001*i);

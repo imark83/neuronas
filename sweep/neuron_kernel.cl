@@ -32,7 +32,7 @@ __kernel void neuron (__global       real_t *delay) {
 
 	// COMPUTE LAG FOR OTHER NEURONS
 	int count = 0;
-	/*do {
+	do {
 		for (i=0; i<3; i++) x[i] = y[i] = z[i];
 		rkS (y, (1.0-_phi21)*P, 0);
 		for (i=0; i<3; i++) x[i+3] = y[i];
@@ -49,7 +49,7 @@ __kernel void neuron (__global       real_t *delay) {
 
 
 		_phi21 += err21; _phi31 += err31;
-	} while (fabs (err21) + fabs (err31) > 1.0e-2 && count++ < 2);	*/
+	} while (fabs (err21) + fabs (err31) > 1.0e-2 && count++ < 2);	
 
 	for (i=0; i<3; i++) x[i] = y[i] = z[i];
 	rkS (y, (1.0-_phi21)*P, 0);
