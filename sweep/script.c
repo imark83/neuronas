@@ -19,10 +19,10 @@ int main () {
 	
 		sprintf (command, "gcc -o neuron neuron.c -lOpenCL");
 		system (command);
-		sprintf (command, "./neuron data/T%02i.txt", i);
+		sprintf (command, "./neuron fastData/T%02i.txt", i);
 		system (command);
 		
-		sprintf (command, "./colorPlotter data/T%02i.txt pics/sweep%02i.png", i, i);
+		sprintf (command, "./colorPlotter fastData/T%02i.txt fastPics/sweep%02i.png", i, i);
 		system (command);
 
 	}

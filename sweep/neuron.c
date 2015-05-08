@@ -9,7 +9,7 @@
 int main (int argc, char *argv[]) {
 	int i, j;
 	const size_t global_work_size[] = {M, N};
-	const size_t local_work_size[] = {1, 1};
+	const size_t local_work_size[] = {8, 8};
 	const char *source = "#include \"neuron_kernel.cl\"\n";
 	const char *kernelName = "neuron";
 
@@ -57,7 +57,7 @@ int main (int argc, char *argv[]) {
 	clGetEventProfilingInfo (event, CL_PROFILING_COMMAND_END, sizeof (cl_ulong), &c1, NULL);
 	printf ("CPU time = %.2f miliseconds\n", (c1-c0) / 1.0e6);
 
-	system ("beep");
+	
 
 
 	// RELEASE MEMORY
