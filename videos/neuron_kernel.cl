@@ -14,6 +14,9 @@ __kernel void neuron (__global       real_t *delay) {
 	//real_t phi21 = XMIN + ((XMAX-XMIN)*get_global_id(0))/(M-1.0);	// DESIRED PHI21
 	//real_t phi31 = YMIN + ((YMAX-YMIN)*get_global_id(1))/(N-1.0);	// DESIRED PHI31
 
+	/***********************************************/
+	// #define VSHIFT		(-0.021)
+	/***********************************************/
 	// BLUE
 	/*real_t phi21 = 0.114054782218231;
 	real_t phi31 = 0.140398143990421;*/
@@ -27,9 +30,15 @@ __kernel void neuron (__global       real_t *delay) {
 	real_t phi31 = 0.251758718754677;*/
 
 	// BLACK
-	real_t phi21 = 0.130220026942075;
-	real_t phi31 = 0.201017811704835;
+	/*real_t phi21 = 0.130220026942075;
+	real_t phi31 = 0.201017811704835;*/
 
+
+	/***********************************************/
+	// #define VSHIFT		(-0.01876)
+	/***********************************************/
+	real_t phi21 = 0.246848124833762;
+	real_t phi31 = 0.659571920371202;
 
 	real_t z[3] = {0.0, 0.0, 0.0};
 	real_t y[3];

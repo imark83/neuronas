@@ -19,7 +19,7 @@
 // GEOMETRY VALUES
 #define M		(30)		// HORIZONTAL GRIDSIZE
 #define N		(30)		// VERTICAL GRIDSIZE
-#define CUTNUMBER	(40)		// NUMBER OF CUTS FOR POINC. OF EACH NEURON!
+#define CUTNUMBER	(50)		// NUMBER OF CUTS FOR POINC. OF EACH NEURON!
 #define CENTERX		(0.5)
 #define CENTERY		(0.5)
 #define RADIUS		(0.45)
@@ -32,7 +32,7 @@
 #define EVENTVALUE	(-0.04)		// POINCARE SECTION
 #define THSYN		(-0.03)
 #define ESYN		(-0.0625)
-#define GSYN		(0.0007)
+#define GSYN		(0.0004)
 #define ENA		(0.045)
 #define GNA		(160.0)
 #define EK		(-0.07)
@@ -43,8 +43,8 @@
 #define TNA		(0.0405)
 #define TK2		(0.9)
 #define IAPP		(0.006)
-#define VSHIFT		(-0.021)	// FIGURE 7
-//#define VSHIFT 		(-0.020650)
+//#define VSHIFT		(-0.021)	// FIGURE 7
+#define VSHIFT 		(-0.01876)
 
 
 
