@@ -34,8 +34,8 @@ int main (int argc, char *argv[]) {
 
 
 	real_t endPoint;
-	real_t left  = 1.459132343750000e-01;
-	real_t right = 1.459132375000000e-01;
+	real_t left  = 1.459132379705810e-01;
+	real_t right = 1.459132380517578e-01;
 	real_t mid = (left + right) / 2.0;
 	real_t endLeft;
 	real_t endRight;
@@ -75,7 +75,8 @@ int main (int argc, char *argv[]) {
 	clFinish(queue);
 	endRight = endPoint;
 
-	
+return;
+
 	for (i=0; i<5; ++i) {
 		// LAUNCH KERNEL
 		phi31 = mid;

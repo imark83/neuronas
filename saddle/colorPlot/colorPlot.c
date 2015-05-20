@@ -54,7 +54,7 @@ int main () {
 
 	FILE *gnuplot = popen ("/usr/local/bin/gnuplot", "w");
 	fprintf (gnuplot, "set term svg size 400, 400 fsize 14\n");
-	fprintf (gnuplot, "set size square\nunset key\nset xrange [0:1]\nset yrange [0:1]\n");
+	fprintf (gnuplot, "set size square\nunset key\nset xrange [0.60022:0.61022]\nset yrange [0.31708:0.32708]\n");
 	fprintf (gnuplot, "set output \"fig00.svg\"\n");
 
 	int i, j;
@@ -173,6 +173,7 @@ int main () {
 		}
 		else
 			fprintf (gnuplot, ", \\\n \"./_c.txt\"  w l lc rgb \"cyan\"");
+	fprintf (gnuplot, ", \\\n  \"./saddleGP.txt\"  w p pt 7 ps 0.5");
 	fprintf (gnuplot, "\n");
 
 	fflush (gnuplot);
