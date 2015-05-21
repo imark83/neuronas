@@ -11,7 +11,7 @@ unset key
 
 set size square
 set pm3d map corners2color c1
-splot "./T.txt" matrix u ($1/512):($2/512):0
+splot "./CMap.txt" matrix u ($1/512):($2/512):0
 
 
 
