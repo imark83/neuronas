@@ -19,7 +19,7 @@ int main (int argc, char *argv[]) {
 
 	// ALLOCATE MEMORY
 	
-	cl_mem d_colorMap = clCreateBuffer (context, CL_MEM_WRITE_ONLY, 2*M*N*CUTNUMBER * sizeof (real_t), NULL, NULL);
+	cl_mem d_colorMap = clCreateBuffer (context, CL_MEM_WRITE_ONLY, 2*M*N * sizeof (real_t), NULL, NULL);
 
 	// SET KERNEL ARGUMENTS
 
@@ -38,8 +38,8 @@ int main (int argc, char *argv[]) {
 	clFinish (queue);
 
 
-	real_t *colorMap = (real_t*) malloc (2*M*N*CUTNUMBER * sizeof (real_t));
-	clEnqueueReadBuffer (queue, d_colorMap, CL_TRUE, 0, 2*M*N*CUTNUMBER * sizeof (real_t), colorMap, 0, NULL, NULL);
+	real_t *colorMap = (real_t*) malloc (2*M*N * sizeof (real_t));
+	clEnqueueReadBuffer (queue, d_colorMap, CL_TRUE, 0, 2*M*N * sizeof (real_t), colorMap, 0, NULL, NULL);
 	clFinish(queue);
 
 

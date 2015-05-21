@@ -18,9 +18,9 @@
 
 
 // GEOMETRY VALUES
-#define M		(32)		// HORIZONTAL GRIDSIZE
-#define N		(32)		// VERTICAL GRIDSIZE
-#define CUTNUMBER	(3)		// NUMBER OF CUTS FOR POINC. OF EACH NEURON!
+#define M		(4)		// HORIZONTAL GRIDSIZE
+#define N		(4)		// VERTICAL GRIDSIZE
+#define CUTNUMBER	(5)		// NUMBER OF CUTS FOR POINC. OF EACH NEURON!
 #define CENTERX		(0.5)
 #define CENTERY		(0.5)
 #define RADIUS		(0.5)
@@ -45,7 +45,7 @@
 #define TK2		(0.9)
 #define IAPP		(0.006)
 //#define VSHIFT		(-0.021)	// FIGURE 7
-#define VSHIFT 		(-0.01876)
+#define VSHIFT 		(-0.019)
 
 
 
