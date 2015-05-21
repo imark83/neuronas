@@ -3,7 +3,8 @@
 
 #define CPU
 
-#define FILENAME	"CMap.txt"
+#define FILENAME_X	"CMapX.txt"
+#define FILENAME_Y	"CMapY.txt"
 #define FLOAT
 
 #ifdef FLOAT

@@ -19,7 +19,7 @@ int main (int argc, char *argv[]) {
 
 	// ALLOCATE MEMORY
 	
-	cl_mem d_colorMap = clCreateBuffer (context, CL_MEM_WRITE_ONLY, M*N*CUTNUMBER * sizeof (real_t), NULL, NULL);
+	cl_mem d_colorMap = clCreateBuffer (context, CL_MEM_WRITE_ONLY, 2*M*N*CUTNUMBER * sizeof (real_t), NULL, NULL);
 
 	// SET KERNEL ARGUMENTS
 
@@ -38,19 +38,24 @@ int main (int argc, char *argv[]) {
 	clFinish (queue);
 
 
-	real_t *colorMap = (real_t*) malloc (M*N*CUTNUMBER * sizeof (real_t));
-	clEnqueueReadBuffer (queue, d_colorMap, CL_TRUE, 0, M*N*CUTNUMBER * sizeof (real_t), colorMap, 0, NULL, NULL);
+	real_t *colorMap = (real_t*) malloc (2*M*N*CUTNUMBER * sizeof (real_t));
+	clEnqueueReadBuffer (queue, d_colorMap, CL_TRUE, 0, 2*M*N*CUTNUMBER * sizeof (real_t), colorMap, 0, NULL, NULL);
 	clFinish(queue);
 
 
-	FILE *fout = fopen (FILENAME, "w");
+	FILE *foutX = fopen (FILENAME_X, "w");
+	FILE *foutY = fopen (FILENAME_Y, "w");
 
 	for (i=0; i<M; i++) {
-		for (j=0; j<N; j++) 
-			fprintf (fout, "  %.15le", colorMap[j*M+i]);
-		fprintf (fout, "\n");
+		for (j=0; j<N; j++) {
+			fprintf (foutX, "  %.15le", colorMap[j*M+i]);
+			fprintf (foutY, "  %.15le", colorMap[M*N+j*M+i]);
+		}
+		fprintf (foutX, "\n");
+		fprintf (foutY, "\n");
 	}
-	fclose (fout);
+	fclose (foutX);
+	fclose (foutY);
 
 	unsigned long int c0, c1;
 	clGetEventProfilingInfo (event, CL_PROFILING_COMMAND_START, sizeof (cl_ulong), &c0, NULL);

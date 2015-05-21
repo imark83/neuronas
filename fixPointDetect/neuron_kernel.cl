@@ -5,7 +5,7 @@
 #include "rkN.h"
 
 
-#define COLORMAP	colorMap[M*get_global_id(1) + get_global_id(0)]
+#define COLORMAP(i)	colorMap[M*N*(i) + M*get_global_id(1) + get_global_id(0)]
 
 
 __kernel void neuron (__global       real_t *colorMap) {
@@ -88,7 +88,8 @@ __kernel void neuron (__global       real_t *colorMap) {
 
 
 
-	COLORMAP = fabs (f21[1]-f21[0]) + fabs (f31[1]-f31[0]);
+	COLORMAP(0) = f21[1]-f21[0];
+	COLORMAP(1) = f31[1]-f31[0];
 
 
 }
