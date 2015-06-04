@@ -9,7 +9,7 @@
 int main (int argc, char *argv[]) {
 	int i, j;
 	const size_t global_work_size[] = {N};
-	const size_t local_work_size[] = {1};
+	const size_t local_work_size[] = {2};
 	const char *source = "#include \"neuron_kernel.cl\"\n";
 	const char *kernelName = "neuron";
 
@@ -18,7 +18,7 @@ int main (int argc, char *argv[]) {
 	cl_event event;
 
 	// READ RANDOM NUMBERS
-	FILE *finp = fopen ("random64.bin", "rb");
+	FILE *finp = fopen (RANDOM_FILE, "rb");
 	if (finp == NULL) {
 		fprintf (stderr, "not found random numbers\n");
 		return 0;

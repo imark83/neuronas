@@ -19,6 +19,7 @@ __kernel void neuron (
 	int i, j;
 
 
+
 	real_t P = 1.055264e+01;
 	real_t sw[NVAR_SW] = {
 		-4.003428e-02,
@@ -47,7 +48,7 @@ __kernel void neuron (
 	
 	for (i=0; i<NVAR_SW; i++) y[i] = sw[i];
 	rkSW (y, (1.0 - PHI(7))*P, (real_t *) 0, 0);
-	for (i=0; i<NVAR_SW; i++) x[i+2*NVAR_SW] = sw[i+NVAR_SW];
+	for (i=0; i<NVAR_SW; i++) x[i+2*NVAR_SW] = y[i];
 
 
 

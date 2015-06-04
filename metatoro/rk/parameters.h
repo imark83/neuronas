@@ -4,23 +4,23 @@
 #define CPU
 
 #define FILENAME	"T.bin"
-#define DOUBLE
+#define FLOAT
 
 #ifdef FLOAT
 #define real_t float
-#define RANDOM_FILE	"random32.txt"
+#define RANDOM_FILE	"random32.bin"
 #endif
 
 #ifdef DOUBLE
 #pragma OPENCL EXTENSION cl_khr_fp64 : enable
 #define real_t double
-#define RANDOM_FILE	"random64.txt"
+#define RANDOM_FILE	"random64.bin"
 #endif
 
 
 // GEOMETRY VALUES
-#define N		(1)		// NUMBER OF INTEGRATIONS
-#define CUTNUMBER	(4000)		// NUMBER OF CUTS FOR POINC. OF EACH NEURON!
+#define N		(4)		// NUMBER OF INTEGRATIONS
+#define CUTNUMBER	(400)		// NUMBER OF CUTS FOR POINC. OF EACH NEURON!
 
 // NEURON AND NETWORK PARAMETERS
 #define INTERWORLD_PROPORTION (0.05);
@@ -50,7 +50,7 @@
 #define NVAR_SW		(9)		// NUMBER OF VARIABLES OF A SINGLE NEURON
 #define NNEURON		(9)
 #define NNEURON_SW	(3)
-#define TOL		(1.0e-8)	// TOLERANCE FOR THE RUNGE-KUTTA INTEGRATION
+#define TOL		(1.0e-6)	// TOLERANCE FOR THE RUNGE-KUTTA INTEGRATION
 #define INITIAL_STEP	(1.0e-6)	// INITIAL STEPSIZE
 
 
