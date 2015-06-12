@@ -4,7 +4,7 @@
 #define CPU
 
 #define FILENAME	"T.bin"
-#define FLOAT
+#define DOUBLE
 
 #ifdef FLOAT
 #define real_t float
@@ -20,7 +20,7 @@
 
 // GEOMETRY VALUES
 #define N		(4)		// NUMBER OF INTEGRATIONS
-#define CUTNUMBER	(400)		// NUMBER OF CUTS FOR POINC. OF EACH NEURON!
+#define CUTNUMBER	(10000)		// NUMBER OF CUTS FOR POINC. OF EACH NEURON!
 
 // NEURON AND NETWORK PARAMETERS
 #define INTERWORLD_PROPORTION (0.05);

@@ -6,15 +6,15 @@
 #include "rkSW.h"
 
 
-#define DELAY(k)	delay[NNEURON*CUTNUMBER*get_global_id(0) + (k)]
+#define DELAY(k)	g_delay[(int) NNEURON*CUTNUMBER*get_global_id(0) + (int) (k)]
 
 #define PHI(i)		randomNumber[8*get_global_id(0) + (i)]
 
 __kernel void neuron (
 		// output
-		__global real_t *delay,
+		__global real_t *g_delay,
 		// input
-		__global const real_t *randomNumber) {
+		__global real_t *randomNumber) {
 
 	int i, j;
 
@@ -39,7 +39,12 @@ __kernel void neuron (
 
 	// POINCARE EVENTS
 
-	real_t T[CUTNUMBER*NNEURON];
+	//real_t T[CUTNUMBER*NNEURON];
+
+	__global real_t * __private T;
+
+	T = g_delay + NNEURON*CUTNUMBER*get_global_id(0);
+
 
 	// INITIALIZE REFERENCE BURSTERS OF EACH SMALL WORLD 
 	for (i=0; i<NVAR_SW; i++) x[i] = y[i] = sw[i];
@@ -62,9 +67,9 @@ __kernel void neuron (
 	// INTEGRATE CPG
 	rkN (x, 100000.0, T, CUTNUMBER);
 
-//	for (i=0; i<NNEURON*CUTNUMBER; i++) printf ("%f  ", T[i]);
+	for (i=0; i<10; i++) printf ("%f  ", T[i]);
 
-	for (i=0; i<NNEURON*CUTNUMBER; i++) DELAY(i) = T[i];
+//	for (i=0; i<NNEURON*CUTNUMBER; i++) DELAY(i) = T[i];
 
 /*	for (i=0; i<3*CUTNUMBER; ++i) 
 		printf ("%e, ", T[CUTNUMBER*NNEURON-3*CUTNUMBER+i]);

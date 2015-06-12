@@ -111,7 +111,7 @@ real_t rkStepN (real_t xNext[NVAR_N], real_t x[NVAR_N], real_t h, real_t fsal[NV
 }
 
 // 
-void rkN (real_t x[NVAR_N], real_t tf, real_t * delay, int cutNumber) {
+void rkN (real_t x[NVAR_N], real_t tf, __global real_t *delay, int cutNumber) {
 	real_t step = INITIAL_STEP;
 	real_t fsal[NVAR_N];
 	real_t xNext[NVAR_N];
@@ -143,7 +143,7 @@ void rkN (real_t x[NVAR_N], real_t tf, real_t * delay, int cutNumber) {
 			if (delay != (real_t*) 0) for (j=0; j<NNEURON; j++) {
 				if (eventFlag[j]) {		// enter refinement process
 					if (count[j] == cutNumber) return;
-					delay[j*CUTNUMBER + count[j]] = t + eventVal[j];
+					*(delay + j*CUTNUMBER + count[j]) = t + eventVal[j];
 					count[j]++;
 				}
 			}			

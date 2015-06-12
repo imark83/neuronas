@@ -9,7 +9,7 @@
 int main (int argc, char *argv[]) {
 	int i, j;
 	const size_t global_work_size[] = {N};
-	const size_t local_work_size[] = {2};
+	const size_t local_work_size[] = {1};
 	const char *source = "#include \"neuron_kernel.cl\"\n";
 	const char *kernelName = "neuron";
 
@@ -25,7 +25,7 @@ int main (int argc, char *argv[]) {
 	}
 	fseek (finp, 0, SEEK_END);
 	int len = ftell (finp);
-	if (8*len / sizeof (real_t) < N) { 
+	if ((len/8) / sizeof (real_t) < N) { 
 		fprintf (stderr, "not enough random numbers\n");
 		return 0;
 	}

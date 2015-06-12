@@ -111,7 +111,7 @@ real_t rkStepSW (real_t xNext[NVAR_SW], real_t x[NVAR_SW], real_t h, real_t fsal
 }
 
 // 
-void rkSW (real_t x[NVAR_SW], real_t tf, real_t * delay, int cutNumber) {
+void rkSW (real_t x[NVAR_SW], real_t tf, real_t *delay, int cutNumber) {
 	real_t step = INITIAL_STEP;
 	real_t fsal[NVAR_SW];
 	real_t xNext[NVAR_SW];
@@ -142,7 +142,7 @@ void rkSW (real_t x[NVAR_SW], real_t tf, real_t * delay, int cutNumber) {
 			if (delay != (real_t*) 0) for (j=0; j<NNEURON_SW; j++) {
 				if (eventFlag[j]) {		// enter refinement process
 					if (count[j] == cutNumber) return;
-					delay[j*CUTNUMBER + count[j]] = t + eventVal[j];
+					*(delay + j*CUTNUMBER + count[j]) = t + eventVal[j];
 					count[j]++;
 				}
 			}			
