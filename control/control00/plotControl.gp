@@ -1,4 +1,4 @@
-set term png size 800, 600
+set term png size 800, 600 crop
 set output "basin00.png"
 
 unset xtics
@@ -9,6 +9,7 @@ unset cbtics
 unset cblabel
 unset title
 unset key
+unset colorbox
 
 
 
