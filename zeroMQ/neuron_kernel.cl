@@ -8,13 +8,13 @@
 #define ENDPOINT	endPoint[get_global_id(0)]
 
 __kernel void neuron (__global int *endPoint) {
-	printf ("data = %hhu\n", endPoint[get_global_id (0)]);
+	//printf ("data = %hhu\n", endPoint[get_global_id (0)]);
 	int indexI = endPoint[get_global_id(0)] % 8;
 	int indexJ = endPoint[get_global_id(0)] / 8;
 	
-	printf ("(i,j) = (%i, %i), phi = (%f, %f)\n", indexI, indexJ, indexI/8.0, indexJ/8.0);
+	//printf ("(i,j) = (%i, %i), phi = (%f, %f)\n", indexI, indexJ, indexI/8.0, indexJ/8.0);
 	endPoint[get_global_id (0)] = -endPoint[get_global_id (0)];
-
+//return;
 	/*int i;
 	// DESIRED DELAYS FOR FIRST POINT
 	real_t phi21 = 0.3333;	// DESIRED PHI21
@@ -101,29 +101,29 @@ __kernel void neuron (__global int *endPoint) {
 	if (f31>=1) f31 -= 1.0;
 
 
-	printf ("Final state = (%.4f %.4f) ---- > ", f21, f31);
+	//printf ("Final state = (%.4f %.4f) ---- > ", f21, f31);
 	if (fabs (f21 - 0.541002) + fabs (f31) < 0.2 || fabs (d21 - 0.541002) + fabs (f31 -1.0) < 0.2) {
-		printf ("0\n");
+	//	printf ("0\n");
 		ENDPOINT = 0.0;
 	}
 	else if (fabs (f21) + fabs (f31 - 0.541002) < 0.2 || fabs (f21 - 1.0) + fabs (f31 - 0.541002) < 0.2) {
-		printf ("1\n");
+	//	printf ("1\n");
 		ENDPOINT = 1.0;
 	}
 	else if (fabs (f21 - 0.458981) + fabs (f31 - 0.458981) < 0.2) {
-		printf ("2\n");
+	//	printf ("2\n");
 		ENDPOINT = 2.0;
 	}
 	else if (fabs (f21 - 0.33) + fabs (f31 - 0.66) < 0.2) {
-		printf ("3\n");
+	//	printf ("3\n");
 		ENDPOINT = 3.0;
 	}
 	else if (fabs (f21 - 0.66) + fabs (f31 - 0.33) < 0.2) {
-		printf ("4\n");
+	//	printf ("4\n");
 		ENDPOINT = 4.0;
 	}
 	else  {
-		printf ("????\n");
+	//	printf ("????\n");
 		ENDPOINT = -2.0;
 	}
 

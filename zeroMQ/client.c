@@ -13,7 +13,7 @@ int main (int argc, char **argv) {
 
 	int i;
 	// TASK LEN
-	size_t len = 16;
+	size_t len = 2;
 
 
 	// OpenCL STARTUP

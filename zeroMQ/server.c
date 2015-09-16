@@ -30,6 +30,8 @@ int main (int argc, char **argv) {
 	int *rop = (int*) malloc (M*N * sizeof (int));
 	
 	do {
+		printf ("pending = %i\n", pending);
+		printf ("completed = %i\n", completed);
 		printf ("waiting orders...\n");
 		zmq_recv (socket, &message, sizeof (message_t), 0);
 		printf ("client sent message: ");
@@ -54,10 +56,6 @@ int main (int argc, char **argv) {
 				// RECIVE THE COMPLETED TASKS FROM THE CLIENT
 				zmq_recv (socket, attach, message.len*sizeof (int), 0);
 
-	printf ("attach = %2hhi", attach[0]);
-	for (i=1; i<message.len; ++i) printf (", %2hhi", attach[i]);
-	printf ("\n");
-
 				for (i=0; i<message.len; ++i) rop[message.index+i] = attach[i];
 				completed += message.len;
 				// ANSER THE CLIENT
@@ -76,8 +74,8 @@ int main (int argc, char **argv) {
 	printf ("\n");
 
 	FILE *fout = fopen ("control.txt", "w");
-	for (i=0; i<M; ++i) {
-		for (j=0; j<N; ++j) fprintf (fout, "%i ", rop[N*i+j]);
+	for (j=0; j<N; ++j) {
+		for (i=0; i<M; ++i) fprintf (fout, "%i ", rop[N*i+j]);
 		fprintf (fout, "\n");
 	}
 	fclose (fout);
