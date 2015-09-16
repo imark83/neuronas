@@ -13,7 +13,7 @@ int main (int argc, char **argv) {
 
 	int i;
 	// TASK LEN
-	size_t len = 2;
+	size_t len = 128;
 
 
 	// OpenCL STARTUP
@@ -30,7 +30,7 @@ int main (int argc, char **argv) {
 	// zmq_context of zeroMQ
 	void *zmq_context = zmq_ctx_new ();
 	void *socket  = zmq_socket (zmq_context, ZMQ_REQ);
-	int errMsg = zmq_connect (socket, "tcp://localhost:5555");
+	int errMsg = zmq_connect (socket, "tcp://155.210.85.57:5555");
 	if (errMsg != 0) {
 		fprintf (stderr, "Error binding socket\n");
 		return errMsg;
@@ -49,7 +49,7 @@ int main (int argc, char **argv) {
 			fprintf (stderr, "Server has no more tasks\n");
 			break;
 		}
-
+		len = message.len;
 
 		// PROCESS TASK
 		for (i=message.index; i<message.index + message.len; ++i)
@@ -75,7 +75,7 @@ int main (int argc, char **argv) {
 	
 		clEnqueueReadBuffer (queue, d_endPoint, CL_TRUE, 0, len * sizeof (int), attach, 0, NULL, NULL);
 		clFinish (queue);
-
+		usleep (500000);
 
 		// SEND COMPLETED TASK
 		message.header = WORK_DONE;

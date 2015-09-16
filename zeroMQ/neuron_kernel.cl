@@ -14,7 +14,7 @@ __kernel void neuron (__global int *endPoint) {
 	
 	//printf ("(i,j) = (%i, %i), phi = (%f, %f)\n", indexI, indexJ, indexI/8.0, indexJ/8.0);
 	endPoint[get_global_id (0)] = -endPoint[get_global_id (0)];
-//return;
+return;
 	/*int i;
 	// DESIRED DELAYS FOR FIRST POINT
 	real_t phi21 = 0.3333;	// DESIRED PHI21
