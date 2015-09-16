@@ -1,16 +1,16 @@
 #include <stdio.h>
 #include <zmq.h>
 #include <stdlib.h>
+#include "parameters.h"
 
-
-#define N	8
-#define M	8
 
 #include "my_protocol.h"
 
 
 
 int main (int argc, char **argv) {
+	int i, j;
+	
 	// context
 	void *context = zmq_ctx_new ();
 	void *socket  = zmq_socket (context, ZMQ_REP);
@@ -26,9 +26,8 @@ int main (int argc, char **argv) {
 	
 	message_t message;
 	attach_t attach;
-		attach = (attach_t) malloc (512 * sizeof (char));
-	char *rop = (char*) malloc (M*N * sizeof (char));
-	int i;
+		attach = (attach_t) malloc (ATTACH_MAX_SIZE * sizeof (int));
+	int *rop = (int*) malloc (M*N * sizeof (int));
 	
 	do {
 		printf ("waiting orders...\n");
@@ -38,7 +37,7 @@ int main (int argc, char **argv) {
 			case SEND_ME:
 				printf ("requests tasks\n");
 				if (!pending) {
-					// ANSER CLIENT NO MORE TASKS
+					// ANSWER CLIENT NO MORE TASKS
 					message.header = NO_MORE;	
 					zmq_send (socket, &message, sizeof (message_t), 0);
 				} else {
@@ -53,7 +52,7 @@ int main (int argc, char **argv) {
 			case WORK_DONE:
 				printf ("request send completed task\n");
 				// RECIVE THE COMPLETED TASKS FROM THE CLIENT
-				zmq_recv (socket, attach, message.len, 0);
+				zmq_recv (socket, attach, message.len*sizeof (int), 0);
 
 	printf ("attach = %2hhi", attach[0]);
 	for (i=1; i<message.len; ++i) printf (", %2hhi", attach[i]);
@@ -73,12 +72,20 @@ int main (int argc, char **argv) {
 	
 	
 	printf ("rop = %2hhi", rop[0]);
-	for (i=1; i<M*N; ++i) printf (", %2hhi", rop[i]);
+	for (i=1; i<M*N; ++i) printf (", %i", rop[i]);
 	printf ("\n");
+
+	FILE *fout = fopen ("control.txt", "w");
+	for (i=0; i<M; ++i) {
+		for (j=0; j<N; ++j) fprintf (fout, "%i ", rop[N*i+j]);
+		fprintf (fout, "\n");
+	}
+	fclose (fout);
 
 	zmq_close (socket);
 	zmq_ctx_destroy (context);
 	free (rop);
+	free (attach);
 	return 0;
 	
 
