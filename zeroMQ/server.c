@@ -31,6 +31,7 @@ int main (int argc, char **argv) {
 	
 	do {
 		printf ("pending = %i\n", pending);
+		for (i=0; i<N*M; ++i) if (rop[i] != 0) printf ("%i\t", i);
 		printf ("completed = %i\n", completed);
 		printf ("waiting orders...\n");
 		zmq_recv (socket, &message, sizeof (message_t), 0);
@@ -69,9 +70,9 @@ int main (int argc, char **argv) {
 	} while (completed < M*N);
 	
 	
-	printf ("rop = %2hhi", rop[0]);
+	/*printf ("rop = %2hhi", rop[0]);
 	for (i=1; i<M*N; ++i) printf (", %i", rop[i]);
-	printf ("\n");
+	printf ("\n");*/
 
 	FILE *fout = fopen ("control.txt", "w");
 	for (j=0; j<N; ++j) {

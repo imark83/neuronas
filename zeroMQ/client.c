@@ -13,7 +13,7 @@ int main (int argc, char **argv) {
 
 	int i;
 	// TASK LEN
-	size_t len = 128;
+	size_t len = 8;
 
 
 	// OpenCL STARTUP
@@ -49,10 +49,11 @@ int main (int argc, char **argv) {
 			fprintf (stderr, "Server has no more tasks\n");
 			break;
 		}
-		len = message.len;
 
 		// PROCESS TASK
 		for (i=message.index; i<message.index + message.len; ++i)
+			attach[i-message.index] = i;	
+		for (i=message.index+message.len; i<message.index + len; ++i)
 			attach[i-message.index] = i;	
 	
 		clEnqueueWriteBuffer (queue, d_endPoint, CL_TRUE, 0, len * sizeof (int), attach, 0, NULL, &event);
@@ -75,7 +76,8 @@ int main (int argc, char **argv) {
 	
 		clEnqueueReadBuffer (queue, d_endPoint, CL_TRUE, 0, len * sizeof (int), attach, 0, NULL, NULL);
 		clFinish (queue);
-		usleep (500000);
+
+usleep (100000);
 
 		// SEND COMPLETED TASK
 		message.header = WORK_DONE;
