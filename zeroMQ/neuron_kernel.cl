@@ -8,13 +8,14 @@
 #define ENDPOINT	endPoint[get_global_id(0)]
 
 __kernel void neuron (__global int *endPoint) {
+	if (ENDPOINT < 0) {return;}
 	//printf ("data = %hhu\n", endPoint[get_global_id (0)]);
-	int indexI = endPoint[get_global_id(0)] % 8;
-	int indexJ = endPoint[get_global_id(0)] / 8;
+	int indexI = ENDPOINT / N;
+	int indexJ = ENDPOINT % N;
 	
 	//printf ("(i,j) = (%i, %i), phi = (%f, %f)\n", indexI, indexJ, indexI/8.0, indexJ/8.0);
-	endPoint[get_global_id (0)] = -endPoint[get_global_id (0)];
-return;
+	//endPoint[get_global_id (0)] = -endPoint[get_global_id (0)];
+
 	/*int i;
 	// DESIRED DELAYS FOR FIRST POINT
 	real_t phi21 = 0.3333;	// DESIRED PHI21

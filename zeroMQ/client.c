@@ -10,7 +10,7 @@ int main (int argc, char **argv) {
 
 	int i;
 	// TASK LEN
-	size_t len = 128;
+	size_t len = 4;
 
 
 	// OpenCL STARTUP
@@ -52,9 +52,12 @@ int main (int argc, char **argv) {
 		for (i=message.index; i<message.index + message.len; ++i)
 			attach[i-message.index] = i;	
 		for (i=message.index+message.len; i<message.index + len; ++i)
-			attach[i-message.index] = 0;	
+			attach[i-message.index] = -1;	
+			
+		/*printf ("attach = ");
+		for (i=0; i<len; ++i) printf ("%i ", attach[i]);*/
 	
-		clEnqueueWriteBuffer (queue, d_endPoint, CL_TRUE, 0, message.len * sizeof (int), attach, 0, NULL, &event);
+		clEnqueueWriteBuffer (queue, d_endPoint, CL_TRUE, 0, len * sizeof (int), attach, 0, NULL, &event);
 		clFinish (queue);
 
 		clSetKernelArg (kernel, 0, sizeof (cl_mem), (void*) (&d_endPoint));
@@ -70,16 +73,21 @@ int main (int argc, char **argv) {
 			&event);		// EVENT FOR TIMING
 		clFinish (queue);
 
-		clEnqueueReadBuffer (queue, d_endPoint, CL_TRUE, 0, message.len * sizeof (int), attach, 0, NULL, NULL);
+		clEnqueueReadBuffer (queue, d_endPoint, CL_TRUE, 0, len * sizeof (int), attach, 0, NULL, NULL);
 		clFinish (queue);
 
-usleep (100000);
+/*usleep (100000);
+getchar ();*/
 
 		// SEND COMPLETED TASK
 		message.header = WORK_DONE;
 		zmq_send (socket, &message, sizeof (message_t), ZMQ_SNDMORE);
 		zmq_send (socket, attach, message.len*sizeof (int), 0);
 		zmq_recv (socket, &message, sizeof (message_t), 0);
+		if (message.header == THANK_YOU_NO_MORE) {
+			fprintf (stderr, "Server has no more tasks\n");
+			break;
+		}
 		if (message.header != THANK_YOU) {
 			fprintf (stderr, "Stupid Flanders Server.\n");
 			return 0;

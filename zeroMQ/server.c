@@ -56,7 +56,8 @@ int main (int argc, char **argv) {
 				for (i=0; i<message.len; ++i) rop[message.index+i] = attach[i];
 				completed += message.len;
 				// ANSER THE CLIENT
-				message.header = THANK_YOU;
+				if (!pending) message.header = THANK_YOU_NO_MORE;
+				else message.header = THANK_YOU;
 				zmq_send (socket, &message, sizeof (message_t), 0);
 				break;
 			default:
