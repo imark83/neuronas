@@ -25,14 +25,10 @@ int main (int argc, char **argv) {
 	completed = 0;
 	
 	message_t message;
-	attach_t attach;
-		attach = (attach_t) malloc (ATTACH_MAX_SIZE * sizeof (int));
+	attach_t attach = (attach_t) malloc (ATTACH_MAX_SIZE * sizeof (int));
 	int *rop = (int*) malloc (M*N * sizeof (int));
 	
 	do {
-		printf ("pending = %i\n", pending);
-		for (i=0; i<N*M; ++i) if (rop[i] != 0) printf ("%i\t", i);
-		printf ("completed = %i\n", completed);
 		printf ("waiting orders...\n");
 		zmq_recv (socket, &message, sizeof (message_t), 0);
 		printf ("client sent message: ");
@@ -67,6 +63,8 @@ int main (int argc, char **argv) {
 				fprintf (stderr, "bad message\n");
 				break;				
 		}
+		printf ("pending = %i\n", pending);
+		printf ("completed = %i\n", completed);
 	} while (completed < M*N);
 	
 	

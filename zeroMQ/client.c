@@ -4,16 +4,13 @@
 #include <CL/cl.h>
 
 
-#define N	64
-#define M	64
-
 #include "my_protocol.h"
 
 int main (int argc, char **argv) {
 
 	int i;
 	// TASK LEN
-	size_t len = 8;
+	size_t len = 128;
 
 
 	// OpenCL STARTUP
@@ -30,7 +27,8 @@ int main (int argc, char **argv) {
 	// zmq_context of zeroMQ
 	void *zmq_context = zmq_ctx_new ();
 	void *socket  = zmq_socket (zmq_context, ZMQ_REQ);
-	int errMsg = zmq_connect (socket, "tcp://155.210.85.57:5555");
+//	int errMsg = zmq_connect (socket, "tcp://155.210.85.57:5555");
+	int errMsg = zmq_connect (socket, "tcp://localhost:5555");
 	if (errMsg != 0) {
 		fprintf (stderr, "Error binding socket\n");
 		return errMsg;
@@ -54,9 +52,9 @@ int main (int argc, char **argv) {
 		for (i=message.index; i<message.index + message.len; ++i)
 			attach[i-message.index] = i;	
 		for (i=message.index+message.len; i<message.index + len; ++i)
-			attach[i-message.index] = i;	
+			attach[i-message.index] = 0;	
 	
-		clEnqueueWriteBuffer (queue, d_endPoint, CL_TRUE, 0, len * sizeof (int), attach, 0, NULL, &event);
+		clEnqueueWriteBuffer (queue, d_endPoint, CL_TRUE, 0, message.len * sizeof (int), attach, 0, NULL, &event);
 		clFinish (queue);
 
 		clSetKernelArg (kernel, 0, sizeof (cl_mem), (void*) (&d_endPoint));
@@ -72,9 +70,7 @@ int main (int argc, char **argv) {
 			&event);		// EVENT FOR TIMING
 		clFinish (queue);
 
-		printf ("kernel finished\n");
-	
-		clEnqueueReadBuffer (queue, d_endPoint, CL_TRUE, 0, len * sizeof (int), attach, 0, NULL, NULL);
+		clEnqueueReadBuffer (queue, d_endPoint, CL_TRUE, 0, message.len * sizeof (int), attach, 0, NULL, NULL);
 		clFinish (queue);
 
 usleep (100000);
