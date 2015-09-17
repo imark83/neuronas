@@ -10,7 +10,9 @@ int main (int argc, char **argv) {
 
 	int i;
 	// TASK LEN
-	size_t len = 4;
+
+	size_t len = 8;
+	if (argc > 1) len = atoi (argv[1]);
 
 
 	// OpenCL STARTUP
@@ -24,19 +26,21 @@ int main (int argc, char **argv) {
 	// CREATE CL MEM BUFFER
 	cl_mem d_endPoint = clCreateBuffer (context, CL_MEM_READ_WRITE, len * sizeof (int), NULL, NULL);
 
+	// SET KERNEL ARGUMENT	
+	clSetKernelArg (kernel, 0, sizeof (cl_mem), (void*) (&d_endPoint));
+
 	// zmq_context of zeroMQ
 	void *zmq_context = zmq_ctx_new ();
 	void *socket  = zmq_socket (zmq_context, ZMQ_REQ);
-//	int errMsg = zmq_connect (socket, "tcp://155.210.85.57:5555");
-	int errMsg = zmq_connect (socket, "tcp://localhost:5555");
+	int errMsg = zmq_connect (socket, "tcp://155.210.85.57:5555");
+//	int errMsg = zmq_connect (socket, "tcp://localhost:5555");
 	if (errMsg != 0) {
 		fprintf (stderr, "Error binding socket\n");
 		return errMsg;
 	}
 
 	message_t message;
-	attach_t attach;
-		attach = (attach_t) malloc (ATTACH_MAX_SIZE * sizeof (int));
+	attach_t attach = (attach_t) malloc (ATTACH_MAX_SIZE * sizeof (int));
 
 	while (1) {
 		message.header = SEND_ME;
@@ -54,13 +58,9 @@ int main (int argc, char **argv) {
 		for (i=message.index+message.len; i<message.index + len; ++i)
 			attach[i-message.index] = -1;	
 			
-		/*printf ("attach = ");
-		for (i=0; i<len; ++i) printf ("%i ", attach[i]);*/
-	
 		clEnqueueWriteBuffer (queue, d_endPoint, CL_TRUE, 0, len * sizeof (int), attach, 0, NULL, &event);
 		clFinish (queue);
 
-		clSetKernelArg (kernel, 0, sizeof (cl_mem), (void*) (&d_endPoint));
 
 		// LAUNCH KERNEL
 		clEnqueueNDRangeKernel (queue, kernel,
@@ -76,14 +76,13 @@ int main (int argc, char **argv) {
 		clEnqueueReadBuffer (queue, d_endPoint, CL_TRUE, 0, len * sizeof (int), attach, 0, NULL, NULL);
 		clFinish (queue);
 
-/*usleep (100000);
-getchar ();*/
 
 		// SEND COMPLETED TASK
 		message.header = WORK_DONE;
 		zmq_send (socket, &message, sizeof (message_t), ZMQ_SNDMORE);
 		zmq_send (socket, attach, message.len*sizeof (int), 0);
 		zmq_recv (socket, &message, sizeof (message_t), 0);
+		
 		if (message.header == THANK_YOU_NO_MORE) {
 			fprintf (stderr, "Server has no more tasks\n");
 			break;
@@ -101,6 +100,7 @@ getchar ();*/
 	clReleaseProgram (program);
 	clReleaseCommandQueue (queue);
 	clReleaseContext (context);
+	clReleaseMemObject (d_endPoint);
 	
 	
 	zmq_close (socket);
