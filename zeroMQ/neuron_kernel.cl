@@ -13,6 +13,7 @@ __kernel void neuron (__global int *endPoint) {
 	int indexI = ENDPOINT / N;
 	int indexJ = ENDPOINT % N;
 
+return;
 
 	real_t x[NVAR_N] = {-4.012140e-02, 9.882284e-01, 2.065631e-02, -4.464825e-02, 9.977207e-01, 2.602615e-02, 1.232392e-02, 9.272169e-02, 2.966174e-01};
 	real_t P = 1.045580e+01;
