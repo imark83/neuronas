@@ -18,20 +18,17 @@ int getColor (double* _f21, double* _f31, int N) {
 
 	double f21 = _f21[N-3];
 	double f31 = _f31[N-3];
-	
-	return BLUE;
-	
-	if (fabs (f21 - 0.46) < 0.2 && fabs (f31-0.46) < 0.2) return BLUE;
+	if (fabs (f21 - f31) < 0.2) return BLUE;
 
-	if (fabs (f31) < 0.2 && fabs(f31-0.52) < 0.2) return RED;
-	if (fabs (f31 - 1.0) < 0.2 && fabs(f31-0.52) < 0.2) return RED;
+	if (fabs (f31) < 0.2) return RED;
+	if (fabs (f31 - 1.0) < 0.2) return RED;
 
 	if (fabs (f21) < 0.2) return GREEN;
 	if (fabs (f21 - 1.0) < 0.2) return GREEN;
 
-	if (fabs (f21 - 0.3333) + fabs (f31 - 0.6666) < 0.1) return BLACK;
+	if (fabs (f21 - 0.3333) + fabs (f31 - 0.6666) < 0.2) return BLACK;
 
-	if (fabs (f21 - 0.6666) + fabs (f31 - 0.3333) < 0.1) return BLACK;
+	if (fabs (f21 - 0.6666) + fabs (f31 - 0.3333) < 0.2) return BLACK;
 
 	return CYAN; 
 
@@ -57,7 +54,7 @@ int main () {
 
 	FILE *gnuplot = popen ("/usr/bin/gnuplot", "w");
 	fprintf (gnuplot, "set term svg size 400, 400 fsize 14\n");
-	fprintf (gnuplot, "set size square\nunset key\nset xrange [0:0.1]\nset yrange [0:0.1]\n");
+	fprintf (gnuplot, "set size square\nunset key\nset xrange [0:1]\nset yrange [0:1]\n");
 	fprintf (gnuplot, "set output \"fig00.svg\"\n");
 
 	int i, j;
@@ -179,12 +176,12 @@ int main () {
 	fprintf (gnuplot, "\n");
 
 	fflush (gnuplot);
-	/*fprintf (gnuplot, "pause mouse\n");
-	fprintf (gnuplot, "print MOUSE_X, MOUSE_Y\n");
-	fflush (gnuplot);*/
+	//fprintf (gnuplot, "pause mouse\n");
+	//fprintf (gnuplot, "print MOUSE_X, MOUSE_Y\n");
+	//fflush (gnuplot);
 
 
-	//fgetc (stdin);
+	fgetc (stdin);
 
 		
 
