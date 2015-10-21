@@ -39,6 +39,7 @@
 #define XR			(-1.6)
 #define S			(4.0)
 #define R			(0.001)
+// MINIMUM VALUE 1.269
 #define IAPP		(1.3)
 
 
