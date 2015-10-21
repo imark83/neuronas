@@ -16,7 +16,7 @@ __kernel void neuron (__global       real_t *delay) {
 
 
 
-	real_t z[3] = {-1.490995e+00, -1.013418e+01, 1.348324e+00};
+	real_t z[3] = {-4.478238e-01, -4.754044e-01, 2.590187e+00};
 	real_t y[3];
 	real_t x[9];
 	real_t P;
@@ -24,6 +24,7 @@ __kernel void neuron (__global       real_t *delay) {
 
 	// FALL INTO DUTY CYCLE
 	//rkS (z, 5000.0, 0);
+	//return;
 	
 	// COMPUTE PERIOD FOR SINGLE NEURON
 	P = rkS (z, 1000.0, 1);

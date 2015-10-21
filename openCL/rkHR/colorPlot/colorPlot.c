@@ -57,7 +57,7 @@ int main () {
 
 	FILE *gnuplot = popen ("/usr/bin/gnuplot", "w");
 	fprintf (gnuplot, "set term svg size 400, 400 fsize 14\n");
-	fprintf (gnuplot, "set size square\nunset key\nset xrange [0:0.1]\nset yrange [0:0.1]\n");
+	fprintf (gnuplot, "set size square\nunset key\nset xrange [0:1]\nset yrange [0:1]\n");
 	fprintf (gnuplot, "set output \"fig00.svg\"\n");
 
 	int i, j;
@@ -190,7 +190,7 @@ int main () {
 
 	fclose (finp);
 	fclose (gnuplot);
-	system ("rm _?.txt");
+	//system ("rm _?.txt");
 
 }
 
