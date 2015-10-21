@@ -39,7 +39,7 @@
 #define XR			(-1.6)
 #define S			(4.0)
 #define R			(0.001)
-#define IAPP		(2.5)
+#define IAPP		(1.3)
 
 
 
