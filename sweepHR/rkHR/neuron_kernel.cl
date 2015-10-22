@@ -16,17 +16,19 @@ __kernel void neuron (__global       real_t *delay) {
 
 
 
-	real_t z[3] = {0.0, 0.0, 0.0};
+	real_t z[3] = {-1.351530e+00, -8.148711e+00, 1.098780e+00};
 	real_t y[3];
 	real_t x[9];
 	real_t P;
 	real_t T[3*CUTNUMBER];	
 
 	// FALL INTO DUTY CYCLE
-	rkS (z, 500.0, 0);
+	rkS (z, 5000.0, 0);
+	//return;
+	
 	// COMPUTE PERIOD FOR SINGLE NEURON
-	P = rkS (z, 1000.0, 1);
-	//printf ("%zu / %i\n", M*get_global_id(1)+get_global_id(0), M*N);
+	P = rkS (z, 10000.0, 1);
+	printf ("%zu / %i\n", M*get_global_id(1)+get_global_id(0), M*N);
 
 	real_t _phi21, _phi31, err21, err31;
 	_phi21 = phi21; _phi31 = phi31;
@@ -73,7 +75,7 @@ __kernel void neuron (__global       real_t *delay) {
 
 
 	// INTEGRATE CPG
-	rkN (x, 100000.0, T, CUTNUMBER);
+	rkN (x, 1.0e100, T, CUTNUMBER);
 	//rkN (x, 1000.0, (real_t*) 0, 0);
 
 	for (i=0; i<3*CUTNUMBER; i++) DELAY(i) = T[i];
