@@ -23,9 +23,9 @@ void fN (real_t *rop, real_t *x) {
 	
 	for (j=0; j<3; j++) {
 		real_t I_syn;
-		if (j == 0) I_syn = GSYN * (gamma[1]+gamma[2]);
-		if (j == 1) I_syn = GSYN * (gamma[0]+gamma[2]);
-		if (j == 2) I_syn = GSYN * (gamma[0]+gamma[1]);
+		if (j == 0) I_syn = GSYN * (x[0] - ESYN) * 0.1 * (gamma[1]+gamma[2]);
+		if (j == 1) I_syn = GSYN * (x[3] - ESYN) * 0.1 * (gamma[0]+gamma[2]);
+		if (j == 2) I_syn = GSYN * (x[6] - ESYN) * 0.1 * (gamma[0]+gamma[1]);
 				
 	
 		tempRop[0] = x[1+3*j] + x[3*j]*x[3*j] * (B - A*x[3*j]) - x[2+3*j] + IAPP - I_syn;

@@ -32,6 +32,7 @@
 #define EVENTVALUE	(-1.23)		// POINCARE SECTION
 #define THSYN		(-0.91)
 #define GSYN		(0.001)
+#define ESYN		(-1.0)
 #define A			(1.0)
 #define B			(3.0)
 #define C			(1.0)
