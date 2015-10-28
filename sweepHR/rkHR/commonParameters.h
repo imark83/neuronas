@@ -29,14 +29,14 @@
 #define YMAX		(CENTERY+RADIUS)	// MAXIMUM VALUE FOR Y
 
 // NEURON AND NETWORK PARAMETERS
-#define EVENTVALUE	(-1.23)		// POINCARE SECTION
-#define THSYN		(-0.91)
+#define EVENTVALUE	(-1.1)		// POINCARE SECTION
+#define THSYN		(-1.0)
 #define GSYN		(0.001)
 #define A			(1.0)
 #define B			(3.0)
 #define C			(1.0)
 #define D			(5.0)
-#define XR			(-1.6)
+#define XR			(-1.3)
 #define S			(4.0)
 #define R			(0.001)
 // MINIMUM VALUE 1.269
