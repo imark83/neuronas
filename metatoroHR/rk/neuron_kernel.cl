@@ -20,20 +20,14 @@ __kernel void neuron (
 
 
 
-	real_t P = 1.055264e+01;
-	real_t sw[NVAR_SW]/* = {
-		-4.003428e-02,
-		9.879639e-01,
-		2.066398e-02,
-		-4.465347e-02,
-		9.977267e-01,
-		2.614316e-02,
-		-9.251283e-03,
-		2.949874e-02,
-		3.055615e-01}*/;
+	real_t P = 570.0;
+	real_t sw[NVAR_SW] = {-1.23028e+00,  -6.59292e+00,  1.10791e+00,  
+						-1.47481e+00,  -9.89051e+00,  1.14146e+00,  
+						-1.65531e+00,  -1.26833e+01,  1.37329e+00};
 
-	rkSW (sw, 10000, (real_t *) 0, 0);
-
+	//rkSW (sw, 10000, (real_t *) 0, 0);
+	
+	//return;
 	// ALL NETWORK
 	real_t y[NVAR_SW];	// AUX SMALL WORLD
 	real_t x[NVAR_N];
@@ -47,6 +41,7 @@ __kernel void neuron (
 	T = g_delay + NNEURON*CUTNUMBER*get_global_id(0);
 
 
+
 	// INITIALIZE REFERENCE BURSTERS OF EACH SMALL WORLD 
 	for (i=0; i<NVAR_SW; i++) x[i] = y[i] = sw[i];
 	rkSW (y, (1.0 - PHI(6))*P, (real_t *) 0, 0);
@@ -58,17 +53,16 @@ __kernel void neuron (
 
 
 
-//	for (i=0; i<8; i++) printf ("PHI = %f\n", PHI(i));
-//	for (i=0; i<9; i++) printf ("\tx[%2i] = %e;\n", i, x[18+i]);
+	//for (i=0; i<9; i++) printf ("\tx[%2i] = %e;\n", i, x[18+i]);
 
 
 
 //	rkN (x, 0.01, (__global real_t*) 0, 0);
 
 	// INTEGRATE CPG
-	rkN (x, 100000.0, T, CUTNUMBER);
+	rkN (x, 1000000.0, T, CUTNUMBER);
 
-	for (i=0; i<10; i++) printf ("%f  ", T[i]);
+	//for (i=0; i<10; i++) printf ("%f  ", T[i]);
 
 //	for (i=0; i<NNEURON*CUTNUMBER; i++) DELAY(i) = T[i];
 
